@@ -89,6 +89,8 @@ function fh_child_enqueue_assets() {
     $js_plain = array(
         'fh-init'            => 'assets/js/custom/init.js',
         'fh-glass-nav'       => 'assets/js/custom/fh-glass-nav.js',
+        'fh-hero-key'        => 'assets/js/custom/fh-hero-key.js',
+        'fh-hero-sequence'   => 'assets/js/custom/fh-hero-sequence.js',
         'fh-es-dictionary'   => 'assets/js/custom/fh-es-dictionary.js',
         'fh-script-trk'      => 'assets/js/custom/script-trk.js',
         'fh-facebook-signal' => 'assets/js/custom/facebook_signal.js',

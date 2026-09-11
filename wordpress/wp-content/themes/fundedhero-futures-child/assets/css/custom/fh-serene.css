@@ -24,6 +24,87 @@
   background: #000 !important;
 }
 
+/* Video hero en loop: grande, respiracion con fuerza y halo radial detras
+   (sin bordes cuadrados: el brillo vive en una capa difuminada aparte). */
+.fh-hero-video {
+  position: relative;
+}
+
+/* Progreso de precarga de la secuencia: hilo dorado minimo. */
+.fh-seq-load {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 6%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fh-seq-load span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #e4b833, #f8df51);
+  border-radius: 2px;
+}
+
+.fh-hero-video::before {
+  content: "";
+  position: absolute;
+  inset: 6% 2%;
+  background: radial-gradient(ellipse at center, rgba(228, 184, 51, 0.38), rgba(228, 184, 51, 0) 65%);
+  filter: blur(50px);
+  animation: fh-halo-life 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+video.gb-media-c91759a2,
+canvas.gb-media-c91759a2 {
+  position: relative;
+  display: block;
+  background: transparent;
+  transform: scale(1.5);
+  transform-origin: center;
+  animation: fh-hero-life 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes fh-hero-life {
+  0%, 100% {
+    transform: scale(1.5) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.62) translateY(-26px) rotate(1deg);
+  }
+}
+
+@keyframes fh-halo-life {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  video.gb-media-c91759a2,
+  canvas.gb-media-c91759a2,
+  .fh-hero-video::before {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* El lienzo de la secuencia es transparente: solo importan los pixeles
+   llenos. Todo el tamaño es visual (transform) para no mover el layout. */
+
 /* Botones siempre en una sola linea y centrados, en cualquier idioma. */
 .site-header .cta-button.super-btn,
 .site-header .cta-login,
