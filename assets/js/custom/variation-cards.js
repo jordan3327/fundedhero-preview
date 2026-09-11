@@ -655,7 +655,7 @@ jQuery(function ($) {
         if (container._destroyParticles) {
             try { container._destroyParticles(); } catch (e) { }
         }
-        var legacy = container.querySelector('canvas:not(#pf-golden-ext)');
+        var legacy = container.querySelector('canvas:not(#pf-golden-ext):not(#fh-hero-canvas)');
         if (legacy) { try { legacy.remove(); } catch (e) { } }
         container[KEY] = true;
 
@@ -966,7 +966,7 @@ jQuery(function ($) {
             if (c._destroyParticles) {
                 try { c._destroyParticles(); } catch (e) { }
             }
-            var cv = c.querySelector('canvas:not(#pf-golden-ext)');
+            var cv = c.querySelector('canvas:not(#pf-golden-ext):not(#fh-hero-canvas)');
             if (cv) { try { cv.remove(); } catch (e) { } }
         }
     }
