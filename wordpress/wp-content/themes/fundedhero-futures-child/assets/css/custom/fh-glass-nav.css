@@ -1,0 +1,213 @@
+/* FH Liquid Glass nav — version sobria "lujo silencioso": cristal quieto, sin
+   refraccion visible ni brillos en movimiento. Solo estetica, cero texto. */
+
+.site-header#masthead {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  isolation: isolate;
+  background: transparent !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.3s ease;
+}
+
+.site-header#masthead > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cristal quieto: blur suave, sin mapa de desplazamiento. */
+.site-header#masthead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(14px) saturate(1.35) brightness(1.02);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35) brightness(1.02);
+  pointer-events: none;
+}
+
+/* Velo sobrio + luz cenital tenue. */
+.site-header#masthead::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 40%),
+    rgba(8, 8, 10, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  transition: background 0.3s ease;
+}
+
+.site-header#masthead.fh-nav-scrolled {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+.site-header#masthead.fh-nav-scrolled::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 38%),
+    rgba(8, 8, 10, 0.68);
+}
+
+/* Movil: mismo cristal quieto. */
+#mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  isolation: isolate;
+  background: transparent !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.3s ease;
+}
+
+#mobile-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+#mobile-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(14px) saturate(1.35) brightness(1.02);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35) brightness(1.02);
+  pointer-events: none;
+}
+
+#mobile-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 40%),
+    rgba(8, 8, 10, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  transition: background 0.3s ease;
+}
+
+#mobile-header.fh-nav-scrolled::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 38%),
+    rgba(8, 8, 10, 0.7);
+}
+
+/* El tema pinta #000 solido en los contenedores del menu: se vuelven
+   transparentes para que el cristal del header se vea detras. */
+#site-navigation,
+#site-navigation .inside-navigation,
+#site-navigation .main-nav,
+#site-navigation ul.sf-menu,
+#site-navigation ul.sf-menu > li,
+#mobile-header .inside-navigation,
+#mobile-header .main-nav,
+#mobile-header ul.sf-menu,
+#mobile-header ul.sf-menu > li {
+  background: transparent !important;
+}
+
+/* Submenus desplegables: cristal oscuro en vez de negro plano. */
+#site-navigation ul.sf-menu ul,
+#mobile-header ul.sf-menu ul {
+  background: rgba(12, 12, 16, 0.92) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid rgba(228, 184, 51, 0.16);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Links del menu: dorado sobrio al hover, sin tocar tipografia base. */
+#site-navigation #primary-menu .menu-item > a,
+#mobile-header #mobile-menu .menu-item > a,
+#generate-slideout-menu .menu-item > a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+#site-navigation #primary-menu .menu-item > a:hover,
+#mobile-header #mobile-menu .menu-item > a:hover {
+  color: #e4b833 !important;
+}
+
+/* Item clickeado/activo: texto dorado, sin lineas. */
+#site-navigation #primary-menu .menu-item > a:active,
+#site-navigation #primary-menu .current-menu-item > a,
+#site-navigation #primary-menu .menu-item > a[aria-current="page"],
+#mobile-header #mobile-menu .menu-item > a:active,
+#mobile-header #mobile-menu .current-menu-item > a,
+#mobile-header #mobile-menu .menu-item > a[aria-current="page"],
+#generate-slideout-menu .current-menu-item > a {
+  color: #e4b833 !important;
+}
+
+/* Boton Get Funded: dorado solido elegante, sin reflejos en movimiento. */
+.site-header .cta-button.super-btn {
+  background: linear-gradient(135deg, #d4a92c, #e4b833) !important;
+  color: #111 !important;
+  border-radius: 6px !important;
+  padding: 10px 26px !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  cursor: pointer;
+}
+
+.site-header .cta-button.super-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.site-header .cta-login {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  padding: 10px 26px !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: background 0.25s ease !important;
+  cursor: pointer;
+}
+
+.site-header .cta-login:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Sin backdrop-filter: fondo solido elegante. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header#masthead::after,
+  #mobile-header::after {
+    background: rgba(10, 10, 14, 0.96);
+  }
+}
+
+/* La barra promo #propfirm-nt-bar es fixed de 40px con z-index 9999:
+   el header se ancla justo debajo para no quedar oculto detras. */
+body.has-propfirm-nt .site-header#masthead,
+body.has-propfirm-nt #mobile-header {
+  top: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header#masthead,
+  #mobile-header,
+  .site-header .cta-button.super-btn,
+  .site-header .cta-login {
+    transition: none !important;
+  }
+}
