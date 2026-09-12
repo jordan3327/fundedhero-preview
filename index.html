@@ -20,20 +20,20 @@
 
 <link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
 <link href='https://fonts.googleapis.com' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="FundedHero Futures &raquo; Feed" href="assets/feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="FundedHero Futures &raquo; Comments Feed" href="assets/comments/feed/index.html" />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="assets/wp-json/oembed/1.0/embed@url=https%3A%2F%2Ffundedherofutures.com%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="assets/wp-json/oembed/1.0/embed@url=https%3A%2F%2Ffundedherofutures.com%2F&format=xml" />
+<link rel="alternate" type="application/rss+xml" title="FundedHero Futures &raquo; Feed" href="index.html" />
+<link rel="alternate" type="application/rss+xml" title="FundedHero Futures &raquo; Comments Feed" href="index.html" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="_archive/httrack/wp-json/oembed/1.0/embed@url=https%3A%2F%2Ffundedherofutures.com%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="_archive/httrack/wp-json/oembed/1.0/embed@url=https%3A%2F%2Ffundedherofutures.com%2F&format=xml" />
 <style id="wp-img-auto-sizes-contain-inline-css">
 img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </style>
 
-<link rel='stylesheet' id='kadence-conversions-css' href='css/kadence-conversions.css' media='all' />
+<link rel='stylesheet' id='kadence-conversions-css' href='assets/css/vendor/kadence-conversions.css' media='all' />
 <style id="kadence-conversions-5748-inline-css">
 .kadence-conversion-wrap.kadence-conversion-5748 .kadence-conversions-close{color:#ffffff;}.kadence-conversion-wrap.kadence-conversion-5748 .kadence-conversion{box-shadow:0 0 14px 0 rgba(0,0,0,0.2);}.kadence-conversion-wrap.kadence-conversion-5748:not(.kadence-conversion-banner) .kadence-conversion{max-width:1000px;}.kadence-conversion-wrap.kadence-conversion-5748.kadence-conversion-banner .kadence-conversion-inner{max-width:1000px;}.kadence-conversion-wrap.kadence-conversion-5748 .kadence-conversion-inner{padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;}
 </style>
-<link rel='stylesheet' id='kadence-blocks-rowlayout-css' href='css/style-blocks-rowlayout.css' media='all' />
-<link rel='stylesheet' id='kadence-blocks-column-css' href='css/style-blocks-column.css' media='all' />
+<link rel='stylesheet' id='kadence-blocks-rowlayout-css' href='assets/css/vendor/style-blocks-rowlayout.css' media='all' />
+<link rel='stylesheet' id='kadence-blocks-column-css' href='assets/css/vendor/style-blocks-column.css' media='all' />
 <style id="kadence-blocks-advancedheading-inline-css">
 	.wp-block-kadence-advancedheading mark{background:transparent;border-style:solid;border-width:0}
 	.wp-block-kadence-advancedheading mark.kt-highlight{color:#f76a0c;}
@@ -73,68 +73,70 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--contrast: var(--contrast);--wp--preset--color--contrast-2: var(--contrast-2);--wp--preset--color--base: var(--base);--wp--preset--color--accent: var(--accent);--wp--preset--color--accent-2: var(--accent-2);--wp--preset--color--footer: var(--footer);--wp--preset--color--text: var(--text);--wp--preset--color--font: var(--font);--wp--preset--color--global-navbar: var(--global-navbar);--wp--preset--color--global-navbar-text: var(--global-navbar-text);--wp--preset--color--background: var(--background);--wp--preset--color--background-text: var(--background-text);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-contrast-color{color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-color{color: var(--wp--preset--color--contrast-2) !important;}.has-base-color{color: var(--wp--preset--color--base) !important;}.has-accent-color{color: var(--wp--preset--color--accent) !important;}.has-accent-2-color{color: var(--wp--preset--color--accent-2) !important;}.has-footer-color{color: var(--wp--preset--color--footer) !important;}.has-text-color{color: var(--wp--preset--color--text) !important;}.has-font-color{color: var(--wp--preset--color--font) !important;}.has-global-navbar-color{color: var(--wp--preset--color--global-navbar) !important;}.has-global-navbar-text-color{color: var(--wp--preset--color--global-navbar-text) !important;}.has-background-color{color: var(--wp--preset--color--background) !important;}.has-background-text-color{color: var(--wp--preset--color--background-text) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-contrast-background-color{background-color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-background-color{background-color: var(--wp--preset--color--contrast-2) !important;}.has-base-background-color{background-color: var(--wp--preset--color--base) !important;}.has-accent-background-color{background-color: var(--wp--preset--color--accent) !important;}.has-accent-2-background-color{background-color: var(--wp--preset--color--accent-2) !important;}.has-footer-background-color{background-color: var(--wp--preset--color--footer) !important;}.has-text-background-color{background-color: var(--wp--preset--color--text) !important;}.has-font-background-color{background-color: var(--wp--preset--color--font) !important;}.has-global-navbar-background-color{background-color: var(--wp--preset--color--global-navbar) !important;}.has-global-navbar-text-background-color{background-color: var(--wp--preset--color--global-navbar-text) !important;}.has-background-background-color{background-color: var(--wp--preset--color--background) !important;}.has-background-text-background-color{background-color: var(--wp--preset--color--background-text) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-contrast-border-color{border-color: var(--wp--preset--color--contrast) !important;}.has-contrast-2-border-color{border-color: var(--wp--preset--color--contrast-2) !important;}.has-base-border-color{border-color: var(--wp--preset--color--base) !important;}.has-accent-border-color{border-color: var(--wp--preset--color--accent) !important;}.has-accent-2-border-color{border-color: var(--wp--preset--color--accent-2) !important;}.has-footer-border-color{border-color: var(--wp--preset--color--footer) !important;}.has-text-border-color{border-color: var(--wp--preset--color--text) !important;}.has-font-border-color{border-color: var(--wp--preset--color--font) !important;}.has-global-navbar-border-color{border-color: var(--wp--preset--color--global-navbar) !important;}.has-global-navbar-text-border-color{border-color: var(--wp--preset--color--global-navbar-text) !important;}.has-background-border-color{border-color: var(--wp--preset--color--background) !important;}.has-background-text-border-color{border-color: var(--wp--preset--color--background-text) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
 </style>
 
-<link rel='stylesheet' id='slicewp-style-css' href='css/style-front-end.css' media='all' />
-<link rel='stylesheet' id='woocommerce-layout-css' href='css/woocommerce-layout.css' media='all' />
-<link rel='stylesheet' id='woocommerce-smallscreen-css' href='css/woocommerce-smallscreen.css' media='only screen and (max-width: 768px)' />
-<link rel='stylesheet' id='woocommerce-general-css' href='css/woocommerce.css' media='all' />
+<link rel='stylesheet' id='slicewp-style-css' href='assets/css/vendor/style-front-end.css' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css' href='assets/css/vendor/woocommerce-layout.css' media='all' />
+<link rel='stylesheet' id='woocommerce-smallscreen-css' href='assets/css/vendor/woocommerce-smallscreen.css' media='only screen and (max-width: 768px)' />
+<link rel='stylesheet' id='woocommerce-general-css' href='assets/css/vendor/woocommerce.css' media='all' />
 <style id="woocommerce-general-inline-css">
 .woocommerce .page-header-image-single {display: none;}.woocommerce .entry-content,.woocommerce .product .entry-summary {margin-top: 0;}.related.products {clear: both;}.checkout-subscribe-prompt.clear {visibility: visible;height: initial;width: initial;}@media (max-width:768px) {.woocommerce .woocommerce-ordering,.woocommerce-page .woocommerce-ordering {float: none;}.woocommerce .woocommerce-ordering select {max-width: 100%;}.woocommerce ul.products li.product,.woocommerce-page ul.products li.product,.woocommerce-page[class*=columns-] ul.products li.product,.woocommerce[class*=columns-] ul.products li.product {width: 100%;float: none;}}
 </style>
 <style id="woocommerce-inline-inline-css">
 .woocommerce form .form-row .required { visibility: visible; }
 </style>
-<link rel='stylesheet' id='propfirm-pn-style-css' href='css/purchase-notifier.css' media='all' />
-<link rel='stylesheet' id='propfirm-nt-style-css' href='css/news-ticker.css' media='all' />
-<link rel='stylesheet' id='propfirm-variation-block-style-css' href='css/variation-block.css' media='all' />
-<link rel='stylesheet' id='propfirm-variation-cards-style-css' href='css/variation-cards.css' media='all' />
-<link rel='stylesheet' id='propfirm-giveaway-style-css' href='css/giveaway-popup.css' media='all' />
-<link rel='stylesheet' id='generate-style-css' href='css/main.min.css' media='all' />
+<link rel='stylesheet' id='propfirm-pn-style-css' href='assets/css/custom/purchase-notifier.css' media='all' />
+<link rel='stylesheet' id='propfirm-nt-style-css' href='assets/css/custom/news-ticker.css' media='all' />
+<link rel='stylesheet' id='propfirm-variation-block-style-css' href='assets/css/custom/variation-block.css' media='all' />
+<link rel='stylesheet' id='propfirm-variation-cards-style-css' href='assets/css/custom/variation-cards.css' media='all' />
+<link rel='stylesheet' id='fh-glass-nav-css' href='assets/css/custom/fh-glass-nav.css' media='all' />
+<link rel='stylesheet' id='fh-serene-css' href='assets/css/custom/fh-serene.css' media='all' />
+<link rel='stylesheet' id='propfirm-giveaway-style-css' href='assets/css/custom/giveaway-popup.css' media='all' />
+<link rel='stylesheet' id='generate-style-css' href='assets/css/vendor/main.min.css' media='all' />
 <style id="generate-style-inline-css">
 .generate-page-header, .page-header-image, .page-header-image-single {display:none}
 body{background-color:var(--background);color:#000000;}a{color:var(--accent);}a:hover, a:focus{text-decoration:underline;}.entry-title a, .site-branding a, a.button, .wp-block-button__link, .main-navigation a{text-decoration:none;}a:hover, a:focus, a:active{color:var(--accent-2);}.grid-container{max-width:1400px;}.wp-block-group__inner-container{max-width:1400px;margin-left:auto;margin-right:auto;}:root{--contrast:#191919;--contrast-2:#5b5b5b;--base:#ffffff;--accent:#e4b833;--accent-2:#f8df51;--footer:#fafafa;--text:rgb(143,143,143);--font:#2b3a47;--global-navbar:#1e1e20;--global-navbar-text:#ffffff;--background:#000000;--background-text:#ffffff;}:root .has-contrast-color{color:var(--contrast);}:root .has-contrast-background-color{background-color:var(--contrast);}:root .has-contrast-2-color{color:var(--contrast-2);}:root .has-contrast-2-background-color{background-color:var(--contrast-2);}:root .has-base-color{color:var(--base);}:root .has-base-background-color{background-color:var(--base);}:root .has-accent-color{color:var(--accent);}:root .has-accent-background-color{background-color:var(--accent);}:root .has-accent-2-color{color:var(--accent-2);}:root .has-accent-2-background-color{background-color:var(--accent-2);}:root .has-footer-color{color:var(--footer);}:root .has-footer-background-color{background-color:var(--footer);}:root .has-text-color{color:var(--text);}:root .has-text-background-color{background-color:var(--text);}:root .has-font-color{color:var(--font);}:root .has-font-background-color{background-color:var(--font);}:root .has-global-navbar-color{color:var(--global-navbar);}:root .has-global-navbar-background-color{background-color:var(--global-navbar);}:root .has-global-navbar-text-color{color:var(--global-navbar-text);}:root .has-global-navbar-text-background-color{background-color:var(--global-navbar-text);}:root .has-background-color{color:var(--background);}:root .has-background-background-color{background-color:var(--background);}:root .has-background-text-color{color:var(--background-text);}:root .has-background-text-background-color{background-color:var(--background-text);}h1{font-family:Poppins, sans-serif;font-weight:600;font-size:2.5rem;margin-bottom:1rem;}@media (max-width: 1024px){h1{font-size:1.875rem;}}h2{font-family:Poppins, sans-serif;font-weight:600;font-size:1.875rem;margin-bottom:1rem;}@media (max-width:768px){h2{font-size:1.5rem;}}h3{font-family:Poppins, sans-serif;font-weight:600;font-size:1.5rem;margin-bottom:1rem;}@media (max-width:768px){h3{font-size:1.25rem;}}body, button, input, select, textarea{font-family:Poppins, sans-serif;font-size:1rem;}@media (max-width: 1024px){body, button, input, select, textarea{font-size:0.9rem;}}@media (max-width:768px){body, button, input, select, textarea{font-size:0.9rem;}}.main-navigation a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{font-family:Poppins, sans-serif;font-size:0.95em;line-height:20px;}h4{font-family:Poppins, sans-serif;font-size:1.25rem;margin-bottom:1rem;}@media (max-width:768px){h4{font-size:1rem;}}h5{font-family:Poppins, sans-serif;font-size:1rem;margin-bottom:1rem;}@media (max-width:768px){h5{font-size:1rem;}}.top-bar{background-color:var(--contrast);color:var(--base);}.top-bar a{color:var(--accent);}.top-bar a:hover{color:var(--accent-2);}.site-header{background-color:#000000;}.main-title a,.main-title a:hover{color:var(--text);}.site-description{color:var(--accent);}.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus,.has-inline-mobile-toggle #site-navigation.toggled{background-color:rgba(0, 0, 0, 0.02);}.main-navigation,.main-navigation ul ul{background-color:#000000;}.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{color:var(--global-navbar-text);}.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:var(--accent);}button.menu-toggle:hover,button.menu-toggle:focus{color:var(--global-navbar-text);}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#ffffff;}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:var(--accent);}.main-navigation ul ul{background-color:var(--base);}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{color:var(--background-text);background-color:var(--background);}.entry-title a{color:#222222;}.entry-title a:hover{color:#55555e;}.entry-meta{color:#595959;}.sidebar .widget{color:var(--contrast);background-color:#ffffff;}.sidebar .widget a{color:var(--accent);}.sidebar .widget a:hover{color:var(--accent-2);}.sidebar .widget .widget-title{color:var(--contrast);}.footer-widgets{background-color:var(--base);}.footer-widgets .widget-title{color:var(--contrast);}.site-info{color:var(--base);background-color:var(--accent);}.site-info a{color:var(--base);}.site-info a:hover{color:var(--contrast);}.footer-bar .widget_nav_menu .current-menu-item a{color:var(--contrast);}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:var(--contrast);background-color:var(--base);border-color:var(--contrast-2);}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:var(--contrast);background-color:var(--base);border-color:var(--contrast);}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:var(--base);background-color:#000000;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:var(--base);background-color:var(--contrast-2);}a.generate-back-to-top{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}:root{--gp-search-modal-bg-color:var(--base);--gp-search-modal-text-color:var(--contrast-2);--gp-search-modal-overlay-bg-color:rgba(26,26,26,0.8);}@media (max-width: 768px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:var(--global-navbar-text);}}.inside-header{padding:0px 20px 0px 20px;}.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container{padding:0px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:20px;}.site-main .wp-block-group__inner-container{padding:20px;}.separate-containers .paging-navigation{padding-top:20px;padding-bottom:20px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-20px;width:calc(100% + 40px);max-width:calc(100% + 40px);}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:20px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:20px;}.one-container.both-sidebars .site-main{margin:0px 20px 0px 20px;}.sidebar .widget, .page-header, .widget-area .main-navigation, .site-main > *{margin-bottom:40px;}.separate-containers .site-main{margin:40px;}.both-right .inside-left-sidebar,.both-left .inside-left-sidebar{margin-right:20px;}.both-right .inside-right-sidebar,.both-left .inside-right-sidebar{margin-left:20px;}.one-container.archive .post:not(:last-child):not(.is-loop-template-item), .one-container.blog .post:not(:last-child):not(.is-loop-template-item){padding-bottom:20px;}.separate-containers .featured-image{margin-top:40px;}.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar{margin-top:40px;margin-bottom:40px;}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .menu-bar-item > a{line-height:65px;}.navigation-search input[type="search"]{height:65px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:20px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:20px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:20px;}.site-main .wp-block-group__inner-container{padding:20px;}.inside-top-bar{padding-right:30px;padding-left:30px;}.inside-header{padding-right:30px;padding-left:30px;}.widget-area .widget{padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}.footer-widgets-container{padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}.inside-site-info{padding-right:30px;padding-left:30px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-20px;width:calc(100% + 40px);max-width:calc(100% + 40px);}.one-container .site-main .paging-navigation{margin-bottom:40px;}}/* End cached CSS */.is-right-sidebar{width:20%;}.is-left-sidebar{width:20%;}.site-content .content-area{width:100%;}@media (max-width: 768px){.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav){display:none;}.nav-align-right .inside-navigation,.nav-align-center .inside-navigation{justify-content:space-between;}.has-inline-mobile-toggle .mobile-menu-control-wrapper{display:flex;flex-wrap:wrap;}.has-inline-mobile-toggle .inside-header{flex-direction:row;text-align:left;flex-wrap:wrap;}.has-inline-mobile-toggle .header-widget,.has-inline-mobile-toggle #site-navigation{flex-basis:100%;}.nav-float-left .has-inline-mobile-toggle #site-navigation{order:10;}}
 .dynamic-author-image-rounded{border-radius:100%;}.dynamic-featured-image, .dynamic-author-image{vertical-align:middle;}.one-container.blog .dynamic-content-template:not(:last-child), .one-container.archive .dynamic-content-template:not(:last-child){padding-bottom:0px;}.dynamic-entry-excerpt > p:last-child{margin-bottom:0px;}
 @media (max-width: 768px){.main-navigation .main-nav ul li a,.main-navigation .menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .menu-bar-item > a{line-height:60px;}.main-navigation .site-logo.navigation-logo img, .mobile-header-navigation .site-logo.mobile-header-logo img, .navigation-search input[type="search"]{height:60px;}}.main-navigation.slideout-navigation .main-nav > ul > li > a{line-height:45px;}
 </style>
-<link rel='stylesheet' id='generate-google-fonts-css' href='css/google-fonts-poppins.css' media='all' />
-<link rel='stylesheet' id='generateblocks-global-css' href='css/style-global.css' media='all' />
-<link rel='stylesheet' id='generateblocks-css' href='css/style-10137--f282c2.css' media='all' />
+<link rel='stylesheet' id='generate-google-fonts-css' href='assets/css/fonts/google-fonts-poppins.css' media='all' />
+<link rel='stylesheet' id='generateblocks-global-css' href='assets/css/pages/style-global.css' media='all' />
+<link rel='stylesheet' id='generateblocks-css' href='assets/css/pages/style-10137--f282c2.css' media='all' />
 <style id="kadence-blocks-global-variables-inline-css">
 :root {--global-kb-font-size-sm:clamp(0.8rem, 0.73rem + 0.217vw, 0.9rem);--global-kb-font-size-md:clamp(1.1rem, 0.995rem + 0.326vw, 1.25rem);--global-kb-font-size-lg:clamp(1.75rem, 1.576rem + 0.543vw, 2rem);--global-kb-font-size-xl:clamp(2.25rem, 1.728rem + 1.63vw, 3rem);--global-kb-font-size-xxl:clamp(2.5rem, 1.456rem + 3.26vw, 4rem);--global-kb-font-size-xxxl:clamp(2.75rem, 0.489rem + 7.065vw, 6rem);}:root {--global-palette1: #3182CE;--global-palette2: #2B6CB0;--global-palette3: #1A202C;--global-palette4: #2D3748;--global-palette5: #4A5568;--global-palette6: #718096;--global-palette7: #EDF2F7;--global-palette8: #F7FAFC;--global-palette9: #ffffff;}
 </style>
-<link rel='stylesheet' id='generate-offside-css' href='css/offside.min.css' media='all' />
+<link rel='stylesheet' id='generate-offside-css' href='assets/css/vendor/offside.min.css' media='all' />
 <style id="generate-offside-inline-css">
 :root{--gp-slideout-width:265px;}.slideout-navigation.main-navigation{background-color:#000000;}.slideout-navigation.main-navigation ul ul{background-color:rgba(0,0,0,0);}.slideout-navigation.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .slideout-navigation.main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .slideout-navigation.main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a{background-color:rgba(0,0,0,0);}.slideout-navigation.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a, .slideout-navigation.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .slideout-navigation.main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a{background-color:rgba(0,0,0,0);}.slideout-navigation.main-navigation .main-nav ul li[class*="current-menu-"] > a{background-color:rgba(0,0,0,0);}.slideout-navigation.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{background-color:rgba(0,0,0,0);}.slideout-navigation, .slideout-navigation a{color:var(--global-navbar-text);}.slideout-navigation button.slideout-exit{color:var(--global-navbar-text);padding-left:20px;padding-right:20px;}.slide-opened nav.toggled .menu-toggle:before{display:none;}@media (max-width: 768px){.menu-bar-item.slideout-toggle{display:none;}}
 .slideout-navigation.main-navigation .main-nav ul li a{font-family:Poppins, sans-serif;font-size:1.2em;}.slideout-navigation.main-navigation .main-nav ul ul li a{font-weight:400;font-size:0.8em;}
 </style>
-<link rel='stylesheet' id='generate-navigation-branding-css' href='css/navigation-branding-flex.min.css' media='all' />
+<link rel='stylesheet' id='generate-navigation-branding-css' href='assets/css/vendor/navigation-branding-flex.min.css' media='all' />
 <style id="generate-navigation-branding-inline-css">
 @media (max-width: 768px){.site-header, #site-navigation, #sticky-navigation{display:none !important;opacity:0.0;}#mobile-header{display:block !important;width:100% !important;}#mobile-header .main-nav > ul{display:none;}#mobile-header.toggled .main-nav > ul, #mobile-header .menu-toggle, #mobile-header .mobile-bar-items{display:block;}#mobile-header .main-nav{-ms-flex:0 0 100%;flex:0 0 100%;-webkit-box-ordinal-group:5;-ms-flex-order:4;order:4;}}.main-navigation.has-branding .inside-navigation.grid-container, .main-navigation.has-branding.grid-container .inside-navigation:not(.grid-container){padding:0px 20px 0px 20px;}.main-navigation.has-branding:not(.grid-container) .inside-navigation:not(.grid-container) .navigation-branding{margin-left:10px;}.navigation-branding img, .site-logo.mobile-header-logo img{height:65px;width:auto;}.navigation-branding .main-title{line-height:65px;}@media (max-width: 768px){.main-navigation.has-branding.nav-align-center .menu-bar-items, .main-navigation.has-sticky-branding.navigation-stick.nav-align-center .menu-bar-items{margin-left:auto;}.navigation-branding{margin-right:auto;margin-left:10px;}.navigation-branding .main-title, .mobile-header-navigation .site-logo{margin-left:10px;}.main-navigation.has-branding .inside-navigation.grid-container{padding:0px;}.navigation-branding img, .site-logo.mobile-header-logo{height:60px;}.navigation-branding .main-title{line-height:60px;}}
 </style>
 <style id="kadence_blocks_css-inline-css">
-.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id5748_9cea1f-35{margin-bottom:0px;}.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{align-content:center;}:where(.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap) > .wp-block-kadence-column{justify-content:center;}.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{padding-top:25px;padding-right:25px;padding-bottom:25px;padding-left:25px;min-height:400px;grid-template-columns:minmax(0, 1fr);}.kb-row-layout-id5748_9cea1f-35{background-color:#1e1e20;background-image:url('images/BG-1-1.webp');background-size:cover;background-position:50% 50%;background-attachment:scroll;background-repeat:no-repeat;}@media all and (max-width: 767px){.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"]{padding-top:0px;padding-bottom:10px;margin-top:0px;margin-bottom:0px;text-align:center;font-size:var(--global-kb-font-size-md, 1.25rem);text-transform:none;}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"]{padding-top:5px;margin-top:0em;margin-bottom:1em;text-align:center;font-size:2.5em;line-height:1.1em;text-transform:none;color:#ffffff;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"] img.kb-inline-image{width:150px;display:inline-block;}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_defe2f-03{margin-bottom:0px;}.kb-row-layout-id10137_defe2f-03 > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_defe2f-03 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_a949e9-0a > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_a949e9-0a > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_77166b-1e{margin-bottom:0px;}.kb-row-layout-id10137_77166b-1e > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_77166b-1e > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_2438ab-33 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_2438ab-33 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_9edef3-a1{margin-bottom:0px;}.kb-row-layout-id10137_9edef3-a1 > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_9edef3-a1 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}
+.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id5748_9cea1f-35{margin-bottom:0px;}.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{align-content:center;}:where(.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap) > .wp-block-kadence-column{justify-content:center;}.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{padding-top:25px;padding-right:25px;padding-bottom:25px;padding-left:25px;min-height:400px;grid-template-columns:minmax(0, 1fr);}.kb-row-layout-id5748_9cea1f-35{background-color:#1e1e20;background-image:url('assets/img/BG-1-1.webp');background-size:cover;background-position:50% 50%;background-attachment:scroll;background-repeat:no-repeat;}@media all and (max-width: 767px){.kb-row-layout-id5748_9cea1f-35 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;}.kadence-column5748_7b8c63-2b > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column5748_7b8c63-2b > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"]{padding-top:0px;padding-bottom:10px;margin-top:0px;margin-bottom:0px;text-align:center;font-size:var(--global-kb-font-size-md, 1.25rem);text-transform:none;}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading5748_f90642-f0[data-kb-block="kb-adv-heading5748_f90642-f0"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"]{padding-top:5px;margin-top:0em;margin-bottom:1em;text-align:center;font-size:2.5em;line-height:1.1em;text-transform:none;color:#ffffff;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading5748_943641-24[data-kb-block="kb-adv-heading5748_943641-24"] img.kb-inline-image{width:150px;display:inline-block;}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_defe2f-03{margin-bottom:0px;}.kb-row-layout-id10137_defe2f-03 > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_defe2f-03 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_a949e9-0a > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_a949e9-0a > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_a949e9-0a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_77166b-1e{margin-bottom:0px;}.kb-row-layout-id10137_77166b-1e > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_77166b-1e > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_2438ab-33 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_2438ab-33 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_2438ab-33 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.kb-row-layout-wrap.wp-block-kadence-rowlayout.kb-row-layout-id10137_9edef3-a1{margin-bottom:0px;}.kb-row-layout-id10137_9edef3-a1 > .kt-row-column-wrap{padding-top:var( --global-kb-row-default-top, var(--global-kb-spacing-sm, 1.5rem) );padding-bottom:var( --global-kb-row-default-bottom, var(--global-kb-spacing-sm, 1.5rem) );grid-template-columns:minmax(0, 1fr);}@media all and (max-width: 767px){.kb-row-layout-id10137_9edef3-a1 > .kt-row-column-wrap{grid-template-columns:minmax(0, 1fr);}}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;}.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column10137_bf16f3-f1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}
 </style>
-<script id="jquery-core-js" src="js/jquery.min.js"></script>
-<script id="jquery-migrate-js" src="js/jquery-migrate.min.js"></script>
-<script data-wp-strategy="defer" defer id="wc-jquery-blockui-js" src="js/jquery.blockUI.min.js"></script>
+<script id="jquery-core-js" src="assets/js/vendor/jquery.min.js"></script>
+<script id="jquery-migrate-js" src="assets/js/vendor/jquery-migrate.min.js"></script>
+<script data-wp-strategy="defer" defer id="wc-jquery-blockui-js" src="assets/js/vendor/jquery.blockUI.min.js"></script>
 <script id="wc-add-to-cart-js-extra">
 var wc_add_to_cart_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https://fundedherofutures.com/cart/","is_cart":"","cart_redirect_after_add":"no"};
 </script>
-<script data-wp-strategy="defer" defer id="wc-add-to-cart-js" src="js/add-to-cart.min.js"></script>
-<script data-wp-strategy="defer" defer id="wc-js-cookie-js" src="js/js.cookie.min.js"></script>
+<script data-wp-strategy="defer" defer id="wc-add-to-cart-js" src="assets/js/vendor/add-to-cart.min.js"></script>
+<script data-wp-strategy="defer" defer id="wc-js-cookie-js" src="assets/js/vendor/js.cookie.min.js"></script>
 <script id="woocommerce-js-extra">
 var woocommerce_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_password_show":"Show password","i18n_password_hide":"Hide password"};
 </script>
-<script data-wp-strategy="defer" defer id="woocommerce-js" src="js/woocommerce.min.js"></script>
+<script data-wp-strategy="defer" defer id="woocommerce-js" src="assets/js/vendor/woocommerce.min.js"></script>
 <script id="slicewp-script-tracking-js-before">
 var slicewp_ajaxurl = "https:\/\/fundedherofutures.com\/wp-admin\/admin-ajax.php";
 var slicewp = {"ajaxurl":"https:\/\/fundedherofutures.com\/wp-admin\/admin-ajax.php","cookie_duration":30,"affiliate_credit":"last","affiliate_keyword":"ref","predefined_date_ranges":{"past_7_days":"Past 7 days","past_30_days":"Past 30 days","week_to_date":"Week to date","month_to_date":"Month to date","year_to_date":"Year to date","last_week":"Last week","last_month":"Last month","last_year":"Last year"},"settings":{"active_currency":"USD","currency_symbol_position":"before","currency_thousands_separator":",","currency_decimal_separator":"."}};
 </script>
-<script id="slicewp-script-tracking-js" src="js/script-trk.js"></script>
+<script id="slicewp-script-tracking-js" src="assets/js/custom/script-trk.js"></script>
 <script id="facebook-signal-js-extra">
 var facebookSignalConfig = {"cookieName":"wc_facebook_signals_state","ajaxUrl":"https://fundedherofutures.com/wp-admin/admin-ajax.php","signalsAction":"fbpix_set_pixel_signals","signalsNonce":"b5c9ac3320"};
 </script>
-<script id="facebook-signal-js" src="js/facebook_signal.js"></script>
-<link rel="https://api.w.org/" href="assets/wp-json/index.html" /><link rel="alternate" title="JSON" type="application/json" href="assets/wp-json/wp/v2/pages/10137" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="assets/xmlrpc.php@rsd.html" />
+<script id="facebook-signal-js" src="assets/js/custom/facebook_signal.js"></script>
+<link rel="https://api.w.org/" href="index.html" /><link rel="alternate" title="JSON" type="application/json" href="_archive/httrack/wp-json/wp/v2/pages/10137" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="_archive/httrack/xmlrpc.php@rsd.html" />
 <link rel='shortlink' href='index.html' />
         <style id="propfirm-tools-color-palette">
             :root {
@@ -232,9 +234,9 @@ twq('config','pvici');
     }
 </style>
 
-<link rel="icon" href="images/cropped-cropped-Funded-Hero-favicon-32x32.png" sizes="32x32" />
-<link rel="icon" href="images/cropped-cropped-Funded-Hero-favicon-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="images/cropped-cropped-Funded-Hero-favicon-180x180.png" />
+<link rel="icon" href="assets/img/cropped-cropped-Funded-Hero-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="assets/img/cropped-cropped-Funded-Hero-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="assets/img/cropped-cropped-Funded-Hero-favicon-180x180.png" />
 <meta name="msapplication-TileImage" content="https://fundedherofutures.com/wp-content/uploads/2025/10/cropped-cropped-Funded-Hero-favicon-270x270.png" />
 <style id="wp-custom-css">
 
@@ -469,15 +471,15 @@ img {
     user-drag: none;
 }
 </style>
-<link rel='stylesheet' id='wc-nmi-blocks-checkout-style-css' href='css/style-index.css' media='all' />
-<link rel='stylesheet' id='animate-on-scroll-css' href='css/aos.css' media='screen and (prefers-reduced-motion: no-preference)' />
-<link rel='stylesheet' id='fluent-form-styles-css' href='css/fluent-forms-public.css' media='all' />
-<link rel='stylesheet' id='fluentform-public-default-css' href='css/fluentform-public-default.css' media='all' />
-<link rel='stylesheet' id='intlTelInput-css' href='css/intlTelInput.min.css' media='all' />
+<link rel='stylesheet' id='wc-nmi-blocks-checkout-style-css' href='assets/css/vendor/style-index.css' media='all' />
+<link rel='stylesheet' id='animate-on-scroll-css' href='assets/css/vendor/aos.css' media='screen and (prefers-reduced-motion: no-preference)' />
+<link rel='stylesheet' id='fluent-form-styles-css' href='assets/css/vendor/fluent-forms-public.css' media='all' />
+<link rel='stylesheet' id='fluentform-public-default-css' href='assets/css/vendor/fluentform-public-default.css' media='all' />
+<link rel='stylesheet' id='intlTelInput-css' href='assets/css/vendor/intlTelInput.min.css' media='all' />
 
 </head>
 
-<body class="home wp-singular page-template-default page page-id-10137 wp-custom-logo wp-embed-responsive wp-theme-generatepress theme-generatepress post-image-aligned-center slideout-enabled slideout-mobile sticky-menu-no-transition mobile-header mobile-header-logo woocommerce-no-js no-sidebar nav-float-right one-container header-aligned-left dropdown-hover full-width-content" itemtype="https://schema.org/WebPage" itemscope>
+<body class="home wp-singular page-template-default page page-id-10137 wp-custom-logo wp-embed-responsive wp-theme-generatepress theme-generatepress post-image-aligned-center slideout-enabled slideout-mobile sticky-menu-no-transition mobile-header mobile-header-logo woocommerce-no-js no-sidebar nav-float-right one-container header-aligned-left dropdown-hover full-width-content" itemtype="https://schema.org/WebPage" itemscope><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fh-glass-distortion" x="0%" y="0%" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise"/><feGaussianBlur in="noise" stdDeviation="2" result="blurred"/><feDisplacementMap in="SourceGraphic" in2="blurred" scale="56" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
 	        <div id="propfirm-nt-bar" class="is-sticky">
             <div class="propfirm-nt-marquee" style="--speed: 299s;">
                 <div class="propfirm-nt-content">
@@ -696,7 +698,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 			<div class="inside-header grid-container">
 				<div class="site-logo">
 					<a href="index.html" rel="home">
-						<img  class="header-image is-logo-image" alt="FundedHero Futures" src="images/Sin-titulo-1.png" width="1498" height="496" />
+						<img  class="header-image is-logo-image" alt="FundedHero Futures" src="assets/img/Sin-titulo-1.png" width="1498" height="496" />
 					</a>
 				</div>
 <div class="gb-element-304bd5c2">
@@ -712,7 +714,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 			<div class="inside-navigation grid-container">
 								<button class="menu-toggle" aria-controls="generate-slideout-menu" aria-expanded="false">
 					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" /></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg></span><span class="screen-reader-text">Menu</span>				</button>
-				<div id="primary-menu" class="main-nav"><ul id="menu-live-menu" class=" menu sf-menu"><li id="menu-item-10715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/_drafts/preview-2610.html">Affiliate</a></li>
+				<div id="primary-menu" class="main-nav"><ul id="menu-live-menu" class=" menu sf-menu"><li id="menu-item-10715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/affiliates.html">Affiliate</a></li>
 <li id="menu-item-66" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-66"><a href="index.html#pricing-plan" aria-current="page">Plans</a></li>
 <li id="menu-item-1335" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1335"><a href="https://intercom.help/fundedhero-futures/en">Rules</a></li>
 <li id="menu-item-145" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-145"><a href="https://discord.gg/nxAVgCbJP6">Join Discord</a></li>
@@ -732,7 +734,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 			<div class="inside-navigation grid-container grid-parent">
 				<div class="site-logo mobile-header-logo">
 						<a href="index.html" title="FundedHero Futures" rel="home">
-							<img src="images/Sin-titulo-1.png" alt="FundedHero Futures" class="is-logo-image" width="1498" height="496" />
+							<img src="assets/img/Sin-titulo-1.png" alt="FundedHero Futures" class="is-logo-image" width="1498" height="496" />
 						</a>
 					</div>
 <div class="gb-element-3da1aac4">
@@ -742,7 +744,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 </div>
 					<button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
 						<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" /></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg></span><span class="screen-reader-text">Menu</span>					</button>
-					<div id="mobile-menu" class="main-nav"><ul id="menu-live-menu-1" class=" menu sf-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/_drafts/preview-2610.html">Affiliate</a></li>
+					<div id="mobile-menu" class="main-nav"><ul id="menu-live-menu-1" class=" menu sf-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/affiliates.html">Affiliate</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-66"><a href="index.html#pricing-plan" aria-current="page">Plans</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1335"><a href="https://intercom.help/fundedhero-futures/en">Rules</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-145"><a href="https://discord.gg/nxAVgCbJP6">Join Discord</a></li>
@@ -821,11 +823,11 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
         function computeParticleCount() {
           const area = container.clientWidth * container.clientHeight;
           // densidad base (ajustada para móviles)
-          const density = prefersReducedMotion ? 0.00004 : (isSmallScreen ? 0.00008 : 0.00012);
+          const density = prefersReducedMotion ? 0.00003 : (isSmallScreen ? 0.00003 : 0.000035);
           const count = Math.round(area * density);
           // límites razonables
-          const minC = prefersReducedMotion ? 12 : (isSmallScreen ? 24 : 36);
-          const maxC = prefersReducedMotion ? 50 : (isSmallScreen ? 90 : 160);
+          const minC = prefersReducedMotion ? 8 : (isSmallScreen ? 10 : 14);
+          const maxC = prefersReducedMotion ? 30 : (isSmallScreen ? 32 : 48);
           return Math.max(minC, Math.min(maxC, count));
         }
 
@@ -844,7 +846,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
             this.h = height;
             const r = Math.random();
             // 0 = destello dorado, 1 = bokeh grande suave, 2 = chispa luminosa rápida
-            this.kind = r < 0.75 ? 0 : (r < 0.90 ? 1 : 2);
+            this.kind = r < 0.80 ? 0 : (r < 0.97 ? 1 : 2);
             this.phase = Math.random() * Math.PI * 2;
             this.twinkle = 0.4 + Math.random() * 1.6;
             this.reset(true);
@@ -863,13 +865,13 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
               // chispa: pequeña, veloz, intensa
               this.size = Math.random() * 0.9 + 0.6;
               this.speedX = (Math.random() * 0.6 - 0.3) * mobile;
-              this.speedY = (Math.random() * 1.2 + 2) * mobile;
-              this.opacity = Math.random() * 0.2 + 0.75;
+              this.speedY = (Math.random() * 0.8 + 1) * mobile;
+              this.opacity = Math.random() * 0.15 + 0.5;
             } else {
               this.size = Math.random() * (isSmallScreen ? 2.2 : 3) + 0.8;
               this.speedX = (Math.random() * 0.5 - 0.25) * mobile;
               this.speedY = (Math.random() * 1 + 0.5) * mobile;
-              this.opacity = Math.random() * 0.5 + 0.3;
+              this.opacity = Math.random() * 0.35 + 0.2;
             }
             this.sway = 0.12 + Math.random() * 0.3; // deriva lateral orgánica
           }
@@ -989,7 +991,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
               const d2 = dxp * dxp + dyp * dyp;
               if (d2 < 25600 && d2 > 0.01) {
                 const d = Math.sqrt(d2);
-                const f = (1 - d / 160) * 90 * dt;
+                const f = (1 - d / 160) * 35 * dt;
                 p.x += (dxp / d) * f;
                 p.y += (dyp / d) * f;
               }
@@ -1037,7 +1039,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
                     const dy = pi.y - pj.y;
                     const dist = Math.hypot(dx, dy);
                     if (dist < MAX_LINK_DIST) {
-                      const alpha = 0.15 * (1 - dist / MAX_LINK_DIST);
+                      const alpha = 0.08 * (1 - dist / MAX_LINK_DIST);
                       ctx.strokeStyle = `rgba(237,201,64,${alpha.toFixed(3)})`;
                       ctx.beginPath();
                       ctx.moveTo(pi.x, pi.y);
@@ -1060,7 +1062,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
               const d2 = dxp * dxp + dyp * dyp;
               if (d2 < 12100) {
                 const d = Math.sqrt(d2);
-                const a = 0.35 * (1 - d / 110);
+                const a = 0.15 * (1 - d / 110);
                 ctx.strokeStyle = `rgba(237,201,64,${a.toFixed(3)})`;
                 ctx.lineWidth = 0.8;
                 ctx.beginPath();
@@ -1149,8 +1151,9 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 </div>
 </div>
 
-<div>
-<img fetchpriority="high" decoding="async" width="761" height="673" class="gb-media-c91759a2" alt="" src="images/Sin-titulo-1--4a8bf4.png" title="Sin título-1" srcset="images/Sin-titulo-1--4a8bf4.png 761w, images/Sin-titulo-1-300x265.png 300w, images/Sin-titulo-1-600x531.png 600w" sizes="(max-width: 761px) 100vw, 761px" />
+<div class="fh-hero-3d" id="fh-hero-seq">
+<canvas class="gb-media-c91759a2" id="fh-hero-canvas"></canvas>
+<img src="assets/img/Sin-titulo-1.png" alt="FundedHero Futures" id="fh-hero-fallback" style="width:100%;height:100%;object-fit:contain;background-color:transparent;" />
 </div>
 </div>
 </div>
@@ -1257,7 +1260,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="css/google-fonts-main--16ef96.css" rel="stylesheet">
+<link href="assets/css/fonts/google-fonts-main--16ef96.css" rel="stylesheet">
 
 <div class="fh-stats">
   <div class="stt-stage">
@@ -1582,7 +1585,7 @@ p.lede{
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="css/google-fonts-main.css" rel="stylesheet">
+<link href="assets/css/fonts/google-fonts-main.css" rel="stylesheet">
 
 <div class="fh-hero">
  <div class="stage">
@@ -1606,7 +1609,7 @@ p.lede{
       </div>
 
       <div class="art reveal" style="transition-delay:.16s">
-        <img decoding="async" src="images/Seguridad.png" alt="Cuenta de FundedHero desbloqueada para capital en vivo" loading="lazy">
+        <img decoding="async" src="assets/img/Seguridad.png" alt="Cuenta de FundedHero desbloqueada para capital en vivo" loading="lazy">
       </div>
     </div>
 
@@ -1891,7 +1894,7 @@ p.lede{
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="css/google-fonts-main.css" rel="stylesheet">
+<link href="assets/css/fonts/google-fonts-main.css" rel="stylesheet">
 
 <div class="fh-community">
   <div class="fh-stage">
@@ -1908,7 +1911,7 @@ p.lede{
         </div>
 
         <div class="fh-stream">
-          <img decoding="async" src="images/real_Time.png" alt="Vista en vivo del mercado con FundedHero" loading="lazy">
+          <img decoding="async" src="assets/img/real_Time.png" alt="Vista en vivo del mercado con FundedHero" loading="lazy">
         </div>
       </div>
 
@@ -1922,7 +1925,7 @@ p.lede{
           </div>
 
           <div class="fh-media">
-            <img decoding="async" src="images/Support.png" alt="Audifonos de soporte 24/7" loading="lazy">
+            <img decoding="async" src="assets/img/Support.png" alt="Audifonos de soporte 24/7" loading="lazy">
           </div>
         </div>
 
@@ -1937,7 +1940,7 @@ p.lede{
           </div>
 
           <div class="fh-media">
-            <img decoding="async" class="fh-discord-mark" src="images/Discord.png" alt="Logo de Discord" loading="lazy">
+            <img decoding="async" class="fh-discord-mark" src="assets/img/Discord.png" alt="Logo de Discord" loading="lazy">
           </div>
         </div>
 
@@ -5413,12 +5416,12 @@ p.lede{
                 </div>
                     </div>
                             <div class="propfirm-payment-logos">
-                                                <img decoding="async" src="images/Visa Logo SVG.svg" alt="Visa">
-                                                                <img decoding="async" src="images/MasterCard Logo SVG.svg" alt="MasterCard">
-                                                                <img decoding="async" src="images/American Express Logo SVG.svg" alt="American Express">
-                                                                <img decoding="async" src="images/Paypal Logo SVG.svg" alt="PayPal">
-                                                                <img decoding="async" src="images/Skrill Logo SVG.svg" alt="Skrill">
-                                                                <img decoding="async" src="images/Bitcoin Logo SVG.svg" alt="Bitcoin">
+                                                <img decoding="async" src="assets/img/Visa Logo SVG.svg" alt="Visa">
+                                                                <img decoding="async" src="assets/img/MasterCard Logo SVG.svg" alt="MasterCard">
+                                                                <img decoding="async" src="assets/img/American Express Logo SVG.svg" alt="American Express">
+                                                                <img decoding="async" src="assets/img/Paypal Logo SVG.svg" alt="PayPal">
+                                                                <img decoding="async" src="assets/img/Skrill Logo SVG.svg" alt="Skrill">
+                                                                <img decoding="async" src="assets/img/Bitcoin Logo SVG.svg" alt="Bitcoin">
                                     </div>
 
             <div class="pf-cards-loader" hidden><span class="pf-spinner"></span></div>
@@ -5564,7 +5567,7 @@ p.lede{
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="css/google-fonts-main.css" rel="stylesheet">
+<link href="assets/css/fonts/google-fonts-main.css" rel="stylesheet">
 
 <div class="fh-steps">
   <div class="fs-stage">
@@ -5593,7 +5596,7 @@ p.lede{
       </div>
 
       <div class="fs-panel reveal" style="transition-delay:.1s">
-        <img decoding="async" src="images/futureshero.png" alt="Elige tu cuenta, alcanza el objetivo y solicita tu pago" loading="lazy">
+        <img decoding="async" src="assets/img/futureshero.png" alt="Elige tu cuenta, alcanza el objetivo y solicita tu pago" loading="lazy">
       </div>
 
       <a class="fs-cta reveal" style="transition-delay:.2s" href="index.html#pricing-plan">View Plans</a>
@@ -5643,7 +5646,7 @@ p.lede{
 
 <div class="gb-grid-column gb-grid-column-8afccf1c"><div class="gb-container gb-container-8afccf1c">
 
-<figure class="gb-block-image gb-block-image-7be5e3a7"><img decoding="async" width="847" height="834" class="gb-image gb-image-7be5e3a7" src="images/Sin-titulo-3-1.webp" alt="" title="Sin título-3 (1)" srcset="images/Sin-titulo-3-1.webp 847w, images/Sin-titulo-3-1-300x295.webp 300w, images/Sin-titulo-3-1-768x756.webp 768w, images/Sin-titulo-3-1-600x591.webp 600w" sizes="(max-width: 847px) 100vw, 847px" /></figure>
+<figure class="gb-block-image gb-block-image-7be5e3a7"><img decoding="async" width="847" height="834" class="gb-image gb-image-7be5e3a7" src="assets/img/Sin-titulo-3-1.webp" alt="" title="Sin título-3 (1)" srcset="assets/img/Sin-titulo-3-1.webp 847w, assets/img/Sin-titulo-3-1-300x295.webp 300w, assets/img/Sin-titulo-3-1-768x756.webp 768w, assets/img/Sin-titulo-3-1-600x591.webp 600w" sizes="(max-width: 847px) 100vw, 847px" /></figure>
 
 </div></div>
 </div>
@@ -5709,7 +5712,7 @@ p.lede{
 <div class="gb-grid-wrapper gb-grid-wrapper-8950c9ed">
 <div class="gb-grid-column gb-grid-column-284a7d3a"><div class="gb-container gb-container-284a7d3a">
 
-<figure class="gb-block-image gb-block-image-3a6e993b"><img loading="lazy" decoding="async" width="1498" height="496" class="gb-image gb-image-3a6e993b" src="images/Sin-titulo-1.png" alt="" title="Sin título-1" srcset="images/Sin-titulo-1.png 1498w, images/Sin-titulo-1-300x99.png 300w, images/Sin-titulo-1-1024x339.png 1024w, images/Sin-titulo-1-768x254.png 768w, images/Sin-titulo-1-600x199.png 600w" sizes="auto, (max-width: 1498px) 100vw, 1498px" /></figure>
+<figure class="gb-block-image gb-block-image-3a6e993b"><img loading="lazy" decoding="async" width="1498" height="496" class="gb-image gb-image-3a6e993b" src="assets/img/Sin-titulo-1.png" alt="" title="Sin título-1" srcset="assets/img/Sin-titulo-1.png 1498w, assets/img/Sin-titulo-1-300x99.png 300w, assets/img/Sin-titulo-1-1024x339.png 1024w, assets/img/Sin-titulo-1-768x254.png 768w, assets/img/Sin-titulo-1-600x199.png 600w" sizes="auto, (max-width: 1498px) 100vw, 1498px" /></figure>
 
 <p class="wp-block-paragraph"><div class="gtranslate_wrapper" id="gt-wrapper-45572365"></div></p>
 
@@ -5736,9 +5739,9 @@ p.lede{
 
 <div class="gb-container gb-container-e8157998">
 
-<p class="gb-headline gb-headline-a580a711 gb-headline-text"><a href="pages/_drafts/preview-3904.html" data-type="page" data-id="3904">Terms and Conditions</a></p>
+<p class="gb-headline gb-headline-a580a711 gb-headline-text"><a href="_archive/drafts/preview-3904.html" data-type="page" data-id="3904">Terms and Conditions</a></p>
 
-<p class="gb-headline gb-headline-23804bf6 gb-headline-text"><a href="pages/_drafts/preview-3909.html" data-type="page" data-id="3909">Privacy Policy</a></p>
+<p class="gb-headline gb-headline-23804bf6 gb-headline-text"><a href="_archive/drafts/preview-3909.html" data-type="page" data-id="3909">Privacy Policy</a></p>
 
 <p class="gb-headline gb-headline-f545edb7 gb-headline-text"><a href="https://fundedhero.com/contact/" data-type="link" data-id="https://fundedhero.com/contact/">Contact</a></p>
 
@@ -5803,8 +5806,8 @@ p.lede{
 		<nav id="generate-slideout-menu" class="main-navigation slideout-navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope>
 			<div class="inside-navigation grid-container grid-parent">
 
-<figure class="gb-block-image gb-block-image-cb7a98c3"><img loading="lazy" decoding="async" width="512" height="512" class="gb-image gb-image-cb7a98c3" src="images/cropped-Funded-Hero-favicon.png" alt="" title="cropped-Funded-Hero-favicon" srcset="images/cropped-Funded-Hero-favicon.png 512w, images/cropped-Funded-Hero-favicon-300x300.png 300w, images/cropped-Funded-Hero-favicon-150x150.png 150w, images/cropped-Funded-Hero-favicon-100x100.png 100w" sizes="auto, (max-width: 512px) 100vw, 512px" /></figure>
-<div class="main-nav"><ul id="menu-live-menu-2" class=" slideout-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/_drafts/preview-2610.html">Affiliate</a></li>
+<figure class="gb-block-image gb-block-image-cb7a98c3"><img loading="lazy" decoding="async" width="512" height="512" class="gb-image gb-image-cb7a98c3" src="assets/img/cropped-Funded-Hero-favicon.png" alt="" title="cropped-Funded-Hero-favicon" srcset="assets/img/cropped-Funded-Hero-favicon.png 512w, assets/img/cropped-Funded-Hero-favicon-300x300.png 300w, assets/img/cropped-Funded-Hero-favicon-150x150.png 150w, assets/img/cropped-Funded-Hero-favicon-100x100.png 100w" sizes="auto, (max-width: 512px) 100vw, 512px" /></figure>
+<div class="main-nav"><ul id="menu-live-menu-2" class=" slideout-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10715"><a href="pages/affiliates.html">Affiliate</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-66"><a href="index.html#pricing-plan" aria-current="page">Plans</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1335"><a href="https://intercom.help/fundedhero-futures/en">Rules</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-145"><a href="https://discord.gg/nxAVgCbJP6">Join Discord</a></li>
@@ -5831,7 +5834,7 @@ p.lede{
 
 <div class="wp-block-kadence-column kadence-column5748_7b8c63-2b inner-column-1"><div class="kt-inside-inner-col"><style>.gb-element-a1e00fd1{align-self:center;display:block;justify-items:center;justify-self:center;margin-bottom:10px;text-align:center}</style>
 <div class="gb-element-a1e00fd1"><style>.gb-media-eb251525{height:auto;max-width:100%;object-fit:cover;width:150px}</style>
-<img loading="lazy" decoding="async" width="251" height="46" class="gb-media-eb251525" alt="" src="images/truststart.svg" title="truststart"/>
+<img loading="lazy" decoding="async" width="251" height="46" class="gb-media-eb251525" alt="" src="assets/img/truststart.svg" title="truststart"/>
 </div>
 
 <p class="kt-adv-heading5748_f90642-f0 wp-block-kadence-advancedheading has-base-color has-text-color" data-kb-block="kb-adv-heading5748_f90642-f0"><strong>Do you want a chance to</strong></p>
@@ -6096,46 +6099,50 @@ document.querySelectorAll('.cta-login').forEach(button => {
 	<script id="kadence-conversions-js-extra">
 var kadenceConversionsConfig = {"ajax_url":"https://fundedherofutures.com/wp-admin/admin-ajax.php","ajax_nonce":"883d58c6ea","site_slug":"fundedhero-futures","gtag":"false","analytics":"true","items":"{\"5748\":{\"time_offset\":\"0\",\"post_title\":\"Popup\",\"type\":\"popup\",\"trigger\":\"time\",\"goal\":\"form\",\"goal_class\":\"\",\"goal_close\":false,\"overlay_close\":true,\"campaign_id\":\"_149ffd-8c\",\"unique_id\":\"_149ffd-8c\",\"post_id\":5748,\"delay\":5000,\"scroll\":300,\"scrollHide\":false,\"repeat_control\":true,\"tracking\":true,\"close_repeat\":3,\"convert_repeat\":90,\"offset\":\"\",\"referrer\":\"\",\"cookieCheck\":\"\",\"queryStrings\":\"\",\"pageViews\":\"\",\"cartProducts\":false,\"cartTotal\":false,\"products\":false,\"preventProducts\":false,\"cartMin\":false,\"cartMax\":false}}","woocommerce":"1","cartTotal":null,"cartProducts":null};
 </script>
-<script id="kadence-conversions-js" src="js/kadence-conversions.min.js"></script>
+<script id="kadence-conversions-js" src="assets/js/vendor/kadence-conversions.min.js"></script>
 <script id="generate-offside-js-extra">
 var offSide = {"side":"right"};
 </script>
-<script id="generate-offside-js" src="js/offside.min.js"></script>
+<script id="generate-offside-js" src="assets/js/vendor/offside.min.js"></script>
 <script id="generate-smooth-scroll-js-extra">
 var gpSmoothScroll = {"elements":[".smooth-scroll","li.smooth-scroll a"],"duration":"800","offset":""};
 </script>
-<script id="generate-smooth-scroll-js" src="js/smooth-scroll.min.js"></script>
+<script id="generate-smooth-scroll-js" src="assets/js/vendor/smooth-scroll.min.js"></script>
 <script id="propfirm-pn-script-js-extra">
 var propfirm_pn_params = {"ajax_url":"https://fundedherofutures.com/wp-admin/admin-ajax.php","interval":"10000","duration":"5000","position":"bottom-left"};
 </script>
-<script id="propfirm-pn-script-js" src="js/purchase-notifier.js"></script>
+<script id="propfirm-pn-script-js" src="assets/js/custom/purchase-notifier.js"></script>
 <script id="propfirm-nt-script-js-extra">
 var propfirm_nt_params = {"copied_text":"\u00a1Copiado!"};
 </script>
-<script id="propfirm-nt-script-js" src="js/news-ticker.js"></script>
+<script id="propfirm-nt-script-js" src="assets/js/custom/news-ticker.js"></script>
 <script id="propfirm-variation-block-script-js-extra">
 var propfirm_block_params = {"ajax_url":"https://fundedherofutures.com/wp-admin/admin-ajax.php","nonce":"0e9a6195b6","checkout_url":"https://fundedherofutures.com/checkout/"};
 </script>
-<script id="propfirm-variation-block-script-js" src="js/variation-block.js"></script>
-<script id="propfirm-variation-cards-script-js" src="js/variation-cards.js"></script>
+<script id="propfirm-variation-block-script-js" src="assets/js/custom/variation-block.js"></script>
+<script id="propfirm-variation-cards-script-js" src="assets/js/custom/variation-cards.js"></script>
+<script id="fh-glass-nav-js" src="assets/js/custom/fh-glass-nav.js"></script>
+<script id="fh-es-dictionary-js" src="assets/js/custom/fh-es-dictionary.js"></script>
+<script id="fh-hero-sequence-js" src="assets/js/custom/fh-hero-sequence.js"></script>
+
 <script id="propfirm-giveaway-script-js-extra">
 var propfirm_gw_params = {"ajax_url":"https://fundedherofutures.com/wp-admin/admin-ajax.php","nonce":"4fb19f3cd7","delay":"8000","repeat_days":"1","storage_key":"propfirm_gw_seen"};
 </script>
-<script id="propfirm-giveaway-script-js" src="js/giveaway-popup.js"></script>
+<script id="propfirm-giveaway-script-js" src="assets/js/custom/giveaway-popup.js"></script>
 <script id="generate-menu-js-before">
 var generatepressMenu = {"toggleOpenedSubMenus":true,"openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
 </script>
-<script id="generate-menu-js" src="js/menu.min.js"></script>
-<script id="sourcebuster-js-js" src="js/sourcebuster.min.js"></script>
+<script id="generate-menu-js" src="assets/js/vendor/menu.min.js"></script>
+<script id="sourcebuster-js-js" src="assets/js/vendor/sourcebuster.min.js"></script>
 <script id="wc-order-attribution-js-extra">
 var wc_order_attribution = {"params":{"lifetime":1.0e-5,"session":30,"base64":false,"ajaxurl":"https://fundedherofutures.com/wp-admin/admin-ajax.php","prefix":"wc_order_attribution_","allowTracking":true},"fields":{"source_type":"current.typ","referrer":"current_add.rf","utm_campaign":"current.cmp","utm_source":"current.src","utm_medium":"current.mdm","utm_content":"current.cnt","utm_id":"current.id","utm_term":"current.trm","utm_source_platform":"current.plt","utm_creative_format":"current.fmt","utm_marketing_tactic":"current.tct","session_entry":"current_add.ep","session_start_time":"current_add.fd","session_pages":"session.pgs","session_count":"udata.vst","user_agent":"udata.uag"}};
 </script>
-<script id="wc-order-attribution-js" src="js/order-attribution.min.js"></script>
-<script data-wp-strategy="defer" defer id="animate-on-scroll-js" src="js/aos.js"></script>
-<script data-wp-strategy="defer" defer id="animations-for-blocks-js" src="js/init.js"></script>
+<script id="wc-order-attribution-js" src="assets/js/vendor/order-attribution.min.js"></script>
+<script data-wp-strategy="defer" defer id="animate-on-scroll-js" src="assets/js/vendor/aos.js"></script>
+<script data-wp-strategy="defer" defer id="animations-for-blocks-js" src="assets/js/custom/init.js"></script>
 <script id="gt_widget_script_45572365-js-before">
-window.gtranslateSettings = /* document.write */ window.gtranslateSettings || {};window.gtranslateSettings['45572365'] = {"default_language":"en","languages":["ar","zh-CN","nl","en","fr","de","it","pt","ru","es"],"url_structure":"none","flag_style":"2d","wrapper_selector":"#gt-wrapper-45572365","alt_flags":[],"float_switcher_open_direction":"bottom","switcher_horizontal_position":"inline","flags_location":"\/wp-content\/plugins\/gtranslate\/flags\/"};
-</script><script src="js/float.js" data-no-optimize="1" data-no-minify="1" data-gt-orig-url="/" data-gt-orig-domain="fundedherofutures.com" data-gt-widget-id="45572365" defer></script><script id="fluent-form-submission-js-extra">
+window.gtranslateSettings = /* document.write */ window.gtranslateSettings || {};window.gtranslateSettings['45572365'] = {"default_language":"en","languages":["ar","zh-CN","nl","en","fr","de","it","pt","ru","es"],"url_structure":"none","flag_style":"2d","wrapper_selector":"#gt-wrapper-45572365","alt_flags":[],"float_switcher_open_direction":"bottom","switcher_horizontal_position":"inline","flags_location":"assets\/img\/gtranslate-flags\/"};
+</script><script src="assets/js/custom/float.js" data-no-optimize="1" data-no-minify="1" data-gt-orig-url="/" data-gt-orig-domain="fundedherofutures.com" data-gt-widget-id="45572365" defer></script><script id="fluent-form-submission-js-extra">
 var fluentFormVars = {"ajaxUrl":"https://fundedherofutures.com/wp-admin/admin-ajax.php","forms":[],"step_text":"Step %activeStep% of %totalStep% - %stepTitle%","step_completed_text":"Completed","is_rtl":"","date_i18n":{"previousMonth":"Previous Month","nextMonth":"Next Month","months":{"shorthand":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"longhand":["January","February","March","April","May","June","July","August","September","October","November","December"]},"weekdays":{"longhand":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"shorthand":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]},"daysInMonth":[31,28,31,30,31,30,31,31,30,31,30,31],"rangeSeparator":" to ","weekAbbreviation":"Wk","scrollTitle":"Scroll to increment","toggleTitle":"Click to toggle","amPM":["AM","PM"],"yearAriaLabel":"Year","firstDayOfWeek":1},"pro_version":"6.1.3","fluentform_version":"6.2.12","force_init":"","stepAnimationDuration":"350","upload_completed_txt":"100% Completed","upload_start_txt":"0% Completed","uploading_txt":"Uploading","choice_js_vars":{"noResultsText":"No results found","loadingText":"Loading...","noChoicesText":"No choices to choose from","itemSelectText":"Press to select","maxItemTextSingular":"Only %%maxItemCount%% option can be added","maxItemTextPlural":"Only %%maxItemCount%% options can be added"},"input_mask_vars":{"clearIfNotMatch":false},"nonce":"b9401b325b","file_delete_nonce":"3d9fcc097a","form_id":"6","step_change_focus":"1","has_cleantalk":"","pro_payment_script_compatible":"1"};
 var fluentform_submission_messages_6 = {"file_upload_in_progress":"File upload in progress. Please wait...","javascript_handler_failed":"Javascript handler could not be loaded. Form submission has been failed. Reload the page and try again"};
 var fluentform_payment_messages_6 = {"stock_out_message":"This Item is Stock Out","item_label":"Item","price_label":"Price","qty_label":"Qty","line_total_label":"Line Total","sub_total_label":"Sub Total","discount_label":"Discount","total_label":"Total","signup_fee_label":"Signup Fee","trial_label":"Trial","processing_text":"Processing...","confirming_text":"Confirming..."};
@@ -6153,8 +6160,8 @@ var fluentform_gateway_messages_5 = {"request_failed":"Request failed. Please tr
 var fluentform_submission_messages_global = {"javascript_handler_failed":"Javascript handler could not be loaded. Form submission has been failed. Reload the page and try again"};
 var fluentform_address_messages_global = {"please_wait":"Please wait ...","location_not_determined":"Could not determine address from location.","address_fetch_failed":"Failed to fetch address from coordinates.","geolocation_failed":"Geolocation failed or was denied.","geolocation_not_supported":"Geolocation is not supported by this browser."};
 </script>
-<script id="fluent-form-submission-js" src="js/form-submission.js"></script>
-<script id="intlTelInput-js" src="js/intlTelInputWithUtils.min.js"></script>
+<script id="fluent-form-submission-js" src="assets/js/vendor/form-submission.js"></script>
+<script id="intlTelInput-js" src="assets/js/vendor/intlTelInputWithUtils.min.js"></script>
 <script id="wp-emoji-settings" type="application/json">
 {"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://fundedherofutures.com/wp-includes/js/wp-emoji-release.min.js?ver=7.0.4"}}
 </script>
