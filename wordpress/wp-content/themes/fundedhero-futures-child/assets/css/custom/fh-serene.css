@@ -63,7 +63,8 @@
 }
 
 video.gb-media-c91759a2,
-canvas.gb-media-c91759a2 {
+canvas.gb-media-c91759a2,
+model-viewer.gb-media-c91759a2 {
   position: relative;
   display: block;
   background: transparent;
@@ -96,9 +97,31 @@ canvas.gb-media-c91759a2 {
 @media (prefers-reduced-motion: reduce) {
   video.gb-media-c91759a2,
   canvas.gb-media-c91759a2,
+  model-viewer.gb-media-c91759a2,
   .fh-hero-video::before {
     animation: none;
     transform: none;
+  }
+}
+
+/* Contenedor 3D: cuadrado responsivo sin desbordar el layout. */
+.fh-hero-3d {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 74vh;
+  min-height: 340px;
+  background: transparent;
+}
+
+.fh-hero-3d model-viewer.gb-media-c91759a2 {
+  --poster-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .fh-hero-3d {
+    max-height: 60vh;
+    min-height: 280px;
   }
 }
 
