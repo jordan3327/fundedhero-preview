@@ -50,6 +50,7 @@ function fh_child_enqueue_assets() {
         'fh-variation-cards'   => 'assets/css/custom/variation-cards.css',
         'fh-glass-nav'         => 'assets/css/custom/fh-glass-nav.css',
         'fh-serene'            => 'assets/css/custom/fh-serene.css',
+        'fh-professional'      => 'assets/css/custom/fh-professional.css',
         'fh-giveaway-popup'    => 'assets/css/custom/giveaway-popup.css',
         'fh-purchase-notifier' => 'assets/css/custom/purchase-notifier.css',
         'fh-news-ticker'       => 'assets/css/custom/news-ticker.css',
@@ -89,8 +90,10 @@ function fh_child_enqueue_assets() {
     $js_plain = array(
         'fh-init'            => 'assets/js/custom/init.js',
         'fh-glass-nav'       => 'assets/js/custom/fh-glass-nav.js',
+        'fh-professional'    => 'assets/js/custom/fh-professional.js',
         'fh-hero-sequence'   => 'assets/js/custom/fh-hero-sequence.js',
         'fh-es-dictionary'   => 'assets/js/custom/fh-es-dictionary.js',
+        'fh-counters'        => 'assets/js/custom/fh-counters.js',
         'fh-script-trk'      => 'assets/js/custom/script-trk.js',
         'fh-facebook-signal' => 'assets/js/custom/facebook_signal.js',
     );

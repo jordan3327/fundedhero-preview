@@ -1,0 +1,265 @@
+/* FH modo serio: calma visual. Solo presentacion — el DOM y los textos quedan intactos. */
+
+/* Un solo sorteo por vista: se conserva #pf-giveaway (con consentimiento),
+   se oculta el duplicado de Kadence. */
+#kadence-conversion-5748 {
+  display: none !important;
+}
+
+/* Toasts de compra desactivados: en un perfil serio la prueba social vive
+   en testimonios y payouts verificables, no en avisos flotantes. */
+#propfirm-pn-container {
+  display: none !important;
+}
+
+/* Reveals sobrios: sin escalados ni rebotes. */
+[data-aos] {
+  transform: none !important;
+}
+
+/* Stats sobre fondo solido: las particulas no se ven detras. */
+.fh-stats,
+.fh-stats .stt-stage {
+  position: relative;
+  background: #000 !important;
+}
+
+/* Video hero en loop: grande, respiracion con fuerza y halo radial detras
+   (sin bordes cuadrados: el brillo vive en una capa difuminada aparte). */
+.fh-hero-video {
+  position: relative;
+}
+
+/* Progreso de precarga de la secuencia: hilo dorado minimo. */
+.fh-seq-load {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 6%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fh-seq-load span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #e4b833, #f8df51);
+  border-radius: 2px;
+}
+
+.fh-hero-video::before {
+  content: "";
+  position: absolute;
+  inset: 6% 2%;
+  background: radial-gradient(ellipse at center, rgba(228, 184, 51, 0.38), rgba(228, 184, 51, 0) 65%);
+  filter: blur(50px);
+  animation: fh-halo-life 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+video.gb-media-c91759a2,
+canvas.gb-media-c91759a2,
+model-viewer.gb-media-c91759a2 {
+  position: relative;
+  display: block;
+  background: transparent;
+  transform: scale(1.5);
+  transform-origin: center;
+  animation: fh-hero-life 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes fh-hero-life {
+  0%, 100% {
+    transform: scale(1.5) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.62) translateY(-26px) rotate(1deg);
+  }
+}
+
+@keyframes fh-halo-life {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  video.gb-media-c91759a2,
+  canvas.gb-media-c91759a2,
+  model-viewer.gb-media-c91759a2,
+  .fh-hero-video::before {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Contenedor 3D: cuadrado responsivo sin desbordar el layout. */
+.fh-hero-3d {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 74vh;
+  min-height: 340px;
+  background: transparent;
+}
+
+.fh-hero-3d model-viewer.gb-media-c91759a2 {
+  --poster-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .fh-hero-3d {
+    max-height: 60vh;
+    min-height: 280px;
+  }
+}
+
+/* El lienzo de la secuencia es transparente: solo importan los pixeles
+   llenos. Todo el tamaño es visual (transform) para no mover el layout. */
+
+/* Botones siempre en una sola linea y centrados, en cualquier idioma. */
+.site-header .cta-button.super-btn,
+.site-header .cta-login,
+.gb-button-9f80bd18,
+.gb-button-8f7a7fff {
+  white-space: nowrap !important;
+  text-align: center !important;
+  justify-content: center !important;
+  line-height: 1.25 !important;
+}
+
+/* Features bajo planes: libres, sin rectangulo, letra menor y centrada. */
+.propfirm-features-block {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 8px 0 !important;
+  text-align: center !important;
+}
+
+.propfirm-features-block .feature-item {
+  font-size: 12.5px !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Most Popular creativo y sobrio: tarjeta con borde dorado que respira en
+   rotacion lenta + sello de cristal con estrella pulsante. */
+@property --fh-ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.pf-card.is-popular {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(var(--propfirm-item-bg, #2a2a2d), var(--propfirm-item-bg, #2a2a2d)) padding-box,
+    conic-gradient(from var(--fh-ang, 0deg), #8a6d1c, #f8df51, #8a6d1c, #e4b833, #8a6d1c) border-box !important;
+  animation: fh-border-breathe 6s linear infinite;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5), 0 0 26px rgba(228, 184, 51, 0.16) !important;
+}
+
+@keyframes fh-border-breathe {
+  to { --fh-ang: 360deg; }
+}
+
+/* Sello sobrio: pildora de cristal con filo dorado y estrella pulsante. */
+.pf-card__badge {
+  background: rgba(8, 8, 10, 0.88) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #f8df51 !important;
+  border: 1px solid rgba(228, 184, 51, 0.55) !important;
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  letter-spacing: 0.12em !important;
+  -webkit-clip-path: none;
+  clip-path: none;
+  -webkit-filter: none;
+  filter: none;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(228, 184, 51, 0.28) !important;
+}
+
+.pf-card__badge svg {
+  color: #f8df51 !important;
+  filter: drop-shadow(0 0 4px rgba(248, 223, 81, 0.7));
+  animation: fh-star-pulse 3s ease-in-out infinite;
+}
+
+@keyframes fh-star-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-card.is-popular,
+  .pf-card__badge svg {
+    animation: none !important;
+  }
+}
+
+/* Logos de pago libres, con respiracion minima escalonada. */
+.propfirm-payment-logos {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 10px 0 !important;
+}
+
+/* Destello tenue que las atraviesa en bucle, apenas notorio. */
+.propfirm-payment-logos::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 35%;
+  left: -45%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-18deg);
+  animation: fh-logo-sheen 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes fh-logo-sheen {
+  0% { left: -45%; }
+  55% { left: 135%; }
+  100% { left: 135%; }
+}
+
+.propfirm-payment-logos img {
+  animation: fh-logo-breathe 4.5s ease-in-out infinite alternate;
+}
+
+.propfirm-payment-logos img:nth-child(2) { animation-delay: 0.4s; }
+.propfirm-payment-logos img:nth-child(3) { animation-delay: 0.8s; }
+.propfirm-payment-logos img:nth-child(4) { animation-delay: 1.2s; }
+.propfirm-payment-logos img:nth-child(5) { animation-delay: 1.6s; }
+.propfirm-payment-logos img:nth-child(6) { animation-delay: 2s; }
+
+@keyframes fh-logo-breathe {
+  from { transform: translateY(0); opacity: 0.8; }
+  to { transform: translateY(-3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .propfirm-payment-logos img,
+  .propfirm-payment-logos::after {
+    animation: none !important;
+  }
+}

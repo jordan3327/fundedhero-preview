@@ -215,42 +215,61 @@ model-viewer.gb-media-c91759a2 {
 /* Logos de pago libres, con respiracion minima escalonada. */
 .propfirm-payment-logos {
   position: relative;
-  overflow: hidden;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   padding: 10px 0 !important;
 }
 
-/* Destello tenue que las atraviesa en bucle, apenas notorio. */
-.propfirm-payment-logos::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 35%;
-  left: -45%;
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: skewX(-18deg);
-  animation: fh-logo-sheen 7s ease-in-out infinite;
-  pointer-events: none;
+/* Brillos por logo (no sobre la barra): el destello recorre la silueta
+   independiente de cada logo, desfasado entre ellos. */
+.pf-pay-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
-@keyframes fh-logo-sheen {
-  0% { left: -45%; }
-  55% { left: 135%; }
-  100% { left: 135%; }
+.pf-pay-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.28) 50%, transparent 80%);
+  background-size: 400% 100%;
+  background-position: -30% 0;
+  mix-blend-mode: screen;
+  animation: fh-logo-sheen-per 4.5s linear infinite;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+}
+
+.pf-pay-logo:nth-child(1)::after { -webkit-mask-image: url("../../img/Visa Logo SVG.svg"); mask-image: url("../../img/Visa Logo SVG.svg"); animation-delay: 0s; }
+.pf-pay-logo:nth-child(2)::after { -webkit-mask-image: url("../../img/MasterCard Logo SVG.svg"); mask-image: url("../../img/MasterCard Logo SVG.svg"); animation-delay: 0.5s; }
+.pf-pay-logo:nth-child(3)::after { -webkit-mask-image: url("../../img/American Express Logo SVG.svg"); mask-image: url("../../img/American Express Logo SVG.svg"); animation-delay: 1s; }
+.pf-pay-logo:nth-child(4)::after { -webkit-mask-image: url("../../img/Paypal Logo SVG.svg"); mask-image: url("../../img/Paypal Logo SVG.svg"); animation-delay: 1.5s; }
+.pf-pay-logo:nth-child(5)::after { -webkit-mask-image: url("../../img/Skrill Logo SVG.svg"); mask-image: url("../../img/Skrill Logo SVG.svg"); animation-delay: 2s; }
+.pf-pay-logo:nth-child(6)::after { -webkit-mask-image: url("../../img/Bitcoin Logo SVG.svg"); mask-image: url("../../img/Bitcoin Logo SVG.svg"); animation-delay: 2.5s; }
+
+@keyframes fh-logo-sheen-per {
+  0% { background-position: -30% 0; }
+  100% { background-position: 130% 0; }
 }
 
 .propfirm-payment-logos img {
   animation: fh-logo-breathe 4.5s ease-in-out infinite alternate;
 }
 
-.propfirm-payment-logos img:nth-child(2) { animation-delay: 0.4s; }
-.propfirm-payment-logos img:nth-child(3) { animation-delay: 0.8s; }
-.propfirm-payment-logos img:nth-child(4) { animation-delay: 1.2s; }
-.propfirm-payment-logos img:nth-child(5) { animation-delay: 1.6s; }
-.propfirm-payment-logos img:nth-child(6) { animation-delay: 2s; }
+.pf-pay-logo:nth-child(2) img { animation-delay: 0.4s; }
+.pf-pay-logo:nth-child(3) img { animation-delay: 0.8s; }
+.pf-pay-logo:nth-child(4) img { animation-delay: 1.2s; }
+.pf-pay-logo:nth-child(5) img { animation-delay: 1.6s; }
+.pf-pay-logo:nth-child(6) img { animation-delay: 2s; }
 
 @keyframes fh-logo-breathe {
   from { transform: translateY(0); opacity: 0.8; }
@@ -259,7 +278,7 @@ model-viewer.gb-media-c91759a2 {
 
 @media (prefers-reduced-motion: reduce) {
   .propfirm-payment-logos img,
-  .propfirm-payment-logos::after {
+  .pf-pay-logo::after {
     animation: none !important;
   }
 }
