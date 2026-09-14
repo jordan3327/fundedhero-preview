@@ -17,11 +17,13 @@
   transform: none !important;
 }
 
-/* Stats sobre fondo solido: las particulas no se ven detras. */
+/* Stats banda de cristal translúcida: las partículas quedan detrás
+ * (z-index alto) y las mini tarjetas las desenfocan con backdrop-filter. */
 .fh-stats,
 .fh-stats .stt-stage {
   position: relative;
-  background: #000 !important;
+  z-index: 20;
+  background: rgba(5, 6, 10, .55) !important;
 }
 
 /* Video hero en loop: grande, respiracion con fuerza y halo radial detras
@@ -165,10 +167,10 @@ model-viewer.gb-media-c91759a2 {
 .pf-card.is-popular {
   border: 1px solid transparent !important;
   background:
-    linear-gradient(var(--propfirm-item-bg, #2a2a2d), var(--propfirm-item-bg, #2a2a2d)) padding-box,
+    linear-gradient(rgba(255, 255, 255, .10), rgba(255, 255, 255, .03)) padding-box,
     conic-gradient(from var(--fh-ang, 0deg), #8a6d1c, #f8df51, #8a6d1c, #e4b833, #8a6d1c) border-box !important;
   animation: fh-border-breathe 6s linear infinite;
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5), 0 0 26px rgba(228, 184, 51, 0.16) !important;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), 0 0 26px rgba(228, 184, 51, 0.18) !important;
 }
 
 @keyframes fh-border-breathe {
@@ -280,5 +282,239 @@ model-viewer.gb-media-c91759a2 {
   .propfirm-payment-logos img,
   .pf-pay-logo::after {
     animation: none !important;
+  }
+}
+
+/* "Get Funded" liquido/neon, con paleta Gold. */
+.fh-liquid-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: max-content;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.fh-liquid-btn .btn-wrapper {
+  --rad: 32px;
+  --color-wrapper-border: #fff7c7;
+  --color-btn-bg: #ffc500;
+  --color-btn-text: #241400;
+  --color-btn-text-shadow: #fff8d1;
+  --color-btn-inset-shadow: #8f6200;
+  --color-layer-a: #fffbe0;
+  --color-layer-b: #ffc500;
+  --color-overlay-text: #241400;
+  --color-overlay-glow: #fffbe0;
+  --color-overlay-shadow: #3d240044;
+  --color-overlay-highlight: #fff8d155;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: max-content;
+  overflow: clip;
+  overflow-clip-margin: 4px;
+
+  border: 2px solid var(--color-wrapper-border);
+  border-radius: var(--rad);
+
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  filter: saturate(0.85) brightness(1.8);
+}
+
+.fh-liquid-btn .gradient-btn {
+  position: relative;
+  z-index: -1;
+
+  padding: 12px 36px;
+  border: none;
+  border-radius: var(--rad);
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.15rem;
+  white-space: nowrap;
+
+  color: var(--color-btn-text);
+  background-color: var(--color-btn-bg);
+  background-size: 200% 200%;
+  box-shadow: inset 0 0 10px 9px var(--color-btn-inset-shadow);
+  text-shadow: 0 1px 3px var(--color-btn-text-shadow);
+
+  cursor: pointer;
+  mix-blend-mode: color-dodge;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.fh-liquid-btn .gradient-btn::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: var(--rad);
+  background-size: 200% 200%;
+  mix-blend-mode: difference;
+  z-index: 1;
+}
+
+.fh-liquid-btn .gradient-layer {
+  position: absolute;
+  pointer-events: none;
+
+  left: -160px;
+  width: 500%;
+  aspect-ratio: 1;
+
+  background: radial-gradient(
+    ellipse at 65% 180%,
+    var(--color-layer-a),
+    var(--color-layer-b),
+    var(--color-layer-a),
+    var(--color-layer-b),
+    var(--color-layer-a),
+    var(--color-layer-b),
+    var(--color-layer-a),
+    var(--color-layer-b),
+    var(--color-layer-a),
+    var(--color-layer-b),
+    var(--color-layer-a)
+  );
+
+  mix-blend-mode: difference;
+  animation: rotate 8s linear infinite;
+}
+
+.fh-liquid-btn .gradient-layer:last-child {
+  mix-blend-mode: color-dodge;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fh-liquid-btn .text-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+
+  padding: 12px 36px;
+  border-radius: var(--rad);
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.15rem;
+  white-space: nowrap;
+
+  color: var(--color-overlay-text);
+  text-shadow: 0 0 4px var(--color-overlay-glow);
+  box-shadow:
+    inset 0 -4px 4px 0 var(--color-overlay-shadow),
+    inset 0 4px 4px 0 var(--color-overlay-highlight);
+
+  mix-blend-mode: multiply;
+  transition: transform 0.3s ease;
+  animation: opacityPulse 5s ease infinite;
+}
+
+.fh-liquid-btn .btn-wrapper:hover .text-overlay {
+  transform: scale(1.1);
+}
+
+.fh-liquid-btn .btn-wrapper:hover .gradient-btn {
+  color: #0000;
+  text-shadow: 0 0 0 #0000;
+}
+
+.fh-liquid-btn .btn-wrapper:active .text-overlay {
+  transform: scale(0.95);
+}
+
+.fh-liquid-btn .btn-wrapper:active .gradient-btn {
+  color: #0000;
+  text-shadow: 0 0 0 #0000;
+}
+
+.fh-liquid-btn .light {
+  position: absolute;
+  pointer-events: none;
+
+  z-index: 1;
+  border-radius: 50px;
+  width: 80%;
+  height: 1.9rem;
+  aspect-ratio: 1;
+  background-color: #fff5;
+  filter: blur(5px);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes opacityPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fh-liquid-btn .gradient-layer,
+  .fh-liquid-btn .light,
+  .fh-liquid-btn .text-overlay {
+    animation: none !important;
+  }
+
+  .fh-liquid-btn .text-overlay,
+  .fh-liquid-btn .gradient-btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .fh-liquid-btn {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+
+  .fh-liquid-btn .btn-wrapper {
+    font-size: 1.5rem;
+  }
+
+  .fh-liquid-btn .gradient-btn,
+  .fh-liquid-btn .text-overlay {
+    padding: 12px 36px;
   }
 }

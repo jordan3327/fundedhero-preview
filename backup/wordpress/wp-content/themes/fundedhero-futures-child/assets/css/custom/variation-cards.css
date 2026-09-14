@@ -291,9 +291,12 @@
     flex-direction: column;
     box-sizing: border-box;
     padding: 24px 22px;
-    border: 1px solid var(--propfirm-border, #333);
+    border: 1px solid rgba(255, 255, 255, .16);
     border-radius: var(--pf-card-radius);
-    background: var(--propfirm-item-bg, #2a2a2d);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .04) 40%, rgba(255, 255, 255, .06));
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .18);
     transition: border-color .2s ease, transform .2s ease;
 }
 
@@ -679,12 +682,12 @@ a.button:focus {
 
 /* GTranslate: selector de idiomas rediseñado al tema oscuro/dorado del sitio.
    El desplegable es un overlay absoluto: NO empuja el layout ni mueve contenido. */
-#gt-wrapper-45572365 {
+.gtranslate_wrapper {
     display: inline-block;
     max-width: 100%;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher {
+.gtranslate_wrapper .gt_float_switcher {
     position: relative;
     display: inline-block;
     font-family: 'Manrope', 'Poppins', sans-serif;
@@ -700,13 +703,13 @@ a.button:focus {
     transition: border-color .2s ease, box-shadow .2s ease;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher:hover {
+.gtranslate_wrapper .gt_float_switcher:hover {
     border-color: rgba(228, 184, 51, 0.55);
     box-shadow: 0 6px 24px rgba(228, 184, 51, 0.16);
 }
 
 /* fila seleccionada (botón de idioma) */
-#gt-wrapper-45572365 .gt_float_switcher .gt-selected {
+.gtranslate_wrapper .gt_float_switcher .gt-selected {
     position: relative;
     z-index: 888;
     background: transparent;
@@ -715,11 +718,11 @@ a.button:focus {
     cursor: pointer;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt-selected:hover {
+.gtranslate_wrapper .gt_float_switcher .gt-selected:hover {
     background: rgba(228, 184, 51, 0.10);
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt-selected .gt-current-lang {
+.gtranslate_wrapper .gt_float_switcher .gt-selected .gt-current-lang {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -730,13 +733,13 @@ a.button:focus {
     letter-spacing: .04em;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt-current-lang span.gt-lang-code {
+.gtranslate_wrapper .gt_float_switcher .gt-current-lang span.gt-lang-code {
     position: static;
     color: #ffffff;
 }
 
 /* banderas redondas modernas */
-#gt-wrapper-45572365 .gt_float_switcher img {
+.gtranslate_wrapper .gt_float_switcher img {
     width: 18px;
     height: 18px;
     margin: 0;
@@ -746,12 +749,12 @@ a.button:focus {
     transition: transform .15s ease;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options a:hover img {
+.gtranslate_wrapper .gt_float_switcher .gt_options a:hover img {
     transform: scale(1.12);
 }
 
 /* flecha dorada */
-#gt-wrapper-45572365 .gt_float_switcher .gt-selected .gt-current-lang span.gt_float_switcher-arrow {
+.gtranslate_wrapper .gt_float_switcher .gt-selected .gt-current-lang span.gt_float_switcher-arrow {
     height: 22px;
     width: 14px;
     margin-left: auto;
@@ -764,7 +767,7 @@ a.button:focus {
 
 /* desplegable: overlay centrado en el botón (arriba y abajo), sin mover el contenido.
    Se abre al hacer clic/pulsar en el botón (el widget aplica la clase .gt-open). */
-#gt-wrapper-45572365 .gt_float_switcher .gt_options {
+.gtranslate_wrapper .gt_float_switcher .gt_options {
     position: absolute;
     top: 50%;
     left: 0;
@@ -786,7 +789,7 @@ a.button:focus {
     cursor: pointer;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options.gt-open {
+.gtranslate_wrapper .gt_float_switcher .gt_options.gt-open {
     display: block !important;
     opacity: 1;
     transform: translateY(-50%);
@@ -794,7 +797,7 @@ a.button:focus {
 
 /* flecha: la rota la clase .gt_arrow_rotate que añade el widget al pulsar */
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options a {
+.gtranslate_wrapper .gt_float_switcher .gt_options a {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -806,24 +809,24 @@ a.button:focus {
     transition: background-color .15s ease, color .15s ease;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options a:last-child {
+.gtranslate_wrapper .gt_float_switcher .gt_options a:last-child {
     border-bottom: none;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options a:hover {
+.gtranslate_wrapper .gt_float_switcher .gt_options a:hover {
     background: rgba(228, 184, 51, 0.16);
     color: #e4b833;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options::-webkit-scrollbar-track {
+.gtranslate_wrapper .gt_float_switcher .gt_options::-webkit-scrollbar-track {
     background: transparent;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options::-webkit-scrollbar {
+.gtranslate_wrapper .gt_float_switcher .gt_options::-webkit-scrollbar {
     width: 6px;
 }
 
-#gt-wrapper-45572365 .gt_float_switcher .gt_options::-webkit-scrollbar-thumb {
+.gtranslate_wrapper .gt_float_switcher .gt_options::-webkit-scrollbar-thumb {
     background: rgba(228, 184, 51, 0.45);
     border-radius: 3px;
 }
@@ -900,13 +903,17 @@ a.button:focus {
     transform: scale(1.06) !important;
 }
 
-/* Fondo de partículas doradas: viñeta radial sutil para integrar el lienzo.
+/* Fondo Particle Drift (ASCII dorado): viñeta radial sutil para integrar el lienzo.
    El lienzo se extiende más abajo del contenedor (cola) y el desvanecimiento
-   inferior lo calcula particleFade().  */
+   inferior lo calcula fadeAt() en variation-cards.js.  */
 .golden-particles-bg {
     position: relative;
     overflow: visible;
-    z-index: 1;
+    z-index: auto;
+}
+
+.gb-element-877e1104.golden-particles-bg {
+    background-color: transparent;
 }
 
 .golden-particles-bg canvas {
@@ -916,14 +923,14 @@ a.button:focus {
     height: 100%;
     pointer-events: none;
     display: block;
-    z-index: 0;
+    z-index: -1;
 }
 
 .golden-particles-bg::after {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
     background: radial-gradient(120% 120% at 50% 30%,
         transparent 0%,
@@ -1235,4 +1242,58 @@ a.button:focus {
         transition: none !important;
         box-shadow: none !important;
     }
+}
+
+/* ------------------------------------------------------------------
+ * BLUR GLASS — todo elemento translúcido del sitio desenfoca lo que
+ * hay detrás (fondo de partículas, imágenes, etc). Añadido tras el
+ * cambio de apilamiento del lienzo de partículas; se puede ajustar el
+ * radio por selector. Solo importa si el navegador soporta backdrop.
+ * ------------------------------------------------------------------ */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+
+  /* Paneles grandes translúcidos (variantes fh-*) */
+  .fh-proof__row,
+  .fh-faq__item,
+  .fh-guarantee__card{
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+
+  /* Chips / sellos con fondo semi-transparente */
+  .fh-live-payout,
+  .fh-seq-load,
+  .pf-card__badge,
+  .pf-card__promo,
+  .pf-card__phase-tab.is-active,
+  .vsb-coupon-tag,
+  .propfirm-phase-table .pf-badge-yes,
+  .propfirm-phase-table .pf-badge-no,
+  .propfirm-phase-table .pf-badge-static,
+  .pf-giveaway__error,
+  .pf-giveaway__close:hover,
+  html.pf-touch .pf-swipe-hint{
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+  }
+
+  /* Iconos en botones / selector de idioma / cierres de popups */
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .svg-wrapper,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .svg-wrapper,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon,
+  body.home .uiverse-discord-btn .svg-wrapper,
+  body.home .uiverse-discord-btn:hover .svg-wrapper,
+  .gtranslate_wrapper .gt_float_switcher .gt-selected:hover,
+  .gtranslate_wrapper .gt_float_switcher .gt_options a:hover,
+  #kadence-conversion-5748 .kadence-conversions-close,
+  #kadence-conversion-5748 .kadence-conversions-close:hover{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Overlay del slideout móvil: desenfoca la página detrás */
+  #slideout-overlay{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
 }

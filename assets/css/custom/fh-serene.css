@@ -17,11 +17,13 @@
   transform: none !important;
 }
 
-/* Stats sobre fondo solido: las particulas no se ven detras. */
+/* Stats banda de cristal translúcida: las partículas quedan detrás
+ * (z-index alto) y las mini tarjetas las desenfocan con backdrop-filter. */
 .fh-stats,
 .fh-stats .stt-stage {
   position: relative;
-  background: #000 !important;
+  z-index: 20;
+  background: rgba(5, 6, 10, .55) !important;
 }
 
 /* Video hero en loop: grande, respiracion con fuerza y halo radial detras
@@ -165,10 +167,10 @@ model-viewer.gb-media-c91759a2 {
 .pf-card.is-popular {
   border: 1px solid transparent !important;
   background:
-    linear-gradient(var(--propfirm-item-bg, #2a2a2d), var(--propfirm-item-bg, #2a2a2d)) padding-box,
+    linear-gradient(rgba(255, 255, 255, .10), rgba(255, 255, 255, .03)) padding-box,
     conic-gradient(from var(--fh-ang, 0deg), #8a6d1c, #f8df51, #8a6d1c, #e4b833, #8a6d1c) border-box !important;
   animation: fh-border-breathe 6s linear infinite;
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5), 0 0 26px rgba(228, 184, 51, 0.16) !important;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45), 0 0 26px rgba(228, 184, 51, 0.18) !important;
 }
 
 @keyframes fh-border-breathe {

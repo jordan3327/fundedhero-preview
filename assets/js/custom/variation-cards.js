@@ -621,7 +621,7 @@ jQuery(function ($) {
 
     var KEY = 'pfParticleDriftBoot';
 
-    var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()'.split('');
+    var CHARS = ['F', 'H'];
     var PROXIMITY_DIST = 120;
     var MOUSE_DIST = 180;
 
@@ -659,12 +659,34 @@ jQuery(function ($) {
         var rawDpr = window.devicePixelRatio || 1;
         var dpr = Math.min(rawDpr, isSmall ? 1.5 : 2);
 
+        // El lienzo se inserta dentro del stacking context del hero (.gb-element-d2b7680a,
+        // z-index:9). Con z-index:-1 en la raíz quedaba detrás de toda la capa del hero y
+        // nunca era visible. Aquí vive bajo el texto (in-flow) pero sobre el fondo del hero.
+        var host = container.querySelector('.gb-element-d2b7680a') || container;
+
         var canvas = document.createElement('canvas');
         canvas.id = 'pf-golden-ext';
         canvas.setAttribute('aria-hidden', 'true');
-        container.appendChild(canvas);
+        host.appendChild(canvas);
         var ctx = canvas.getContext('2d', { alpha: true });
         if (!ctx) return;
+
+        canvas.style.position = 'absolute';
+        canvas.style.zIndex = '-1';
+        canvas.style.pointerEvents = 'none';
+
+        function positionCanvas() {
+            if (host === container) {
+                canvas.style.top = '0px';
+                canvas.style.left = '0px';
+                return;
+            }
+            var cr = container.getBoundingClientRect();
+            var hr = host.getBoundingClientRect();
+            canvas.style.top = Math.round(cr.top - hr.top) + 'px';
+            canvas.style.left = Math.round(cr.left - hr.left) + 'px';
+        }
+        positionCanvas();
 
         canvas.style.width = cw + 'px';
         canvas.style.height = ch + 'px';
@@ -864,6 +886,7 @@ jQuery(function ($) {
             ch = Math.max(1, Math.round(heroH * (isSmall ? EXTEND_MOBILE : EXTEND)));
             fadeStart = heroH + 240;
             fadeSpan = Math.max(1, ch - fadeStart);
+            positionCanvas();
             canvas.style.width = cw + 'px';
             canvas.style.height = ch + 'px';
             canvas.width = Math.max(1, Math.floor(cw * dpr));

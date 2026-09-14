@@ -61,15 +61,17 @@ body.home {
   margin-bottom: 5vh;
 }
 
-/* Social proof: a clean black band with fully opaque information panels.
- * This section deliberately masks the particle canvas behind it. */
+/* Social proof: translucent glass band. Raised above the hero (z9) so the
+ * particle canvas paints BEHIND it; the 5 mini cards then frost (blur) the
+ * golden field through them. isolation:auto + transform none so backdrop-filter
+ * on the cells can actually sample the canvas outside this element. */
 .fh-stats {
   position: relative;
-  z-index: 2;
-  isolation: isolate;
-  background: #000 !important;
+  z-index: 20;
+  isolation: auto;
+  background: rgba(5, 6, 10, .55) !important;
 }
-.stt-stage { max-width: 1680px; padding: 42px 40px; background: #000 !important; }
+.stt-stage { max-width: 1680px; padding: 42px 40px; background: radial-gradient(140% 180% at 50% 120%, rgba(228, 184, 51, .22), rgba(5, 6, 10, .32) 45%, rgba(5, 6, 10, .55)) !important; }
 .stt-bar {
   gap: 18px;
   padding: 0;
@@ -77,14 +79,17 @@ body.home {
   border: 0;
   border-radius: 0;
   overflow: visible;
+  transform: none !important;
 }
 
 .stt-cell {
   min-height: 132px;
   padding: 24px 16px;
   border-radius: 14px;
-  background: #141414 !important;
-  border: 1px solid #141414;
+  background: rgba(18, 18, 22, .45) !important;
+  border: 1px solid rgba(228, 184, 51, .16);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
 }
 
 .stt-cell:last-child { border-right: 1px solid #141414; }
@@ -123,17 +128,16 @@ body.home {
 
 .pf-card {
   padding: 26px 24px 24px;
-  border-color: var(--fh-pro-line);
+  border-color: rgba(255, 255, 255, .16);
   border-radius: var(--fh-pro-radius);
-  background: linear-gradient(145deg, #16191f, #0f1115);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, .18);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .18);
   transition: border-color .2s ease, box-shadow .2s ease;
 }
-.pf-card:hover { transform: none; border-color: rgba(216, 179, 91, .45); box-shadow: 0 18px 34px rgba(0, 0, 0, .28); }
+.pf-card:hover { transform: none; border-color: rgba(255, 255, 255, .3); box-shadow: 0 18px 40px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .22); }
 .pf-card.is-popular {
-  background: linear-gradient(145deg, #1a1a19, #111216) !important;
-  border: 1px solid #ffc500 !important;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, .30), 0 0 0 1px #ffc500 !important;
+  background: linear-gradient(145deg, rgba(228, 184, 51, .20), rgba(26, 25, 19, .48)) !important;
+  border: 1px solid rgba(228, 184, 51, .65) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .30), 0 0 26px rgba(228, 184, 51, .22), inset 0 1px 0 rgba(255, 255, 255, .16) !important;
   animation: none !important;
 }
 .pf-card__badge { background: #242017 !important; border-color: rgba(216, 179, 91, .62) !important; color: var(--fh-pro-gold-light) !important; box-shadow: none !important; }
@@ -258,21 +262,21 @@ body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button:hov
 body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button::after {
   content: '';
   position: absolute;
-  inset: -9px;
+  inset: -4px;
   z-index: -1;
-  border-radius: 18px;
-  background: radial-gradient(ellipse at center, rgba(248, 223, 81, 0.55), rgba(228, 184, 51, 0.28) 55%, rgba(228, 184, 51, 0) 75%);
-  filter: blur(7px);
+  border-radius: 14px;
+  background: linear-gradient(to bottom, rgba(255, 214, 89, 0.85), rgba(228, 184, 51, 0.45));
+  filter: blur(8px);
   opacity: 0.5;
-  transform: scale(0.97);
+  transform: scale(1);
   pointer-events: none;
-  animation: fh-glow-breathe 2.8s ease-in-out infinite;
+  animation: fh-glow-breathe 1.4s ease-in-out infinite;
   will-change: opacity, transform;
 }
 
 @keyframes fh-glow-breathe {
-  0%, 100% { opacity: 0.32; transform: scale(0.96); }
-  50% { opacity: 0.85; transform: scale(1.04); }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
 }
 
 body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button:hover {
@@ -493,14 +497,15 @@ body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-button-text {
 body.home .uiverse-discord-btn {
   font-family: inherit;
   font-size: 18px;
-  background: linear-gradient(to bottom, #4f4dd9 0%, #2b60aa 100%);
+  position: relative;
+  background: linear-gradient(to bottom, #0b0b0d 0%, #13100a 70%, #241d0c 100%);
   color: white;
   padding: 0.8em 1.2em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 25px;
+  border: 0;
+  border-radius: 11px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   text-decoration: none;
@@ -508,7 +513,7 @@ body.home .uiverse-discord-btn {
 
 body.home .uiverse-discord-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(228, 184, 51, .18);
   color: white;
   text-decoration: none;
 }
@@ -538,15 +543,51 @@ body.home .uiverse-discord-btn .svg-wrapper {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(228, 184, 51, 0.1);
   margin-right: 0.5em;
   transition: all 0.3s;
 }
 
 body.home .uiverse-discord-btn:hover .svg-wrapper {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(228, 184, 51, 0.2);
 }
 
 body.home .uiverse-discord-btn:hover svg {
   transform: rotate(360deg);
+}
+
+/* ---- Adaptacion movil: fila de CTAs del hero ---- */
+@media (max-width: 640px) {
+  body.home .gb-element-182421b0 {
+    max-width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  body.home .gb-element-182421b0 > a {
+    flex: 0 1 auto;
+  }
+  body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button {
+    min-width: 0 !important;
+    padding: 14px 22px !important;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  body.home .uiverse-discord-btn {
+    font-size: 15px;
+    padding: 0.75em 1em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  body.home .gb-element-182421b0 {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  body.home .gb-element-182421b0 > a {
+    box-sizing: border-box;
+    width: 100% !important;
+    justify-content: center !important;
+  }
 }

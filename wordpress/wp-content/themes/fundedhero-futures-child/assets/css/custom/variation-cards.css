@@ -291,9 +291,12 @@
     flex-direction: column;
     box-sizing: border-box;
     padding: 24px 22px;
-    border: 1px solid var(--propfirm-border, #333);
+    border: 1px solid rgba(255, 255, 255, .16);
     border-radius: var(--pf-card-radius);
-    background: var(--propfirm-item-bg, #2a2a2d);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .04) 40%, rgba(255, 255, 255, .06));
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .18);
     transition: border-color .2s ease, transform .2s ease;
 }
 
@@ -1239,4 +1242,58 @@ a.button:focus {
         transition: none !important;
         box-shadow: none !important;
     }
+}
+
+/* ------------------------------------------------------------------
+ * BLUR GLASS — todo elemento translúcido del sitio desenfoca lo que
+ * hay detrás (fondo de partículas, imágenes, etc). Añadido tras el
+ * cambio de apilamiento del lienzo de partículas; se puede ajustar el
+ * radio por selector. Solo importa si el navegador soporta backdrop.
+ * ------------------------------------------------------------------ */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+
+  /* Paneles grandes translúcidos (variantes fh-*) */
+  .fh-proof__row,
+  .fh-faq__item,
+  .fh-guarantee__card{
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+
+  /* Chips / sellos con fondo semi-transparente */
+  .fh-live-payout,
+  .fh-seq-load,
+  .pf-card__badge,
+  .pf-card__promo,
+  .pf-card__phase-tab.is-active,
+  .vsb-coupon-tag,
+  .propfirm-phase-table .pf-badge-yes,
+  .propfirm-phase-table .pf-badge-no,
+  .propfirm-phase-table .pf-badge-static,
+  .pf-giveaway__error,
+  .pf-giveaway__close:hover,
+  html.pf-touch .pf-swipe-hint{
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+  }
+
+  /* Iconos en botones / selector de idioma / cierres de popups */
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .svg-wrapper,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .svg-wrapper,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon,
+  body.home .uiverse-discord-btn .svg-wrapper,
+  body.home .uiverse-discord-btn:hover .svg-wrapper,
+  .gtranslate_wrapper .gt_float_switcher .gt-selected:hover,
+  .gtranslate_wrapper .gt_float_switcher .gt_options a:hover,
+  #kadence-conversion-5748 .kadence-conversions-close,
+  #kadence-conversion-5748 .kadence-conversions-close:hover{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Overlay del slideout móvil: desenfoca la página detrás */
+  #slideout-overlay{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
 }
