@@ -89,6 +89,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='propfirm-variation-cards-style-css' href='assets/css/custom/variation-cards.css' media='all' />
 <link rel='stylesheet' id='fh-glass-nav-css' href='assets/css/custom/fh-glass-nav.css' media='all' />
 <link rel='stylesheet' id='fh-serene-css' href='assets/css/custom/fh-serene.css' media='all' />
+<link rel='stylesheet' id='fh-professional-css' href='assets/css/custom/fh-professional.css' media='all' />
 <link rel='stylesheet' id='propfirm-giveaway-style-css' href='assets/css/custom/giveaway-popup.css' media='all' />
 <link rel='stylesheet' id='generate-style-css' href='assets/css/vendor/main.min.css' media='all' />
 <style id="generate-style-inline-css">
@@ -184,19 +185,31 @@ twq('config','pvici');
 
 <style>
    .super-btn {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        background:
+            radial-gradient(circle at 24% 14%, rgba(255, 255, 222, 0.95), transparent 28%),
+            linear-gradient(120deg, #8f4d00 0%, #e0a51d 18%, #fff09a 42%, #c98608 62%, #ffd95d 82%, #7a3d00 100%);
+        background-size: 180% 180%;
+        color: #231100 !important;
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 239, 162, 0.65);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 232, 0.78),
+            inset 0 -7px 14px rgba(89, 44, 0, 0.24),
+            0 8px 22px rgba(201, 134, 8, 0.28);
+        text-shadow: 0 1px 0 rgba(255, 245, 186, 0.75);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.3s ease;
     }
 
     .super-btn:hover {
-        background: linear-gradient(135deg, var(--accent-2), var(--accent));
+        background-position: 100% 50%;
         box-shadow:
-            0 0 20px #e4b833,
-            0 0 40px #e4b833;
-        animation: electric-pulse 0.5s infinite alternate;
+            inset 0 1px 0 rgba(255, 255, 235, 0.95),
+            inset 0 -7px 16px rgba(75, 35, 0, 0.18),
+            0 0 22px rgba(255, 211, 75, 0.55),
+            0 0 46px rgba(211, 138, 8, 0.42);
+        animation: electric-pulse 0.65s infinite alternate;
     }
 
     .super-btn::before {
@@ -206,7 +219,7 @@ twq('config','pvici');
         left: -2px;
         right: -2px;
         bottom: -2px;
-        background: linear-gradient(45deg, transparent, #e4b833, transparent, #e4b833);
+        background: linear-gradient(45deg, transparent, #fff2a6, #b86f03, #ffe174, transparent);
         z-index: -1;
         opacity: 0;
         border-radius: 8px;
@@ -724,7 +737,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 
 <div class="gb-element-e5873855"></div>
 
-<span class="gb-button gb-button-cc6c80ce gb-button-text cta-button smooth-scroll super-btn">Get Funded</span>
+<a class="gb-button gb-button-cc6c80ce gb-button-text cta-button smooth-scroll super-btn gradient-button" href="#pricing-plan">Get Funded</a>
 
 <span class="gb-button gb-button-5e2cae8a gb-button-text cta-login smooth-scroll">Login</span>
 
@@ -1110,24 +1123,57 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 <h1 class="gb-text gb-text-acf43434"><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#ffc500" class="has-inline-color">FundedHero</mark></strong> Futures</h1>
 
 <div class="gb-element-182421b0">
-<span class="gb-button gb-button-9f80bd18 gb-button-text cta-button smooth-scroll">Get Funded</span>
+<a class="gb-button gb-button-cc6c80ce gb-button-text cta-button smooth-scroll super-btn gradient-button" href="#pricing-plan">Get Funded</a>
 
-<a class="gb-button gb-button-8f7a7fff cta-button smooth-scroll" href="https://discord.gg/nxAVgCbJP6" target="_blank" rel="noopener noreferrer"><span class="gb-button-text">Discord</span><span class="gb-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="800px" width="800px"> <path stroke-linejoin="round" stroke="#000000" d="M18.8943 4.34399C17.5183 3.71467 16.057 3.256 14.5317 3C14.3396 3.33067 14.1263 3.77866 13.977 4.13067C12.3546 3.89599 10.7439 3.89599 9.14391 4.13067C8.99457 3.77866 8.77056 3.33067 8.58922 3C7.05325 3.256 5.59191 3.71467 4.22552 4.34399C1.46286 8.41865 0.716188 12.3973 1.08952 16.3226C2.92418 17.6559 4.69486 18.4666 6.4346 19C6.86126 18.424 7.24527 17.8053 7.57594 17.1546C6.9466 16.92 6.34927 16.632 5.77327 16.2906C5.9226 16.184 6.07194 16.0667 6.21061 15.9493C9.68793 17.5387 13.4543 17.5387 16.889 15.9493C17.0383 16.0667 17.177 16.184 17.3263 16.2906C16.7503 16.632 16.153 16.92 15.5236 17.1546C15.8543 17.8053 16.2383 18.424 16.665 19C18.4036 18.4666 20.185 17.6559 22.01 16.3226C22.4687 11.7787 21.2836 7.83202 18.8943 4.34399ZM8.05593 13.9013C7.01058 13.9013 6.15725 12.952 6.15725 11.7893C6.15725 10.6267 6.98925 9.67731 8.05593 9.67731C9.11191 9.67731 9.97588 10.6267 9.95454 11.7893C9.95454 12.952 9.11191 13.9013 8.05593 13.9013ZM15.065 13.9013C14.0196 13.9013 13.1652 12.952 13.1652 11.7893C13.1652 10.6267 13.9983 9.67731 15.065 9.67731C16.121 9.67731 16.985 10.6267 16.9636 11.7893C16.9636 12.952 16.1317 13.9013 15.065 13.9013Z"></path> </svg></span></a>
+<a class="uiverse-discord-btn" href="https://discord.gg/nxAVgCbJP6" target="_blank" rel="noopener noreferrer">
+  <div class="svg-wrapper-1">
+    <div class="svg-wrapper">
+      <svg height="24" width="24" viewBox="0 0 24 24">
+        <path d="M18.8943 4.34399C17.5183 3.71467 16.057 3.256 14.5317 3C14.3396 3.33067 14.1263 3.77866 13.977 4.13067C12.3546 3.89599 10.7439 3.89599 9.14391 4.13067C8.99457 3.77866 8.77056 3.33067 8.58922 3C7.05325 3.256 5.59191 3.71467 4.22552 4.34399C1.46286 8.41865 0.716188 12.3973 1.08952 16.3226C2.92418 17.6559 4.69486 18.4666 6.4346 19C6.86126 18.424 7.24527 17.8053 7.57594 17.1546C6.9466 16.92 6.34927 16.632 5.77327 16.2906C5.9226 16.184 6.07194 16.0667 6.21061 15.9493C9.68793 17.5387 13.4543 17.5387 16.889 15.9493C17.0383 16.0667 17.177 16.184 17.3263 16.2906C16.7503 16.632 16.153 16.92 15.5236 17.1546C15.8543 17.8053 16.2383 18.424 16.665 19C18.4036 18.4666 20.185 17.6559 22.01 16.3226C22.4687 11.7787 21.2836 7.83202 18.8943 4.34399ZM8.05593 13.9013C7.01058 13.9013 6.15725 12.952 6.15725 11.7893C6.15725 10.6267 6.98925 9.67731 8.05593 9.67731C9.11191 9.67731 9.97588 10.6267 9.95454 11.7893C9.95454 12.952 9.11191 13.9013 8.05593 13.9013ZM15.065 13.9013C14.0196 13.9013 13.1652 12.952 13.1652 11.7893C13.1652 10.6267 13.9983 9.67731 15.065 9.67731C16.121 9.67731 16.985 10.6267 16.9636 11.7893C16.9636 12.952 16.1317 13.9013 15.065 13.9013Z"></path>
+      </svg>
+    </div>
+  </div>
+  <span>Discord</span>
+</a>
 
 <div></div>
 </div>
 
 <style>
 .fhfl-features-01 { background:#000; padding:0 24px 24px; margin-top:-10px; }
-.fhfl-row-01 { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.fhfl-row-01 {
+  position:relative; cursor:default;
+  display:flex; align-items:center; gap:14px; margin-bottom:16px;
+}
 .fhfl-icon-01 {
   flex-shrink:0; width:30px; height:30px; border-radius:8px;
   background:rgba(46,204,113,0.15);
   display:flex; align-items:center; justify-content:center;
 }
 .fhfl-icon-01 svg { width:16px; height:16px; }
-.fhfl-label-01 { color:#fff; font-weight:700; font-size:15px; font-family:sans-serif; }
+.fhfl-label-01 {
+  position:relative; overflow:hidden; display:inline-block;
+  color:#fff; font-weight:700; font-size:15px; font-family:sans-serif;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), color .25s ease;
+}
+.fhfl-label-01::after {
+  content:""; position:absolute; top:-25%; bottom:-25%; width:46%; left:-70%;
+  background:linear-gradient(105deg, transparent 0%, rgba(255,197,0,.45) 50%, transparent 100%);
+  transform:skewX(-22deg); pointer-events:none; opacity:0;
+}
+.fhfl-row-01:hover .fhfl-label-01 { transform:scale(1.06); color:#ffc500; }
+.fhfl-row-01:hover .fhfl-label-01::after {
+  opacity:1; left:120%;
+  transition:left .65s cubic-bezier(.35,.1,.2,1), opacity .15s ease;
+}
 .fhfl-label-01 span { color:#9a9a9a; font-weight:400; }
+.fhfl-row-01:hover .fhfl-label-01 span { color:#ffe39a; }
+@media (prefers-reduced-motion: reduce) {
+  .fhfl-label-01, .fhfl-label-01::after { transition:none; transform:none; }
+  .fhfl-row-01:hover .fhfl-label-01 { transform:none; color:#fff; }
+  .fhfl-row-01:hover .fhfl-label-01 span { color:#9a9a9a; }
+  .fhfl-row-01:hover .fhfl-label-01::after { display:none; }
+}
 </style>
 
 <div class="fhfl-features-01">
@@ -1267,22 +1313,22 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
     <div class="stt-bar reveal">
 
       <div class="stt-cell">
-        <span class="stt-num">$450k</span>
+        <span class="stt-num" data-count-target="450" data-prefix="$" data-suffix="k">$450k</span>
         <span class="stt-label">In Funding</span>
       </div>
 
       <div class="stt-cell">
-        <span class="stt-num">7 hrs</span>
+        <span class="stt-num" data-count-target="7" data-suffix=" hrs">7 hrs</span>
         <span class="stt-label">Payout On Demand</span>
       </div>
 
       <div class="stt-cell">
-        <span class="stt-num">90%</span>
+        <span class="stt-num" data-count-target="90" data-suffix="%">90%</span>
         <span class="stt-label">Profit Split</span>
       </div>
 
       <div class="stt-cell">
-        <span class="stt-num">100,000+</span>
+        <span class="stt-num" data-count-target="100000" data-suffix="+">100,000+</span>
         <span class="stt-label">Traders Worldwide</span>
       </div>
 
@@ -1298,7 +1344,7 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5l2.94 8.65h9.1l-7.36 5.35 2.81 8.65L12 18.8l-7.49 5.35 2.81-8.65-7.36-5.35h9.1z"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5l2.94 8.65h9.1l-7.36 5.35 2.81 8.65L12 18.8l-7.49 5.35 2.81-8.65-7.36-5.35h9.1z"/></svg>
         </span>
-        <span class="stt-trust-score">TrustScore 4.8 reviews</span>
+        <span class="stt-trust-score" data-count-target="4.8" data-count-decimals="1" data-prefix="TrustScore " data-suffix=" reviews">TrustScore 4.8 reviews</span>
       </div>
 
     </div>
@@ -2039,7 +2085,7 @@ p.lede{
 
         <div class="propfirm-cards-block"
              data-product-id="10729"
-             data-enable-custom-buy-now="no"
+             data-enable-custom-buy-now="yes"
              data-custom-buy-now-url="https://app.fundedherofutures.com/checkout"
              data-coupon-code="HERO">
 
@@ -2547,7 +2593,7 @@ p.lede{
         </div>
                 <div class="pf-card__row">
             <dt>1st Payout Goal</dt>
-            <dd>$4,500</dd>
+            <dd>$4,500</dd>re
         </div>
                             </dl>
 
@@ -5416,12 +5462,12 @@ p.lede{
                 </div>
                     </div>
                             <div class="propfirm-payment-logos">
-                                                <img decoding="async" src="assets/img/Visa Logo SVG.svg" alt="Visa">
-                                                                <img decoding="async" src="assets/img/MasterCard Logo SVG.svg" alt="MasterCard">
-                                                                <img decoding="async" src="assets/img/American Express Logo SVG.svg" alt="American Express">
-                                                                <img decoding="async" src="assets/img/Paypal Logo SVG.svg" alt="PayPal">
-                                                                <img decoding="async" src="assets/img/Skrill Logo SVG.svg" alt="Skrill">
-                                                                <img decoding="async" src="assets/img/Bitcoin Logo SVG.svg" alt="Bitcoin">
+                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/Visa Logo SVG.svg" alt="Visa"></span>
+                                                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/MasterCard Logo SVG.svg" alt="MasterCard"></span>
+                                                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/American Express Logo SVG.svg" alt="American Express"></span>
+                                                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/Paypal Logo SVG.svg" alt="PayPal"></span>
+                                                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/Skrill Logo SVG.svg" alt="Skrill"></span>
+                                                                                <span class="pf-pay-logo"><img decoding="async" src="assets/img/Bitcoin Logo SVG.svg" alt="Bitcoin"></span>
                                     </div>
 
             <div class="pf-cards-loader" hidden><span class="pf-spinner"></span></div>
@@ -5671,7 +5717,7 @@ p.lede{
 
 <div class="gb-container gb-container-0ee9a8ed">
 
-<span class="gb-button gb-button-b0a1b4fa gb-button-text cta-button smooth-scroll">Get Funded</span>
+<a class="gb-button gb-button-cc6c80ce gb-button-text cta-button smooth-scroll super-btn gradient-button" href="#pricing-plan">Get Funded</a>
 
 </div></div>
 
@@ -6083,8 +6129,8 @@ document.querySelectorAll('.cta-button').forEach(button => {
 document.querySelectorAll('.cta-login').forEach(button => {
     // Agrega un evento de clic a cada botón
     button.addEventListener('click', () => {
-        // Redirige a la URL especificada
-        window.location.href='https://app.fundedherofutures.com';
+// Redirige a la URL especificada
+    window.location.href='app/index.html';
     });
 });
 </script>
@@ -6122,6 +6168,7 @@ var propfirm_block_params = {"ajax_url":"https://fundedherofutures.com/wp-admin/
 <script id="propfirm-variation-block-script-js" src="assets/js/custom/variation-block.js"></script>
 <script id="propfirm-variation-cards-script-js" src="assets/js/custom/variation-cards.js"></script>
 <script id="fh-glass-nav-js" src="assets/js/custom/fh-glass-nav.js"></script>
+<script id="fh-professional-js" src="assets/js/custom/fh-professional.js"></script>
 <script id="fh-es-dictionary-js" src="assets/js/custom/fh-es-dictionary.js"></script>
 <script id="fh-hero-sequence-js" src="assets/js/custom/fh-hero-sequence.js"></script>
 
@@ -6268,6 +6315,8 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
                     });
                 });
             </script>
+
+<script id="fh-counters-js" src="assets/js/custom/fh-counters.js" defer></script>
 
 </body>
 </html>

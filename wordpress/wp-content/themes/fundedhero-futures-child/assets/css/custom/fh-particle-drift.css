@@ -1,0 +1,42 @@
+/* ====================================================================
+ * FH Particle Drift - fondo de particulas doradas con cursor (hero)
+ * --------------------------------------------------------------------
+ * El lienzo lo inyecta assets/js/custom/fh-particle-drift.js sobre
+ * cualquier contenedor .fh-particle-drift del marcado.
+ * ================================================================== */
+
+.fh-particle-drift {
+    position: relative;
+    isolation: isolate;   /* aislar el stacking del backdrop de particulas */
+    z-index: 0;
+}
+
+.fh-particle-drift canvas.fh-particle-drift__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* El contenido del hero queda por encima del lienzo de particulas. */
+.fh-particle-drift > :not(canvas) {
+    position: relative;
+    z-index: 1;
+}
+
+/* Cola inferior: con data-fh-extend="2.5" el lienzo crece hacia abajo y
+   las particulas se desvanecen de forma natural en la seccion negra
+   siguiente; permitimos que ese trozo sobresalga del contenedor. */
+.fh-particle-drift.fh-particle-drift--tail {
+    overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fh-particle-drift canvas.fh-particle-drift__canvas {
+        opacity: 0.8;
+    }
+}
