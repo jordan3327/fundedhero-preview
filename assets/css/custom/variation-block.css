@@ -578,27 +578,31 @@
 .coupon-code-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: #2d2d32;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    gap: 7px;
+    background: linear-gradient(135deg, #ffd54a 0%, #f5b400 100%);
+    border: 1px solid rgba(255, 224, 120, 0.55);
     border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #ffffff;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #171207;
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
+    box-shadow: 0 4px 16px rgba(255, 197, 0, 0.35);
 }
 
 .coupon-code-badge:hover {
-    background: #3a3a40;
-    border-color: var(--propfirm-accent, #f8df51);
-    color: #ffffff;
+    background: linear-gradient(135deg, #ffe27a 0%, #ffc500 100%);
+    border-color: #fff3c4;
+    box-shadow: 0 4px 20px rgba(255, 197, 0, 0.5);
+    color: #171207;
+    transform: translateY(-1px);
 }
 
 .coupon-code-badge strong {
-    color: var(--propfirm-accent, #f8df51);
+    color: #171207;
 }
 
 .coupon-code-badge .copy-icon {
