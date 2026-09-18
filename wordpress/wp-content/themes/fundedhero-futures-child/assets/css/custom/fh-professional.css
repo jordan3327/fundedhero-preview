@@ -1,0 +1,593 @@
+/*
+ * FundedHero professional system
+ * A quiet, high-trust layer for the homepage. It deliberately overrides
+ * decorative effects only; program data, rules and purchase behaviour remain
+ * owned by the existing components.
+ */
+
+:root {
+  --fh-pro-bg: #000000;
+  --fh-pro-surface: #141414;
+  --fh-pro-surface-raised: #1c1c1c;
+  --fh-pro-text: #fefefe;
+  --fh-pro-muted: #a8a8a8;
+  --fh-pro-line: #292929;
+  --fh-pro-gold: #ffc500;
+  --fh-pro-gold-light: #ffc500;
+  --fh-pro-green: #ffc500;
+  --fh-pro-radius: 14px;
+}
+
+body.home {
+  background: var(--fh-pro-bg);
+  color: var(--fh-pro-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Promo strip: an announcement, not visual noise. */
+#propfirm-nt-bar {
+  background: #000 !important;
+  border-bottom: 1px solid #292929;
+  letter-spacing: .08em;
+}
+
+/* Give the hero benefits one visual language and remove attention-seeking hover effects. */
+.fhfl-features-01 {
+  background: transparent;
+  padding: 4px 0 24px;
+}
+
+.fhfl-row-01 { gap: 12px; margin-bottom: 13px; }
+.fhfl-icon-01 { width: 28px; height: 28px; border-radius: 50%; background: #201900; }
+.fhfl-label-01 { font-family: Inter, system-ui, sans-serif; font-size: 14px; letter-spacing: -.01em; }
+.fhfl-row-01:hover .fhfl-label-01 { transform: none; color: #fff; }
+.fhfl-row-01:hover .fhfl-label-01::after { display: none; }
+
+/* Hero 3D: the animated canvas must stay inside its own column. Its visual
+ * is scaled/translated, so without clipping it paints its particles over the
+ * headline, buttons and features (the public site shows a static image here). */
+.fh-hero-3d {
+  overflow: hidden;
+  /* Match the online hero image proportions (761x673) so the text column
+   * sits at the same place as on fundedherofutures.com. */
+  aspect-ratio: 761 / 673;
+}
+
+/* Buttons: same breathing room as on the online hero (5vh above/below the
+ * row). Only the spacing around the row is adjusted, the buttons themselves
+ * are untouched. */
+.gb-element-b52718d8 .gb-element-182421b0 {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+/* Social proof: translucent glass band. Raised above the hero (z9) so the
+ * particle canvas paints BEHIND it; the 5 mini cards then frost (blur) the
+ * golden field through them. isolation:auto + transform none so backdrop-filter
+ * on the cells can actually sample the canvas outside this element. */
+.fh-stats {
+  position: relative;
+  z-index: 20;
+  isolation: auto;
+  background: rgba(5, 6, 10, .55) !important;
+}
+.stt-stage { max-width: 1680px; padding: 42px 40px; background: radial-gradient(140% 180% at 50% 120%, rgba(228, 184, 51, .22), rgba(5, 6, 10, .32) 45%, rgba(5, 6, 10, .55)) !important; }
+.stt-bar {
+  gap: 18px;
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  transform: none !important;
+}
+
+.stt-cell {
+  min-height: 132px;
+  padding: 24px 16px;
+  border-radius: 14px;
+  background: rgba(18, 18, 22, .45) !important;
+  border: 1px solid rgba(228, 184, 51, .16);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+
+.stt-cell:last-child { border-right: 1px solid #141414; }
+.stt-num { color: #ffc500; font-size: clamp(25px, 2vw, 34px); }
+.stt-label, .stt-trust-score { color: var(--fh-pro-muted); }
+.fh-stats .stt-cell:hover { transform: translateY(-2px); background: #1a1a1a !important; box-shadow: 0 12px 24px rgba(0, 0, 0, .32); }
+.stt-trust-brand, .stt-trust-stars svg { color: #ffc500 !important; }
+
+/* Stats bar: more compact vertical footprint (cells + stage padding). */
+.fh-stats .stt-stage { padding: 30px 20px; }
+.fh-stats .stt-bar .stt-cell { min-height: 88px; padding: 14px 12px; }
+@media (max-width: 520px) {
+  .fh-stats .stt-stage { padding: 22px 14px; }
+  .fh-stats .stt-bar .stt-cell { min-height: 74px; padding: 12px 8px; }
+}
+
+/* Account selection: reduce chrome, increase scanability and make the selected plan feel intentional. */
+.propfirm-cards-block { max-width: 1240px; }
+.pf-family-tabs { gap: 8px; margin-bottom: 22px; }
+.pf-family-tab {
+  min-width: 0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #111318;
+  border-color: var(--fh-pro-line);
+}
+.pf-family-tab:hover { transform: none; background: #171a20; }
+.pf-family-tab.is-active {
+  background: #ffc500;
+  border-color: #ffc500;
+  color: #171207;
+  box-shadow: none;
+}
+.pf-step-tabs { margin-bottom: 20px; padding: 4px; background: #111318; border-color: var(--fh-pro-line); }
+.pf-step-tab.is-active { background: var(--fh-pro-gold); color: #171207; }
+
+.pf-card {
+  padding: 26px 24px 24px;
+  border-color: rgba(255, 255, 255, .16);
+  border-radius: var(--fh-pro-radius);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .18);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.pf-card:hover { transform: none; border-color: rgba(255, 255, 255, .3); box-shadow: 0 18px 40px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .22); }
+.pf-card.is-popular {
+  background: linear-gradient(145deg, rgba(228, 184, 51, .20), rgba(26, 25, 19, .48)) !important;
+  border: 1px solid rgba(228, 184, 51, .65) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .30), 0 0 26px rgba(228, 184, 51, .22), inset 0 1px 0 rgba(255, 255, 255, .16) !important;
+  animation: none !important;
+}
+.pf-card__badge { background: #242017 !important; border-color: rgba(216, 179, 91, .62) !important; color: var(--fh-pro-gold-light) !important; box-shadow: none !important; }
+.pf-card__badge svg { animation: none !important; filter: none !important; }
+.pf-card__title { font-size: 20px; letter-spacing: -.02em; }
+.pf-card__price-final { color: var(--fh-pro-gold-light); }
+.pf-card__promo { border-color: rgba(216, 179, 91, .42); background: rgba(216, 179, 91, .055); }
+.pf-card__phase-tabs { background: #0c0e12; }
+.pf-card__phase-tab.is-active { background: rgba(216, 179, 91, .15); color: var(--fh-pro-gold-light); }
+.pf-card__row { border-color: rgba(255, 255, 255, .075); }
+.pf-card__row dd { color: var(--fh-pro-text); }
+.pf-card__buy { max-width: none; border-radius: 9px; background: var(--fh-pro-gold); color: #171207; }
+.pf-card__buy:hover { filter: brightness(1.06); box-shadow: none; }
+
+/* A visible, consistent focus state is essential in a decision-heavy flow. */
+body.home :is(a, button, [role="tab"]):focus-visible {
+  outline: 3px solid var(--fh-pro-gold-light) !important;
+  outline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .stt-bar { grid-template-columns: repeat(3, 1fr); }
+  .stt-stage { padding: 32px 20px; }
+}
+
+@media (max-width: 520px) {
+  .stt-bar { grid-template-columns: repeat(2, 1fr); }
+  .stt-stage { padding: 28px 16px; }
+  .stt-bar { gap: 10px; }
+  .stt-cell { min-height: 104px; border: 1px solid #141414; }
+  .stt-cell:last-child { grid-column: 1 / -1; }
+  .pf-family-tab { width: 100%; }
+  .fh-liquid-btn .gradient-btn, .fh-liquid-btn .text-overlay { padding: 13px 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-card, .pf-family-tab, .fh-liquid-btn .text-overlay { transition: none !important; }
+  body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button { transition: none !important; }
+  body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button::after { animation: none !important; opacity: 0.45; }
+}
+
+/* GradientButton (21st.dev / shadcn style) applied to the Get Funded CTAs.
+ * Registered custom properties power the animated radial gradient + gradient border. */
+@property --pos-x { syntax: '<percentage>'; initial-value: 11.14%; inherits: false; }
+@property --pos-y { syntax: '<percentage>'; initial-value: 140%; inherits: false; }
+@property --spread-x { syntax: '<percentage>'; initial-value: 150%; inherits: false; }
+@property --spread-y { syntax: '<percentage>'; initial-value: 180.06%; inherits: false; }
+@property --color-1 { syntax: '<color>'; initial-value: #000; inherits: false; }
+@property --color-2 { syntax: '<color>'; initial-value: #161000; inherits: false; }
+@property --color-3 { syntax: '<color>'; initial-value: #332300; inherits: false; }
+@property --color-4 { syntax: '<color>'; initial-value: #7a4d00; inherits: false; }
+@property --color-5 { syntax: '<color>'; initial-value: #b98200; inherits: false; }
+@property --border-angle { syntax: '<angle>'; initial-value: 20deg; inherits: true; }
+@property --border-color-1 { syntax: '<color>'; initial-value: hsla(46, 100%, 60%, 0.65); inherits: true; }
+@property --border-color-2 { syntax: '<color>'; initial-value: hsla(43, 100%, 45%, 0.4); inherits: true; }
+@property --stop-1 { syntax: '<percentage>'; initial-value: 37.35%; inherits: false; }
+@property --stop-2 { syntax: '<percentage>'; initial-value: 61.36%; inherits: false; }
+@property --stop-3 { syntax: '<percentage>'; initial-value: 78.42%; inherits: false; }
+@property --stop-4 { syntax: '<percentage>'; initial-value: 89.52%; inherits: false; }
+@property --stop-5 { syntax: '<percentage>'; initial-value: 100%; inherits: false; }
+
+body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button {
+  position: relative;
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px !important;
+  width: auto !important;
+  padding: 16px 36px !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700 !important;
+  color: #fff !important;
+  overflow: visible;
+  text-decoration: none;
+  background: radial-gradient(
+    var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
+    var(--color-1) var(--stop-1),
+    var(--color-2) var(--stop-2),
+    var(--color-3) var(--stop-3),
+    var(--color-4) var(--stop-4),
+    var(--color-5) var(--stop-5)
+  ) !important;
+  background-size: 100% 100% !important;
+  background-position: 0 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: --pos-x 0.5s, --pos-y 0.5s, --spread-x 0.5s, --spread-y 0.5s,
+    --color-1 0.5s, --color-2 0.5s, --color-3 0.5s, --color-4 0.5s, --color-5 0.5s,
+    --border-angle 0.5s, --border-color-1 0.5s, --border-color-2 0.5s,
+    --stop-1 0.5s, --stop-2 0.5s, --stop-3 0.5s, --stop-4 0.5s, --stop-5 0.5s !important;
+}
+
+body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(var(--border-angle), var(--border-color-1), var(--border-color-2)) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 1 !important;
+  animation: none !important;
+  pointer-events: none;
+}
+
+body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button:hover::before {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* Halo dorado "respirando" detras del CTA: invita a hacer clic.
+ * Capa propia (::after, z-index:-1) para no competir con los box-shadow
+ * con !important que heredan super-btn / glass-nav. */
+body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: 14px;
+  background: linear-gradient(to bottom, rgba(255, 214, 89, 0.85), rgba(228, 184, 51, 0.45));
+  filter: blur(8px);
+  opacity: 0.5;
+  transform: scale(1);
+  pointer-events: none;
+  animation: fh-glow-breathe 1.4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes fh-glow-breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button:hover {
+  transform: none !important;
+  background-position: 0 0 !important;
+  box-shadow: none !important;
+  --pos-x: 0%;
+  --pos-y: 91.51%;
+  --spread-x: 120.24%;
+  --spread-y: 103.18%;
+  --color-1: #ffd54a;
+  --color-2: #ffb300;
+  --color-3: #c98608;
+  --color-4: #4a2f00;
+  --color-5: #000000;
+  --border-angle: 190deg;
+  --border-color-1: hsla(48, 100%, 78%, 0.95);
+  --border-color-2: hsla(43, 100%, 55%, 0.55);
+  --stop-1: 0%;
+  --stop-2: 8.8%;
+  --stop-3: 21.44%;
+  --stop-4: 71.34%;
+  --stop-5: 85.76%;
+}
+
+body.home a.gb-button.gb-button-8f7a7fff.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  margin: 0;
+  padding: 13px 19px 13px 15px;
+  overflow: hidden;
+  border: 1px solid #353858;
+  border-radius: 10px;
+  background: #171820;
+  box-shadow: inset 3px 0 0 #5865f2;
+  color: #fefefe;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: .01em;
+  line-height: 1;
+  text-decoration: none;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon { display: inline-flex; line-height: 0; color: #8b95ff; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon svg { width: 20px; height: 20px; fill: currentColor; stroke: currentColor; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button::after { content: "↗"; color: #8b95ff; font-size: 16px; line-height: 1; transition: transform .18s ease; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover {
+  transform: translateY(-1px);
+  border-color: #5865f2;
+  background: #1d1f2c;
+  color: #fefefe;
+  box-shadow: inset 3px 0 0 #5865f2, 0 10px 22px rgba(0, 0, 0, .28);
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover::after { transform: translate(2px, -2px); }
+
+@media (max-width: 767px) {
+  body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn { width: auto; }
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button { width: 100%; max-width: 260px; }
+}
+
+/* Discord interaction adapted from the MIT-licensed Uiverse component by MrD4rio.
+ * The original rounded 16px shape is intentionally changed to our 8px CTA radius. */
+body.home a.gb-button.gb-button-8f7a7fff.cta-button {
+  min-width: 154px;
+  padding: 13px 18px;
+  border: 1px solid #5865f2;
+  border-radius: 8px;
+  background: #5865f2;
+  box-shadow: none;
+  transition: background-color .2s ease, transform .2s ease;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button::after { display: none; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-button-text {
+  display: block;
+  margin-left: .25em;
+  transition: transform .3s ease-in-out;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon {
+  display: block;
+  color: #fefefe;
+  transform-origin: center;
+  transition: transform .3s cubic-bezier(.23, 1, .32, 1);
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover {
+  border-color: #4752c4;
+  background: #4752c4;
+  box-shadow: none;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-icon { animation: fh-discord-fly .6s ease-in-out infinite alternate; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-icon svg { transform: translateX(1.35em) rotate(45deg) scale(1.1); }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-button-text { transform: translateX(6em); }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:active { transform: scale(.96); }
+@keyframes fh-discord-fly { from { transform: translateY(.08em); } to { transform: translateY(-.08em); } }
+@media (prefers-reduced-motion: reduce) {
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-button-text,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon { transition: none; }
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-icon { animation: none; }
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-icon svg,
+  body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-button-text { transform: none; }
+}
+
+/* Final Uiverse Discord component: exact structure supplied by the client. */
+body.home a.gb-button.gb-button-8f7a7fff.cta-button {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: .8em 1.2em !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(to bottom, #4f4dd9 0%, #2b60aa 100%) !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2) !important;
+  color: #fff !important;
+  font-family: inherit !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  transition: transform .3s ease, box-shadow .3s ease !important;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button::after { display: none !important; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .svg-wrapper-1 { display: block; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .svg-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 .5em 0 0 !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, .2) !important;
+  color: #fff !important;
+  transition: background-color .3s ease !important;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .svg-wrapper svg {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  fill: #fff !important;
+  stroke: none !important;
+  transform: none !important;
+  transition: transform .3s ease !important;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-button-text {
+  display: block !important;
+  margin: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover {
+  transform: translateY(-3px) !important;
+  background: linear-gradient(to bottom, #4f4dd9 0%, #2b60aa 100%) !important;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, .3) !important;
+}
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .svg-wrapper { background-color: rgba(255, 255, 255, .5) !important; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .gb-icon { animation: none !important; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:hover .svg-wrapper svg { transform: rotate(360deg) !important; }
+body.home a.gb-button.gb-button-8f7a7fff.cta-button:active { transform: scale(.95) !important; box-shadow: 0 2px 5px rgba(0, 0, 0, .2) !important; }
+
+/* Match the supplied Uiverse Discord pill while using the existing GenerateBlocks markup. */
+body.home a.gb-button.gb-button-8f7a7fff.cta-button {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  flex-direction: row-reverse !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  width: auto !important;
+  min-width: 175px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  padding: 0 28px !important;
+  border-radius: 29px !important;
+  background: linear-gradient(to bottom, #4f4dd9 0%, #2b60aa 100%) !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2) !important;
+  color: #fff !important;
+  line-height: 1 !important;
+}
+
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, .22) !important;
+}
+
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: #fff !important;
+  stroke: none !important;
+}
+
+body.home a.gb-button.gb-button-8f7a7fff.cta-button .gb-button-text {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+/* Uiverse Discord button by MrD4rio: stupid-cougar-63. */
+body.home .uiverse-discord-btn {
+  font-family: inherit;
+  font-size: 18px;
+  position: relative;
+  background: linear-gradient(to bottom, #0b0b0d 0%, #13100a 70%, #241d0c 100%);
+  color: white;
+  padding: 0.8em 1.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 11px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+body.home .uiverse-discord-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(228, 184, 51, .18);
+  color: white;
+  text-decoration: none;
+}
+
+body.home .uiverse-discord-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.home .uiverse-discord-btn span {
+  display: block;
+  margin-left: 0.4em;
+  transition: all 0.3s;
+}
+
+body.home .uiverse-discord-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  transition: all 0.3s;
+}
+
+body.home .uiverse-discord-btn .svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(228, 184, 51, 0.1);
+  margin-right: 0.5em;
+  transition: all 0.3s;
+}
+
+body.home .uiverse-discord-btn:hover .svg-wrapper {
+  background-color: rgba(228, 184, 51, 0.2);
+}
+
+body.home .uiverse-discord-btn:hover svg {
+  transform: rotate(360deg);
+}
+
+/* ---- Adaptacion movil: fila de CTAs del hero ---- */
+@media (max-width: 640px) {
+  body.home .gb-element-182421b0 {
+    max-width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  body.home .gb-element-182421b0 > a {
+    flex: 0 1 auto;
+  }
+  body.home .gb-button.gb-button-cc6c80ce.cta-button.super-btn.gradient-button {
+    min-width: 0 !important;
+    padding: 14px 22px !important;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  body.home .uiverse-discord-btn {
+    font-size: 15px;
+    padding: 0.75em 1em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  body.home .gb-element-182421b0 {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  body.home .gb-element-182421b0 > a {
+    box-sizing: border-box;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}

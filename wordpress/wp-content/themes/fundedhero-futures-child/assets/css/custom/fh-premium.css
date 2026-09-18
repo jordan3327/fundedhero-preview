@@ -1,0 +1,295 @@
+/* =============================================================
+   FundedHero Futures — Premium layer
+   Additive styles: preloader, grain, glass, shine, testimoniales,
+   FAQ, garantía, micro-interacciones, cursor, proof/ticker.
+   ============================================================= */
+
+:root{
+  --fh-gold:#e4b833;
+  --fh-gold-2:#ffd75e;
+  --fh-gold-dim:rgba(228,184,51,.14);
+  --fh-ink:#f4f6f4;
+  --fh-dim:#9a9f9c;
+}
+
+/* ---------- 1. Smooth scroll base (sin conflicto con smooth-scroll.min.js) ---------- */
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+}
+
+/* ---------- 2. Preloader cinematográfico ---------- */
+#fh-preloader{
+  position:fixed; inset:0; z-index:2147483000;
+  background:#050505;
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .55s ease, visibility .55s ease;
+}
+#fh-preloader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
+.fh-preloader__inner{
+  width:min(340px, 72vw); text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:18px;
+}
+.fh-preloader__video{
+  width:100%; max-width:280px; aspect-ratio:1/1;
+  object-fit:contain; border-radius:18px;
+  filter:drop-shadow(0 0 38px rgba(228,184,51,.28));
+}
+.fh-preloader__brand{
+  font-family:'Manrope', system-ui, sans-serif; font-weight:800;
+  letter-spacing:.06em; color:var(--fh-ink); font-size:15px;
+}
+.fh-preloader__brand span{ color:var(--fh-gold); }
+.fh-preloader__bar{
+  width:180px; height:2px; border-radius:2px; overflow:hidden;
+  background:rgba(228,184,51,.15);
+}
+.fh-preloader__bar::after{
+  content:""; display:block; width:40%; height:100%;
+  background:linear-gradient(90deg, transparent, var(--fh-gold), transparent);
+  animation:fh-loadbar 1.15s ease-in-out infinite;
+}
+@keyframes fh-loadbar{ 0%{transform:translateX(-120%);} 100%{transform:translateX(460%);} }
+@media (prefers-reduced-motion: reduce){
+  #fh-preloader{ display:none; }
+}
+
+/* ---------- 3. Grain / noise overlay ---------- */
+@keyframes fh-grain-shift{
+  0%,100%{ transform:translate(0,0); }
+  20%{ transform:translate(-4%,3%); }
+  40%{ transform:translate(3%,-4%); }
+  60%{ transform:translate(-3%,-2%); }
+  80%{ transform:translate(4%,4%); }
+}
+body::after{
+  content:""; position:fixed; inset:-10%;
+  z-index:2147483001; pointer-events:none;
+  opacity:.045; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:fh-grain-shift 1.4s steps(4) infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  body::after{ display:none; }
+}
+
+/* ---------- 4. Shine dorado en títulos ---------- */
+.fh-shine{
+  position:relative;
+  background:linear-gradient(110deg, #f4f6f4 30%, var(--fh-gold) 48%, var(--fh-gold-2) 52%, #f4f6f4 70%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:fh-shine 6s linear infinite;
+}
+@keyframes fh-shine{ 0%{background-position:0% 0;} 100%{background-position:220% 0;} }
+@media (prefers-reduced-motion: reduce){
+  .fh-shine{ animation:none; background:none; color:var(--fh-ink); }
+}
+
+/* ---------- 5. Botones magnéticos (estado base) ---------- */
+.fh-magnetic{
+  will-change:transform;
+  transition:transform .16s ease-out, box-shadow .3s ease;
+}
+.fh-magnetic:hover{
+  box-shadow:0 0 0 1px rgba(228,184,51,.55), 0 0 30px rgba(228,184,51,.22), 0 10px 30px rgba(0,0,0,.45);
+}
+
+/* ---------- 6. Tilt 3D en cards ---------- */
+.fh-tilt{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .32s ease-out, box-shadow .35s ease;
+}
+.fh-tilt-inner{ transform:translateZ(22px); }
+.fh-tilt:hover{
+  box-shadow:0 24px 60px -22px rgba(228,184,51,.34), 0 18px 44px rgba(0,0,0,.55);
+}
+@media (prefers-reduced-motion: reduce){
+  .fh-tilt{ transition:none; }
+}
+
+/* ---------- 7. Cursor personalizado (solo escritorio) ---------- */
+.fh-cursor-dot,
+.fh-cursor-ring{
+  position:fixed; top:0; left:0; z-index:2147483999;
+  pointer-events:none; border-radius:50%; display:none;
+}
+.fh-cursor-dot{
+  width:7px; height:7px; background:var(--fh-gold);
+  box-shadow:0 0 10px rgba(228,184,51,.9);
+}
+.fh-cursor-ring{
+  width:34px; height:34px; border:1px solid rgba(228,184,51,.55);
+  transition:transform .18s ease, width .18s ease, height .18s ease, border-color .18s ease;
+}
+html.fh-cursor-on .fh-cursor-dot,
+html.fh-cursor-on .fh-cursor-ring{ display:block; }
+html.fh-cursor-on,
+html.fh-cursor-on *{ cursor:none !important; }
+html.fh-cursor-grow .fh-cursor-ring{
+  width:52px; height:52px; border-color:rgba(228,184,51,.9);
+}
+@media (hover:none), (prefers-reduced-motion: reduce){
+  html.fh-cursor-on, html.fh-cursor-on *{ cursor:auto !important; }
+  .fh-cursor-dot, .fh-cursor-ring{ display:none !important; }
+}
+
+/* ---------- 8. Trustpilot clicable ---------- */
+.stt-trust-link{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; color:var(--fh-dim); text-decoration:none;
+  transition:color .25s ease;
+}
+.stt-trust-link:hover{ color:var(--fh-gold); }
+.stt-trust-link b{ color:var(--fh-ink); }
+.stt-trust-link svg{ width:12px; height:12px; opacity:.85; }
+
+/* ---------- 9. Chip de payout en vivo ---------- */
+.fh-live-payout{
+  display:inline-flex; align-items:center; gap:10px;
+  margin:26px auto 0; padding:10px 16px;
+  border:1px solid rgba(228,184,51,.35); border-radius:999px;
+  background:rgba(228,184,51,.08);
+  font-family:'Inter', system-ui, sans-serif; font-size:13px; color:var(--fh-dim);
+  box-shadow:0 0 24px rgba(228,184,51,.08);
+}
+.fh-live-payout .fh-live-dot{
+  width:8px; height:8px; border-radius:50%; background:#2be873;
+  box-shadow:0 0 0 0 rgba(43,232,115,.6); animation:fh-pulse 1.8s infinite;
+}
+@keyframes fh-pulse{
+  0%{ box-shadow:0 0 0 0 rgba(43,232,115,.55); }
+  70%{ box-shadow:0 0 0 9px rgba(43,232,115,0); }
+  100%{ box-shadow:0 0 0 0 rgba(43,232,115,0); }
+}
+.fh-live-payout strong{ color:var(--fh-gold); font-weight:700; }
+
+/* ---------- 10. Countdown en marquee ---------- */
+.fh-countdown{
+  color:var(--fh-gold); font-weight:700; font-variant-numeric:tabular-nums;
+}
+
+/* ---------- 11. Sección testimoniales ---------- */
+.fh-testimonials{
+  max-width:1240px; margin:0 auto; padding:70px 20px 10px;
+}
+.fh-testimonials__head{ text-align:center; margin-bottom:44px; }
+.fh-testimonials__grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+}
+.fh-testimonial-card{
+  background:linear-gradient(160deg, rgba(20,20,20,.9), rgba(8,8,8,.9));
+  border:1px solid rgba(228,184,51,.16);
+  border-radius:18px; padding:26px 24px;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.fh-testimonial-card__stars{ display:flex; gap:3px; margin-bottom:12px; }
+.fh-testimonial-card__stars svg{ width:15px; height:15px; color:var(--fh-gold); }
+.fh-testimonial-card__text{
+  font-family:'Inter', system-ui, sans-serif; font-size:14.5px; line-height:1.65;
+  color:var(--fh-ink); font-style:italic; min-height:110px;
+}
+.fh-testimonial-card__foot{
+  display:flex; align-items:center; gap:12px; margin-top:16px;
+  border-top:1px solid rgba(255,255,255,.07); padding-top:14px;
+}
+.fh-testimonial-card__avatar{
+  width:40px; height:40px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg, var(--fh-gold), #8a6d1a);
+  color:#0b0b0b; font-weight:800; font-size:15px;
+}
+.fh-testimonial-card__who b{ display:block; font-family:'Manrope',sans-serif; color:var(--fh-ink); font-size:13.5px; }
+.fh-testimonial-card__who span{ display:block; font-size:12px; color:var(--fh-dim); }
+.fh-testimonial-card__verified{ margin-left:auto; font-size:11px; color:#2be873; font-weight:700; }
+@media (max-width:900px){
+  .fh-testimonials__grid{ grid-template-columns:1fr; }
+  .fh-testimonial-card__text{ min-height:0; }
+}
+
+/* ---------- 12. Proof strip (contadores) ---------- */
+.fh-proof{
+  max-width:1240px; margin:0 auto; padding:54px 20px 10px; text-align:center;
+}
+.fh-proof__row{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:30px 60px;
+  padding:26px; border-radius:18px;
+  background:linear-gradient(160deg, rgba(20,20,20,.85), rgba(8,8,8,.85));
+  border:1px solid rgba(228,184,51,.18);
+}
+.fh-proof__item{ text-align:center; }
+.fh-proof__num{
+  font-family:'Manrope',sans-serif; font-weight:800; font-size:34px; line-height:1;
+  color:var(--fh-ink); font-variant-numeric:tabular-nums;
+}
+.fh-proof__num b{ color:var(--fh-gold); }
+.fh-proof__label{ font-size:12.5px; color:var(--fh-dim); margin-top:8px; }
+
+/* ---------- 13. FAQ acordeón ---------- */
+.fh-faq{ max-width:860px; margin:0 auto; padding:60px 20px 10px; }
+.fh-faq__item{
+  border:1px solid rgba(228,184,51,.15);
+  border-radius:14px; margin-bottom:12px; overflow:hidden;
+  background:linear-gradient(160deg, rgba(18,18,18,.92), rgba(8,8,8,.92));
+}
+.fh-faq__q{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:18px 20px; background:none; border:0; text-align:left;
+  font-family:'Manrope',system-ui,sans-serif; font-weight:700; font-size:15px;
+  color:var(--fh-ink); cursor:pointer;
+}
+.fh-faq__q:hover{ color:var(--fh-gold); }
+.fh-faq__icon{
+  flex:none; width:24px; height:24px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--fh-gold-dim); color:var(--fh-gold);
+  font-size:16px; line-height:1; transition:transform .3s ease;
+}
+.fh-faq__item.is-open .fh-faq__icon{ transform:rotate(45deg); }
+.fh-faq__a{
+  max-height:0; overflow:hidden; transition:max-height .4s ease;
+  font-size:13.5px; line-height:1.7; color:var(--fh-dim);
+}
+.fh-faq__item.is-open .fh-faq__a{ max-height:320px; }
+.fh-faq__a-inner{ padding:0 20px 18px; }
+
+/* ---------- 14. Garantía / reembolso ---------- */
+.fh-guarantee{
+  max-width:1240px; margin:0 auto; padding:46px 20px 20px;
+}
+.fh-guarantee__card{
+  display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  padding:26px 28px; border-radius:18px;
+  background:linear-gradient(150deg, rgba(228,184,51,.1), rgba(20,20,20,.9) 55%);
+  border:1px solid rgba(228,184,51,.3);
+}
+.fh-guarantee__icon{
+  flex:none; width:56px; height:56px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--fh-gold); color:#0b0b0b; font-size:26px;
+  box-shadow:0 0 26px rgba(228,184,51,.35);
+}
+.fh-guarantee__body{ flex:1 1 320px; }
+.fh-guarantee__body h3{
+  font-family:'Manrope',sans-serif; color:var(--fh-ink); font-size:17px; margin:0 0 6px;
+}
+.fh-guarantee__body p{ margin:0; font-size:13.5px; line-height:1.65; color:var(--fh-dim); }
+.fh-guarantee__badge{
+  flex:none; text-align:center; padding:10px 16px; border-radius:12px;
+  border:1px dashed rgba(228,184,51,.5); color:var(--fh-gold); font-weight:700; font-size:13px;
+}
+
+/* ---------- 15. Títulos de sección premium ---------- */
+.fh-section-title{
+  font-family:'Manrope',system-ui,sans-serif; font-weight:800;
+  font-size:clamp(26px, 4vw, 40px); line-height:1.15; color:var(--fh-ink);
+}
+.fh-kicker{
+  display:inline-block; font-family:'Inter',sans-serif; font-size:12px;
+  letter-spacing:.22em; text-transform:uppercase; font-weight:700;
+  color:var(--fh-gold); margin-bottom:12px;
+}
+
+/* ---------- 16. Glass / borde dorado en tarjetas ya existentes ---------- */
+.glass-chic{ border:1px solid rgba(228,184,51,.18) !important; }

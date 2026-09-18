@@ -1,0 +1,972 @@
+<!DOCTYPE html><html lang="en"><head><style type="text/css">:root{--toastify-color-light: #fff;--toastify-color-dark: #121212;--toastify-color-info: #3498db;--toastify-color-success: #07bc0c;--toastify-color-warning: #f1c40f;--toastify-color-error: hsl(6, 78%, 57%);--toastify-color-transparent: rgba(255, 255, 255, .7);--toastify-icon-color-info: var(--toastify-color-info);--toastify-icon-color-success: var(--toastify-color-success);--toastify-icon-color-warning: var(--toastify-color-warning);--toastify-icon-color-error: var(--toastify-color-error);--toastify-container-width: fit-content;--toastify-toast-width: 320px;--toastify-toast-offset: 16px;--toastify-toast-top: max(var(--toastify-toast-offset), env(safe-area-inset-top));--toastify-toast-right: max(var(--toastify-toast-offset), env(safe-area-inset-right));--toastify-toast-left: max(var(--toastify-toast-offset), env(safe-area-inset-left));--toastify-toast-bottom: max(var(--toastify-toast-offset), env(safe-area-inset-bottom));--toastify-toast-background: #fff;--toastify-toast-padding: 14px;--toastify-toast-min-height: 64px;--toastify-toast-max-height: 800px;--toastify-toast-bd-radius: 6px;--toastify-toast-shadow: 0px 4px 12px rgba(0, 0, 0, .1);--toastify-font-family: sans-serif;--toastify-z-index: 9999;--toastify-text-color-light: #757575;--toastify-text-color-dark: #fff;--toastify-text-color-info: #fff;--toastify-text-color-success: #fff;--toastify-text-color-warning: #fff;--toastify-text-color-error: #fff;--toastify-spinner-color: #616161;--toastify-spinner-color-empty-area: #e0e0e0;--toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);--toastify-color-progress-dark: #bb86fc;--toastify-color-progress-info: var(--toastify-color-info);--toastify-color-progress-success: var(--toastify-color-success);--toastify-color-progress-warning: var(--toastify-color-warning);--toastify-color-progress-error: var(--toastify-color-error);--toastify-color-progress-bgo: .2}.Toastify__toast-container{z-index:var(--toastify-z-index);-webkit-transform:translate3d(0,0,var(--toastify-z-index));position:fixed;width:var(--toastify-container-width);box-sizing:border-box;color:#fff;display:flex;flex-direction:column}.Toastify__toast-container--top-left{top:var(--toastify-toast-top);left:var(--toastify-toast-left)}.Toastify__toast-container--top-center{top:var(--toastify-toast-top);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--top-right{top:var(--toastify-toast-top);right:var(--toastify-toast-right);align-items:end}.Toastify__toast-container--bottom-left{bottom:var(--toastify-toast-bottom);left:var(--toastify-toast-left)}.Toastify__toast-container--bottom-center{bottom:var(--toastify-toast-bottom);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--bottom-right{bottom:var(--toastify-toast-bottom);right:var(--toastify-toast-right);align-items:end}.Toastify__toast{--y: 0;position:relative;touch-action:none;width:var(--toastify-toast-width);min-height:var(--toastify-toast-min-height);box-sizing:border-box;margin-bottom:1rem;padding:var(--toastify-toast-padding);border-radius:var(--toastify-toast-bd-radius);box-shadow:var(--toastify-toast-shadow);max-height:var(--toastify-toast-max-height);font-family:var(--toastify-font-family);z-index:0;display:flex;flex:1 auto;align-items:center;word-break:break-word}@media only screen and (max-width: 480px){.Toastify__toast-container{width:100vw;left:env(safe-area-inset-left);margin:0}.Toastify__toast-container--top-left,.Toastify__toast-container--top-center,.Toastify__toast-container--top-right{top:env(safe-area-inset-top);transform:translate(0)}.Toastify__toast-container--bottom-left,.Toastify__toast-container--bottom-center,.Toastify__toast-container--bottom-right{bottom:env(safe-area-inset-bottom);transform:translate(0)}.Toastify__toast-container--rtl{right:env(safe-area-inset-right);left:initial}.Toastify__toast{--toastify-toast-width: 100%;margin-bottom:0;border-radius:0}}.Toastify__toast-container[data-stacked=true]{width:var(--toastify-toast-width)}.Toastify__toast--stacked{position:absolute;width:100%;transform:translate3d(0,var(--y),0) scale(var(--s));transition:transform .3s}.Toastify__toast--stacked[data-collapsed] .Toastify__toast-body,.Toastify__toast--stacked[data-collapsed] .Toastify__close-button{transition:opacity .1s}.Toastify__toast--stacked[data-collapsed=false]{overflow:visible}.Toastify__toast--stacked[data-collapsed=true]:not(:last-child)>*{opacity:0}.Toastify__toast--stacked:after{content:"";position:absolute;left:0;right:0;height:calc(var(--g) * 1px);bottom:100%}.Toastify__toast--stacked[data-pos=top]{top:0}.Toastify__toast--stacked[data-pos=bot]{bottom:0}.Toastify__toast--stacked[data-pos=bot].Toastify__toast--stacked:before{transform-origin:top}.Toastify__toast--stacked[data-pos=top].Toastify__toast--stacked:before{transform-origin:bottom}.Toastify__toast--stacked:before{content:"";position:absolute;left:0;right:0;bottom:0;height:100%;transform:scaleY(3);z-index:-1}.Toastify__toast--rtl{direction:rtl}.Toastify__toast--close-on-click{cursor:pointer}.Toastify__toast-icon{margin-inline-end:10px;width:22px;flex-shrink:0;display:flex}.Toastify--animate{animation-fill-mode:both;animation-duration:.5s}.Toastify--animate-icon{animation-fill-mode:both;animation-duration:.3s}.Toastify__toast-theme--dark{background:var(--toastify-color-dark);color:var(--toastify-text-color-dark)}.Toastify__toast-theme--light,.Toastify__toast-theme--colored.Toastify__toast--default{background:var(--toastify-color-light);color:var(--toastify-text-color-light)}.Toastify__toast-theme--colored.Toastify__toast--info{color:var(--toastify-text-color-info);background:var(--toastify-color-info)}.Toastify__toast-theme--colored.Toastify__toast--success{color:var(--toastify-text-color-success);background:var(--toastify-color-success)}.Toastify__toast-theme--colored.Toastify__toast--warning{color:var(--toastify-text-color-warning);background:var(--toastify-color-warning)}.Toastify__toast-theme--colored.Toastify__toast--error{color:var(--toastify-text-color-error);background:var(--toastify-color-error)}.Toastify__progress-bar-theme--light{background:var(--toastify-color-progress-light)}.Toastify__progress-bar-theme--dark{background:var(--toastify-color-progress-dark)}.Toastify__progress-bar--info{background:var(--toastify-color-progress-info)}.Toastify__progress-bar--success{background:var(--toastify-color-progress-success)}.Toastify__progress-bar--warning{background:var(--toastify-color-progress-warning)}.Toastify__progress-bar--error{background:var(--toastify-color-progress-error)}.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error{background:var(--toastify-color-transparent)}.Toastify__close-button{color:#fff;position:absolute;top:6px;right:6px;background:transparent;outline:none;border:none;padding:0;cursor:pointer;opacity:.7;transition:.3s ease;z-index:1}.Toastify__toast--rtl .Toastify__close-button{left:6px;right:unset}.Toastify__close-button--light{color:#000;opacity:.3}.Toastify__close-button>svg{fill:currentColor;height:16px;width:14px}.Toastify__close-button:hover,.Toastify__close-button:focus{opacity:1}@keyframes Toastify__trackProgress{0%{transform:scaleX(1)}to{transform:scaleX(0)}}.Toastify__progress-bar{position:absolute;bottom:0;left:0;width:100%;height:100%;z-index:1;opacity:.7;transform-origin:left}.Toastify__progress-bar--animated{animation:Toastify__trackProgress linear 1 forwards}.Toastify__progress-bar--controlled{transition:transform .2s}.Toastify__progress-bar--rtl{right:0;left:initial;transform-origin:right;border-bottom-left-radius:initial}.Toastify__progress-bar--wrp{position:absolute;overflow:hidden;bottom:0;left:0;width:100%;height:5px;border-bottom-left-radius:var(--toastify-toast-bd-radius);border-bottom-right-radius:var(--toastify-toast-bd-radius)}.Toastify__progress-bar--wrp[data-hidden=true]{opacity:0}.Toastify__progress-bar--bg{opacity:var(--toastify-color-progress-bgo);width:100%;height:100%}.Toastify__spinner{width:20px;height:20px;box-sizing:border-box;border:2px solid;border-radius:100%;border-color:var(--toastify-spinner-color-empty-area);border-right-color:var(--toastify-spinner-color);animation:Toastify__spin .65s linear infinite}@keyframes Toastify__bounceInRight{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(3000px,0,0)}60%{opacity:1;transform:translate3d(-25px,0,0)}75%{transform:translate3d(10px,0,0)}90%{transform:translate3d(-5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutRight{20%{opacity:1;transform:translate3d(-20px,var(--y),0)}to{opacity:0;transform:translate3d(2000px,var(--y),0)}}@keyframes Toastify__bounceInLeft{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(-3000px,0,0)}60%{opacity:1;transform:translate3d(25px,0,0)}75%{transform:translate3d(-10px,0,0)}90%{transform:translate3d(5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutLeft{20%{opacity:1;transform:translate3d(20px,var(--y),0)}to{opacity:0;transform:translate3d(-2000px,var(--y),0)}}@keyframes Toastify__bounceInUp{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,3000px,0)}60%{opacity:1;transform:translate3d(0,-20px,0)}75%{transform:translate3d(0,10px,0)}90%{transform:translate3d(0,-5px,0)}to{transform:translateZ(0)}}@keyframes Toastify__bounceOutUp{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,-2000px,0)}}@keyframes Toastify__bounceInDown{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,-3000px,0)}60%{opacity:1;transform:translate3d(0,25px,0)}75%{transform:translate3d(0,-10px,0)}90%{transform:translate3d(0,5px,0)}to{transform:none}}@keyframes Toastify__bounceOutDown{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,2000px,0)}}.Toastify__bounce-enter--top-left,.Toastify__bounce-enter--bottom-left{animation-name:Toastify__bounceInLeft}.Toastify__bounce-enter--top-right,.Toastify__bounce-enter--bottom-right{animation-name:Toastify__bounceInRight}.Toastify__bounce-enter--top-center{animation-name:Toastify__bounceInDown}.Toastify__bounce-enter--bottom-center{animation-name:Toastify__bounceInUp}.Toastify__bounce-exit--top-left,.Toastify__bounce-exit--bottom-left{animation-name:Toastify__bounceOutLeft}.Toastify__bounce-exit--top-right,.Toastify__bounce-exit--bottom-right{animation-name:Toastify__bounceOutRight}.Toastify__bounce-exit--top-center{animation-name:Toastify__bounceOutUp}.Toastify__bounce-exit--bottom-center{animation-name:Toastify__bounceOutDown}@keyframes Toastify__zoomIn{0%{opacity:0;transform:scale3d(.3,.3,.3)}50%{opacity:1}}@keyframes Toastify__zoomOut{0%{opacity:1}50%{opacity:0;transform:translate3d(0,var(--y),0) scale3d(.3,.3,.3)}to{opacity:0}}.Toastify__zoom-enter{animation-name:Toastify__zoomIn}.Toastify__zoom-exit{animation-name:Toastify__zoomOut}@keyframes Toastify__flipIn{0%{transform:perspective(400px) rotateX(90deg);animation-timing-function:ease-in;opacity:0}40%{transform:perspective(400px) rotateX(-20deg);animation-timing-function:ease-in}60%{transform:perspective(400px) rotateX(10deg);opacity:1}80%{transform:perspective(400px) rotateX(-5deg)}to{transform:perspective(400px)}}@keyframes Toastify__flipOut{0%{transform:translate3d(0,var(--y),0) perspective(400px)}30%{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(-20deg);opacity:1}to{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(90deg);opacity:0}}.Toastify__flip-enter{animation-name:Toastify__flipIn}.Toastify__flip-exit{animation-name:Toastify__flipOut}@keyframes Toastify__slideInRight{0%{transform:translate3d(110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInLeft{0%{transform:translate3d(-110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInUp{0%{transform:translate3d(0,110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInDown{0%{transform:translate3d(0,-110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideOutRight{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(110%,var(--y),0)}}@keyframes Toastify__slideOutLeft{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(-110%,var(--y),0)}}@keyframes Toastify__slideOutDown{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,500px,0)}}@keyframes Toastify__slideOutUp{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,-500px,0)}}.Toastify__slide-enter--top-left,.Toastify__slide-enter--bottom-left{animation-name:Toastify__slideInLeft}.Toastify__slide-enter--top-right,.Toastify__slide-enter--bottom-right{animation-name:Toastify__slideInRight}.Toastify__slide-enter--top-center{animation-name:Toastify__slideInDown}.Toastify__slide-enter--bottom-center{animation-name:Toastify__slideInUp}.Toastify__slide-exit--top-left,.Toastify__slide-exit--bottom-left{animation-name:Toastify__slideOutLeft;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-right,.Toastify__slide-exit--bottom-right{animation-name:Toastify__slideOutRight;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-center{animation-name:Toastify__slideOutUp;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--bottom-center{animation-name:Toastify__slideOutDown;animation-timing-function:ease-in;animation-duration:.3s}@keyframes Toastify__spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
+</style><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">                        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" as="style"><meta name="next-size-adjust" content=""><link rel="icon" href="assets/images/favicon.png" /><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"> <style id="_goober"> @keyframes go2264125279{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go3020080000{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}@keyframes go463499852{from{transform:scale(0) rotate(90deg);opacity:0;}to{transform:scale(1) rotate(90deg);opacity:1;}}@keyframes go1268368563{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}@keyframes go1310225428{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go651618207{0%{height:0;width:0;opacity:0;}40%{height:0;width:6px;opacity:1;}100%{opacity:1;height:10px;}}@keyframes go901347462{from{transform:scale(0.6);opacity:0.4;}to{transform:scale(1);opacity:1;}}.go4109123758{z-index:9999;}.go4109123758 > *{pointer-events:auto;}</style>   <meta name="description" content="My Stats">         <style id="apexcharts-css">@keyframes opaque {
+  0% {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes resizeanim {
+
+  0%,
+  to {
+    opacity: 0
+  }
+}
+
+.apexcharts-canvas {
+  position: relative;
+  direction: ltr !important;
+  user-select: none
+}
+
+.apexcharts-canvas ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px
+}
+
+.apexcharts-canvas ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5)
+}
+
+.apexcharts-inner {
+  position: relative
+}
+
+.apexcharts-text tspan {
+  font-family: inherit
+}
+
+rect.legend-mouseover-inactive,
+.legend-mouseover-inactive rect,
+.legend-mouseover-inactive path,
+.legend-mouseover-inactive circle,
+.legend-mouseover-inactive line,
+.legend-mouseover-inactive text.apexcharts-yaxis-title-text,
+.legend-mouseover-inactive text.apexcharts-yaxis-label {
+  transition: .15s ease all;
+  opacity: .2
+}
+
+.apexcharts-legend-text {
+  padding-left: 15px;
+  margin-left: -15px;
+}
+
+.apexcharts-legend-series[role="button"]:focus {
+  outline: 2px solid #008FFB;
+  outline-offset: 2px;
+}
+
+.apexcharts-legend-series[role="button"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.apexcharts-legend-series[role="button"]:focus-visible {
+  outline: 2px solid #008FFB;
+  outline-offset: 2px;
+}
+
+.apexcharts-series-collapsed {
+  opacity: 0
+}
+
+.apexcharts-canvas svg:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Keyboard navigation focus indicator on SVG data elements.
+   SVG elements don't support CSS outline, so we use stroke. */
+.apexcharts-bar-area.apexcharts-keyboard-focused,
+.apexcharts-candlestick-area.apexcharts-keyboard-focused,
+.apexcharts-boxPlot-area.apexcharts-keyboard-focused,
+.apexcharts-rangebar-area.apexcharts-keyboard-focused,
+.apexcharts-pie-area.apexcharts-keyboard-focused,
+.apexcharts-heatmap-rect.apexcharts-keyboard-focused,
+.apexcharts-treemap-rect.apexcharts-keyboard-focused {
+  stroke: #008FFB;
+  stroke-width: 2;
+  stroke-opacity: 1;
+}
+
+.apexcharts-tooltip {
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px -4px #999;
+  cursor: default;
+  font-size: 14px;
+  left: 62px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 12;
+  transition: .15s ease all
+}
+
+.apexcharts-tooltip.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+  border: 1px solid #e3e3e3;
+  background: rgba(255, 255, 255, .96)
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark {
+  color: #fff;
+  background: rgba(30, 30, 30, .8)
+}
+
+.apexcharts-tooltip * {
+  font-family: inherit
+}
+
+.apexcharts-tooltip-title {
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 4px
+}
+
+.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+  background: #eceff1;
+  border-bottom: 1px solid #ddd
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+  background: rgba(0, 0, 0, .7);
+  border-bottom: 1px solid #333
+}
+
+.apexcharts-tooltip-text-goals-value,
+.apexcharts-tooltip-text-y-value,
+.apexcharts-tooltip-text-z-value {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: 600
+}
+
+.apexcharts-tooltip-text-goals-label:empty,
+.apexcharts-tooltip-text-goals-value:empty,
+.apexcharts-tooltip-text-y-label:empty,
+.apexcharts-tooltip-text-y-value:empty,
+.apexcharts-tooltip-text-z-value:empty,
+.apexcharts-tooltip-title:empty {
+  display: none
+}
+
+.apexcharts-tooltip-text-goals-label,
+.apexcharts-tooltip-text-goals-value {
+  padding: 6px 0 5px
+}
+
+.apexcharts-tooltip-goals-group,
+.apexcharts-tooltip-text-goals-label,
+.apexcharts-tooltip-text-goals-value {
+  display: flex
+}
+
+.apexcharts-tooltip-text-goals-label:not(:empty),
+.apexcharts-tooltip-text-goals-value:not(:empty) {
+  margin-top: -6px
+}
+
+.apexcharts-tooltip-marker {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  margin-right: 4px;
+  text-align: center;
+  vertical-align: middle;
+  color: inherit;
+}
+
+.apexcharts-tooltip-marker::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: currentcolor;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 14px;
+  font-weight: 900;
+}
+
+.apexcharts-tooltip-marker[shape="circle"]::before {
+  content: "\25CF";
+}
+
+.apexcharts-tooltip-marker[shape="square"]::before,
+.apexcharts-tooltip-marker[shape="rect"]::before {
+  content: "\25A0";
+  transform: translate(-1px, -2px);
+}
+
+.apexcharts-tooltip-marker[shape="line"]::before {
+  content: "\2500";
+}
+
+.apexcharts-tooltip-marker[shape="diamond"]::before {
+  content: "\25C6";
+  font-size: 28px;
+}
+
+.apexcharts-tooltip-marker[shape="triangle"]::before {
+  content: "\25B2";
+  font-size: 22px;
+}
+
+.apexcharts-tooltip-marker[shape="cross"]::before {
+  content: "\2715";
+  font-size: 18px;
+}
+
+.apexcharts-tooltip-marker[shape="plus"]::before {
+  content: "\2715";
+  transform: rotate(45deg) translate(-1px, -1px);
+  font-size: 18px;
+}
+
+.apexcharts-tooltip-marker[shape="star"]::before {
+  content: "\2605";
+  font-size: 18px;
+}
+
+.apexcharts-tooltip-marker[shape="sparkle"]::before {
+  content: "\2726";
+  font-size: 20px;
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 0 10px;
+  display: none;
+  text-align: left;
+  justify-content: left;
+  align-items: center
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+  opacity: 1
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active,
+.apexcharts-tooltip-series-group:last-child {
+  padding-bottom: 4px
+}
+
+.apexcharts-tooltip-y-group {
+  padding: 6px 0 5px
+}
+
+.apexcharts-custom-tooltip,
+.apexcharts-tooltip-box {
+  padding: 4px 8px
+}
+
+.apexcharts-tooltip-boxPlot {
+  display: flex;
+  flex-direction: column-reverse
+}
+
+.apexcharts-tooltip-box>div {
+  margin: 4px 0
+}
+
+.apexcharts-tooltip-box span.value {
+  font-weight: 700
+}
+
+.apexcharts-tooltip-rangebar {
+  padding: 5px 8px
+}
+
+.apexcharts-tooltip-rangebar .category {
+  font-weight: 600;
+  color: #777
+}
+
+.apexcharts-tooltip-rangebar .series-name {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px
+}
+
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+  opacity: 0;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #eceff1;
+  border: 1px solid #90a4ae
+}
+
+.apexcharts-xaxistooltip {
+  padding: 9px 10px;
+  transition: .15s ease all
+}
+
+.apexcharts-xaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, .7);
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: #fff
+}
+
+.apexcharts-xaxistooltip:after,
+.apexcharts-xaxistooltip:before {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none
+}
+
+.apexcharts-xaxistooltip:after {
+  border-color: transparent;
+  border-width: 6px;
+  margin-left: -6px
+}
+
+.apexcharts-xaxistooltip:before {
+  border-color: transparent;
+  border-width: 7px;
+  margin-left: -7px
+}
+
+.apexcharts-xaxistooltip-bottom:after,
+.apexcharts-xaxistooltip-bottom:before {
+  bottom: 100%
+}
+
+.apexcharts-xaxistooltip-top:after,
+.apexcharts-xaxistooltip-top:before {
+  top: 100%
+}
+
+.apexcharts-xaxistooltip-bottom:after {
+  border-bottom-color: #eceff1
+}
+
+.apexcharts-xaxistooltip-bottom:before {
+  border-bottom-color: #90a4ae
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after,
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+  border-bottom-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-xaxistooltip-top:after {
+  border-top-color: #eceff1
+}
+
+.apexcharts-xaxistooltip-top:before {
+  border-top-color: #90a4ae
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:after,
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+  border-top-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-xaxistooltip.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-yaxistooltip {
+  padding: 4px 10px
+}
+
+.apexcharts-yaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, .7);
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: #fff
+}
+
+.apexcharts-yaxistooltip:after,
+.apexcharts-yaxistooltip:before {
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none
+}
+
+.apexcharts-yaxistooltip:after {
+  border-color: transparent;
+  border-width: 6px;
+  margin-top: -6px
+}
+
+.apexcharts-yaxistooltip:before {
+  border-color: transparent;
+  border-width: 7px;
+  margin-top: -7px
+}
+
+.apexcharts-yaxistooltip-left:after,
+.apexcharts-yaxistooltip-left:before {
+  left: 100%
+}
+
+.apexcharts-yaxistooltip-right:after,
+.apexcharts-yaxistooltip-right:before {
+  right: 100%
+}
+
+.apexcharts-yaxistooltip-left:after {
+  border-left-color: #eceff1
+}
+
+.apexcharts-yaxistooltip-left:before {
+  border-left-color: #90a4ae
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:after,
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+  border-left-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-yaxistooltip-right:after {
+  border-right-color: #eceff1
+}
+
+.apexcharts-yaxistooltip-right:before {
+  border-right-color: #90a4ae
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:after,
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+  border-right-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-yaxistooltip.apexcharts-active {
+  opacity: 1
+}
+
+.apexcharts-yaxistooltip-hidden {
+  display: none
+}
+
+.apexcharts-xcrosshairs,
+.apexcharts-ycrosshairs {
+  pointer-events: none;
+  opacity: 0;
+  transition: .15s ease all
+}
+
+.apexcharts-xcrosshairs.apexcharts-active,
+.apexcharts-ycrosshairs.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-ycrosshairs-hidden {
+  opacity: 0
+}
+
+.apexcharts-selection-rect {
+  cursor: move
+}
+
+.svg_select_shape {
+  stroke-width: 1;
+  stroke-dasharray: 10 10;
+  stroke: black;
+  stroke-opacity: 0.1;
+  pointer-events: none;
+  fill: none;
+}
+
+.svg_select_handle {
+  stroke-width: 3;
+  stroke: black;
+  fill: none;
+}
+
+.svg_select_handle_r {
+  cursor: e-resize;
+}
+
+.svg_select_handle_l {
+  cursor: w-resize;
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+  cursor: crosshair
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-pan {
+  cursor: move
+}
+
+.apexcharts-menu-icon,
+.apexcharts-pan-icon,
+.apexcharts-reset-icon,
+.apexcharts-selection-icon,
+.apexcharts-toolbar-custom-icon,
+.apexcharts-zoom-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  color: #6e8192;
+  text-align: center
+}
+
+.apexcharts-menu-icon svg,
+.apexcharts-reset-icon svg,
+.apexcharts-zoom-icon svg,
+.apexcharts-zoomin-icon svg,
+.apexcharts-zoomout-icon svg {
+  fill: #6e8192
+}
+
+.apexcharts-selection-icon svg {
+  fill: #444;
+  transform: scale(.76)
+}
+
+.apexcharts-theme-dark .apexcharts-menu-icon svg,
+.apexcharts-theme-dark .apexcharts-pan-icon svg,
+.apexcharts-theme-dark .apexcharts-reset-icon svg,
+.apexcharts-theme-dark .apexcharts-selection-icon svg,
+.apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomout-icon svg {
+  fill: #f3f4f5
+}
+
+.apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg {
+  fill: #008ffb
+}
+
+.apexcharts-theme-light .apexcharts-menu-icon:hover svg,
+.apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+.apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+.apexcharts-theme-light .apexcharts-zoomout-icon:hover svg {
+  fill: #333
+}
+
+.apexcharts-menu-icon,
+.apexcharts-selection-icon {
+  position: relative
+}
+
+.apexcharts-reset-icon {
+  margin-left: 5px
+}
+
+.apexcharts-menu-icon,
+.apexcharts-reset-icon,
+.apexcharts-zoom-icon {
+  transform: scale(.85)
+}
+
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  transform: scale(.7)
+}
+
+.apexcharts-zoomout-icon {
+  margin-right: 3px
+}
+
+.apexcharts-pan-icon {
+  transform: scale(.62);
+  position: relative;
+  left: 1px;
+  top: 0
+}
+
+.apexcharts-pan-icon svg {
+  fill: #fff;
+  stroke: #6e8192;
+  stroke-width: 2
+}
+
+.apexcharts-pan-icon.apexcharts-selected svg {
+  stroke: #008ffb
+}
+
+.apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+  stroke: #333
+}
+
+.apexcharts-toolbar {
+  position: absolute;
+  z-index: 11;
+  max-width: 176px;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0 6px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.apexcharts-menu {
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+  right: 10px;
+  opacity: 0;
+  min-width: 110px;
+  transition: .15s ease all;
+  pointer-events: none
+}
+
+.apexcharts-menu.apexcharts-menu-open {
+  opacity: 1;
+  pointer-events: all;
+  transition: .15s ease all
+}
+
+.apexcharts-menu-item {
+  padding: 6px 7px;
+  font-size: 12px;
+  cursor: pointer
+}
+
+.apexcharts-theme-light .apexcharts-menu-item:hover {
+  background: #eee
+}
+
+.apexcharts-theme-dark .apexcharts-menu {
+  background: rgba(0, 0, 0, .7);
+  color: #fff
+}
+
+@media screen and (min-width:768px) {
+  .apexcharts-canvas:hover .apexcharts-toolbar {
+    opacity: 1
+  }
+}
+
+/* Toolbar keyboard accessibility: show toolbar when any button inside it is focused */
+.apexcharts-toolbar:focus-within {
+  opacity: 1
+}
+
+/* Focus indicator for toolbar icon buttons */
+.apexcharts-menu-icon:focus-visible,
+.apexcharts-pan-icon:focus-visible,
+.apexcharts-reset-icon:focus-visible,
+.apexcharts-selection-icon:focus-visible,
+.apexcharts-toolbar-custom-icon:focus-visible,
+.apexcharts-zoom-icon:focus-visible,
+.apexcharts-zoomin-icon:focus-visible,
+.apexcharts-zoomout-icon:focus-visible {
+  outline: 2px solid #008FFB;
+  outline-offset: 2px;
+  border-radius: 2px
+}
+
+/* Focus indicator for hamburger menu items */
+.apexcharts-menu-item:focus-visible {
+  outline: 2px solid #008FFB;
+  outline-offset: -2px;
+  background: #eee
+}
+
+.apexcharts-canvas .apexcharts-element-hidden,
+.apexcharts-datalabel.apexcharts-element-hidden,
+.apexcharts-hide .apexcharts-series-points {
+  opacity: 0;
+}
+
+.apexcharts-hidden-element-shown {
+  opacity: 1;
+  transition: 0.25s ease all;
+}
+
+.apexcharts-datalabel,
+.apexcharts-datalabel-label,
+.apexcharts-datalabel-value,
+.apexcharts-datalabels,
+.apexcharts-pie-label {
+  cursor: default;
+  pointer-events: none
+}
+
+.apexcharts-pie-label-delay {
+  opacity: 0;
+  animation-name: opaque;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease
+}
+
+.apexcharts-radialbar-label {
+  cursor: pointer;
+}
+
+.apexcharts-annotation-rect,
+.apexcharts-area-series .apexcharts-area,
+.apexcharts-gridline,
+.apexcharts-line,
+.apexcharts-point-annotation-label,
+.apexcharts-radar-series path:not(.apexcharts-marker),
+.apexcharts-radar-series polygon,
+.apexcharts-toolbar svg,
+.apexcharts-tooltip .apexcharts-marker,
+.apexcharts-xaxis-annotation-label,
+.apexcharts-yaxis-annotation-label,
+.apexcharts-zoom-rect,
+.no-pointer-events {
+  pointer-events: none
+}
+
+.apexcharts-tooltip-active .apexcharts-marker {
+  transition: .15s ease all
+}
+
+.apexcharts-radar-series .apexcharts-yaxis {
+  pointer-events: none;
+}
+
+.resize-triggers {
+  animation: 1ms resizeanim;
+  visibility: hidden;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden
+}
+
+.contract-trigger:before,
+.resize-triggers,
+.resize-triggers>div {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.resize-triggers>div {
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  overflow: auto
+}
+
+.contract-trigger:before {
+  overflow: hidden;
+  width: 200%;
+  height: 200%
+}
+
+.apexcharts-bar-goals-markers {
+  pointer-events: none
+}
+
+.apexcharts-bar-shadows {
+  pointer-events: none
+}
+
+.apexcharts-rangebar-goals-markers {
+  pointer-events: none
+}
+
+.apexcharts-disable-transitions * {
+  transition: none !important;
+}</style><link rel="stylesheet" href="assets/css/dashboard.css" /><link rel="stylesheet" href="assets/css/components.css" />
+  <title>My Stats</title>
+</head><body style="--background:#0A0A0A;--foreground:#111111;--text-color:#FFFFFF;--text-muted:#A7A7A7;--primary-bg:#DDB231;--primary-text:#000000;--primary-border:#FFC629;--secondary-bg:#1F1F24;--secondary-text:#FFFFFF;--success-bg:#133826;--success-gradient:#17D3997D;--success-text:#07c585;--error-bg:#FF4F52;--error-text:#FF4F52;--tertiary-bg:#4A4A4A;--tertiary-text:#A7A7A7;--table-row:#181818;--border-normal:#A7A7A7;--border-success:#78B0A1;--border-error:#9F5653;--border-disabled:#1F1F1F;--calendar-success:#78B0A1;--calendar-error:#F6BFBD;--warning-bg:#4A3A12;--warning-text:#FFC107;--border-muted:#2A2C40;--border-subtle:#1A1B2A;--card-bg:#111111;--card-primary-bg:#FFC62914;--font-family:Satoshi" class="antialiased">            
+<div class="flex h-dvh w-full overflow-hidden"><aside class="relative z-10 h-full shrink-0 bg-foreground border-r border-border-subtle flex flex-col overflow-hidden" style="width: 260px;"><div class="flex justify-center items-center pt-5 pb-4 px-5"><img class="h-auto object-contain transition-all duration-300 max-w-[180px] w-full max-h-[80px]" alt="" src="assets/images/logo_sidebar.png" style="max-width: 220px;"></div><div class="pb-4 px-4"><button type="button" class="w-full flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-bold text-primary-text bg-primary-bg hover:brightness-110 transition-all shine-effect cursor-pointer">Buy Challenge<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right size-4 -rotate-45" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button></div><div class="flex-1 overflow-y-auto overflow-x-visible scrollbar-auto pb-3 px-4"><div class="flex flex-col gap-1 w-full overflow-visible"><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="dashboard.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg></span><span class="flex-1">Dashboard</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="trade-history.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-line" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg></span><span class="flex-1">Trade History</span></a></span><span class="block opacity-50 cursor-not-allowed" aria-disabled="true"><div class="relative inline-flex items-center w-full"><div class="w-full"><div class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 cursor-not-allowed select-none text-text-muted gap-3 px-3 py-2.5 w-full"><span class="shrink-0 relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg></span><span class="flex-1">Payouts</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock size-4 opacity-80" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div></div></div></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="certificates.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg></span><span class="flex-1">Certificates</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 bg-primary-bg text-primary-text" href="my-stats.html"><span class="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-1 rounded-r-full bg-primary-text/90"></span><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-pie" aria-hidden="true"><path d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"></path><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path></svg></span><span class="flex-1">My Stats</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="offers.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ticket-percent" aria-hidden="true"><path d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M9 9h.01"></path><path d="m15 9-6 6"></path><path d="M15 15h.01"></path></svg></span><span class="flex-1">Offers</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="affiliates.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round" aria-hidden="true"><path d="M18 21a8 8 0 0 0-16 0"></path><circle cx="10" cy="8" r="5"></circle><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"></path></svg></span><span class="flex-1">Affiliates</span></a></span><span class="block"><a target="_blank" class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="https://intercom.help/fundedhero/en/"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-question-mark" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></span><span class="flex-1">FAQ</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="https://fundedherofutures.com/" target="_blank"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></span><span class="flex-1">Website</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="subscriptions.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg></span><span class="flex-1">Subscriptions</span></a></span><span class="block"><a class="group/nav relative flex items-center rounded-xl text-sm font-medium transition-colors duration-150 gap-3 px-3 py-2.5 text-text-muted hover:bg-primary-bg/10 hover:text-text" href="account-settings.html"><span class="shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg></span><span class="flex-1">Account Settings</span></a></span></div></div><div class="border-t border-border-subtle flex flex-col gap-2 pt-3 pb-4 px-4"><a class="flex items-center gap-3 rounded-xl bg-card-bg border border-border-subtle px-3 py-2.5 transition-colors hover:border-border-muted" href="account-settings.html"><span class="shrink-0 w-9 h-9 rounded-lg bg-primary-bg text-primary-text flex items-center justify-center text-sm font-semibold">JG</span><span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-text truncate">Jordan Steven Mina Girón</span><span class="block text-xs text-text-muted truncate">View profile</span></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right size-4 text-text-muted shrink-0" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a><button type="button" class="w-full flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-text-muted border border-border-subtle hover:bg-primary-bg/10 hover:text-text transition-colors cursor-pointer">Logout<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out size-4" aria-hidden="true"><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path></svg></button></div></aside><main class="flex-1 flex flex-col min-w-0 overflow-hidden bg-foreground-default"><div class="sticky top-0 z-50 shrink-0"><div class="w-full py-3 px-4 md:px-6 flex items-center justify-between gap-3 bg-foreground border-b border-border-subtle"><div class="flex items-center gap-3 min-w-0"><button type="button" aria-label="Collapse sidebar" title="Collapse sidebar" class="flex shrink-0 items-center justify-center rounded-lg p-1.5 text-text-muted hover:bg-primary-bg/10 hover:text-text transition-colors cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left size-5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg></button><div class="hidden md:flex flex-col min-w-0"></div></div><div class="flex items-center gap-2 md:gap-3 justify-end"><div class="max-w-[180px] hidden md:inline-block"><p class="text-sm text-text-muted">No accounts found</p></div><div class="flex items-center gap-2"><button class="flex items-center gap-2 hover:bg-tertiary-bg rounded-full py-1 px-2 group"><div class="hidden text-text-muted text-xs group-hover:text-text">Platform Login</div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-round size-4" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></button></div><div class="relative" data-headlessui-state=""><button type="button" aria-label="Open notifications" aria-haspopup="true" class="relative flex items-center justify-center cursor-pointer w-8 h-8 rounded-xl bg-card-bg border border-border-subtle text-text transition-colors duration-150 hover:bg-primary-bg/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-bg focus-visible:ring-offset-2 focus-visible:ring-offset-foreground" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-_r_q_"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256" class="text-primary-bg shrink-0"><rect width="256" height="256" fill="none"></rect><line x1="96" y1="224" x2="160" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><path d="M56.2,104a71.9,71.9,0,0,1,72.3-72c39.6.3,71.3,33.2,71.3,72.9V112c0,35.8,7.5,56.6,14.1,68a8,8,0,0,1-6.9,12H49a8,8,0,0,1-6.9-12c6.6-11.4,14.1-32.2,14.1-68Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg></button></div><div role="button" class="w-9 h-9 rounded-full bg-primary-bg text-primary-text cursor-pointer flex items-center justify-center text-sm font-medium transition-colors duration-150 hover:bg-primary-bg/90">JG</div></div></div></div><div class="flex-1 overflow-y-auto w-full space-y-4 p-4 sm:p-6 lg:p-8"><div class="grid grid-cols-12 gap-4 overflow-hidden"><div class="col-span-6 lg:col-span-3" style="opacity: 1; transform: none;"><div class="w-full bg-foreground rounded-2xl px-4 py-3.5 space-y-2 border border-border-subtle/60 primary-shadow transition-colors duration-200 hover:border-primary-bg/30 h-full"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Total P&amp;L</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-base pt-4 mt-auto">Trades in total: 0</div></div></div><div class="col-span-6 lg:col-span-3" style="opacity: 1; transform: none;"><div class="w-full bg-foreground rounded-2xl px-4 py-3.5 space-y-2 border border-border-subtle/60 primary-shadow transition-colors duration-200 hover:border-primary-bg/30 h-full"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Profit Factor</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-base pt-4 mt-auto">Trades in total: 0</div></div></div><div class="col-span-6 lg:col-span-3" style="opacity: 1; transform: none;"><div class="w-full bg-foreground rounded-2xl px-4 py-3.5 space-y-2 border border-border-subtle/60 primary-shadow transition-colors duration-200 hover:border-primary-bg/30 h-full"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Average winning trade</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-3xl font-semibold">-</div><div class="text-base pt-4 mt-auto">Trades in total: 0</div></div></div><div class="col-span-6 lg:col-span-3" style="opacity: 1; transform: none;"><div class="w-full bg-foreground rounded-2xl px-4 py-3.5 space-y-2 border border-border-subtle/60 primary-shadow transition-colors duration-200 hover:border-primary-bg/30 h-full"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Average losing trade</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-base pt-4 mt-auto">Trades in total: 0</div></div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 lg:col-span-3"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Win Rate</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex flex-col-reverse sm:flex-row sm:items-end gap-2 sm:justify-between"><div class="w-full"><div class="text-3xl font-semibold pt-4">0.00%</div></div><div class="flex justify-center sm:justify-end"><div class="-mt-6"><div style="height: 100px; width: 100px; min-height: 103px;"><div id="apexcharts27adeoi9" class="apexcharts-canvas apexcharts27adeoi9 apexcharts-theme-light" style="width: 100px; height: 103px;"><svg xmlns="http://www.w3.org/2000/svg" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" width="100" height="103" role="application" aria-label="pie chart with 2 data series" tabindex="0"><foreignObject x="0" y="0" width="100" height="103"><style type="text/css">.apexcharts-flip-y {
+  transform: scaleY(-1) translateY(-100%);
+  transform-origin: top;
+  transform-box: fill-box;
+}
+.apexcharts-flip-x {
+  transform: scaleX(-1);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.apexcharts-legend {
+  display: flex;
+  overflow: auto;
+  padding: 0 10px;
+}
+.apexcharts-legend.apexcharts-legend-group-horizontal {
+  flex-direction: column;
+}
+.apexcharts-legend-group {
+  display: flex;
+}
+.apexcharts-legend-group-vertical {
+  flex-direction: column-reverse;
+}
+.apexcharts-legend.apx-legend-position-bottom, .apexcharts-legend.apx-legend-position-top {
+  flex-wrap: wrap
+}
+.apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {
+  flex-direction: column;
+  bottom: 0;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-left, .apexcharts-legend.apx-legend-position-top.apexcharts-align-left, .apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center, .apexcharts-legend.apx-legend-position-top.apexcharts-align-center {
+  justify-content: center;
+  align-items: center;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-right, .apexcharts-legend.apx-legend-position-top.apexcharts-align-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.apexcharts-legend-series {
+  cursor: pointer;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+.apexcharts-legend-text {
+  position: relative;
+  font-size: 14px;
+}
+.apexcharts-legend-text *, .apexcharts-legend-marker * {
+  pointer-events: none;
+}
+.apexcharts-legend-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 1px;
+}
+
+.apexcharts-legend-series.apexcharts-no-click {
+  cursor: auto;
+}
+.apexcharts-legend .apexcharts-hidden-zero-series, .apexcharts-legend .apexcharts-hidden-null-series {
+  display: none !important;
+}
+.apexcharts-inactive-legend {
+  opacity: 0.45;
+} </style></foreignObject><g class="apexcharts-inner apexcharts-graphical" transform="translate(0, 0)"><defs><clipPath id="gridRectMask27adeoi9"><rect x="-3" y="-3" width="106" height="106" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectBarMask27adeoi9"><rect x="-3" y="-3" width="106" height="106" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectMarkerMask27adeoi9"><rect x="-3" y="0" width="106" height="100" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="forecastMask27adeoi9"></clipPath><clipPath id="nonForecastMask27adeoi9"></clipPath></defs><g class="apexcharts-pie"><g transform="translate(0, 0) scale(1)"><g class="apexcharts-slices"><g class="apexcharts-series apexcharts-pie-series" seriesName="Win" rel="1" data:realIndex="0"><path fill="var(--secondary-bg)" fill-opacity="1" stroke="transparent" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-pie-slice-0" index="0" j="0" data:angle="0" data:startAngle="0" data:strokeWidth="2" data:value="0" data:cx="50" data:cy="28.609756097560975"></path></g><g class="apexcharts-series apexcharts-pie-series" seriesName="Loss" rel="2" data:realIndex="1"><path fill="var(--tertiary-bg)" fill-opacity="1" stroke="transparent" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-pie-slice-1" index="0" j="1" data:angle="360" data:startAngle="0" data:strokeWidth="2" data:value="100" data:cx="50" data:cy="71.39024390243902" data:pathOrig="M 50 7.2195121951219505 A 42.78048780487805 42.78048780487805 0 1 1 49.99253339635985 7.2195128467060385 L 49.999301868302744 46.00000006092348 C 49.999650934151376 48.00000003046174 50 48 50 46 L 50 7.2195121951219505 " d="M 50 7.2195121951219505 A 42.78048780487805 42.78048780487805 0 1 1 49.99253339635985 7.2195128467060385 L 49.999301868302744 46.00000006092348 C 49.999650934151376 48.00000003046174 50 48 50 46 L 50 7.2195121951219505 "></path></g></g></g></g><line x1="0" y1="0" x2="100" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" stroke-linecap="butt" class="apexcharts-ycrosshairs"></line><line x1="0" y1="0" x2="100" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="0" stroke-linecap="butt" class="apexcharts-ycrosshairs-hidden"></line></g><g class="apexcharts-datalabels-group" transform="translate(0, 0) scale(1)"></g></svg><div class="apexcharts-legend"></div><div class="apexcharts-tooltip apexcharts-theme-dark" role="tooltip" aria-live="polite" aria-atomic="true" aria-hidden="true"><div class="apexcharts-tooltip-series-group apexcharts-tooltip-series-group-0" style="order: 1;"><span class="apexcharts-tooltip-marker" shape="circle" style="background-color: var(--secondary-bg);"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div><div class="apexcharts-tooltip-series-group apexcharts-tooltip-series-group-1" style="order: 2;"><span class="apexcharts-tooltip-marker" shape="circle" style="background-color: var(--tertiary-bg);"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div></div></div></div></div></div></div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 lg:col-span-3"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Number of Trades Taken</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex flex-col-reverse sm:flex-row sm:items-end gap-2 sm:justify-between"><div class="w-full"><div class="text-xs flex items-center gap-1"></div>0</div><div class="flex justify-center sm:justify-end"><div><div class="w-full h-full max-w-[80px] max-h-[60px]"><canvas role="img" height="60" width="80" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 60px; width: 80px;"></canvas></div></div></div></div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 lg:col-span-3"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Profit/Loss Per Trade</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex flex-col-reverse sm:flex-row sm:items-end gap-2 sm:justify-between"><div class="w-full"><div class="pt-2 space-y-2"><div class="w-full relative rounded-full" style="height: 16px; background-color: var(--tertiary-bg);"><div class="absolute top-0 left-0 h-full rounded-full" data-testid="progress" style="width: 0%; background-color: var(--secondary-bg);"></div></div><div class="w-full flex items-center justify-between"><div class="px-2.5 py-1 min-w-fit rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm bg-success-text/10 text-success-text border border-success-text/40" style="letter-spacing: 0.02em; line-height: 1.3;">$0</div><div class="px-2.5 py-1 min-w-fit rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm bg-error-text/10 text-error-text border border-error-text/40" style="letter-spacing: 0.02em; line-height: 1.3;">$0</div></div></div></div></div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 lg:col-span-3"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Risk-to-Reward Ratio</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex flex-col-reverse sm:flex-row sm:items-end gap-2 sm:justify-between"><div class="w-full"><div class="text-3xl font-semibold pt-4">N/A</div></div><div class="flex justify-center sm:justify-end"><div><div class="inline-block relative "><svg width="160" height="66" viewBox="0 0 160" class="transform "><path d="M 26 60 A 54 54 0 0 1 134 60" stroke="var(--tertiary-bg)" stroke-width="12" fill="none" stroke-linecap="round"></path><path d="M 26 60 A 54 54 0 0 1 134 60" stroke="var(--secondary-bg)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="169.64600329384882" stroke-dashoffset="169.64600329384882" style="transition: stroke-dashoffset 0.5s ease-in-out;"></path></svg></div></div></div></div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 sm:col-span-6 lg:col-span-6"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Maximum Drawdown Level</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-2xl font-semibold pb-3">$0 Left</div><div class="w-full relative rounded-full" style="height: 16px; background-color: var(--tertiary-bg);"><div class="absolute top-0 left-0 h-full rounded-full" data-testid="progress" style="width: 0%; background-color: var(--primary-bg);"></div></div><div class="flex items-center gap-2 justify-between"><div class="text-sm">Maximum Drawdown Level</div><div class="text-sm text-text-muted">$0</div></div></div><div class="w-full h-full bg-foreground rounded-2xl px-4 py-3.5 space-y-2 border border-border-subtle/60 primary-shadow transition-colors duration-200 hover:border-primary-bg/30 col-span-12 sm:col-span-6 lg:col-span-6"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Consistency</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="text-3xl font-semibold">-</div><div class="text-base pt-4 mt-auto">Max Profit Day: -</div></div><div class="w-full h-full bg-foreground rounded-xl px-3 py-3 space-y-2 primary-shadow col-span-12 lg:col-span-4"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Edge Score</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="w-full"><div class="flex justify-center items-center"><div style="height: 360px; width: 420px; display: flex; align-items: center; justify-content: center; min-height: 375px;"><div id="apexcharts7bcu1oqfh" class="apexcharts-canvas apexcharts7bcu1oqfh apexcharts-theme-light" style="width: 420px; height: 360px;"><svg xmlns="http://www.w3.org/2000/svg" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" width="420" height="360" role="application" aria-label="radar chart with 1 data series" tabindex="0"><foreignObject x="0" y="0" width="420" height="360"><style type="text/css">.apexcharts-flip-y {
+  transform: scaleY(-1) translateY(-100%);
+  transform-origin: top;
+  transform-box: fill-box;
+}
+.apexcharts-flip-x {
+  transform: scaleX(-1);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.apexcharts-legend {
+  display: flex;
+  overflow: auto;
+  padding: 0 10px;
+}
+.apexcharts-legend.apexcharts-legend-group-horizontal {
+  flex-direction: column;
+}
+.apexcharts-legend-group {
+  display: flex;
+}
+.apexcharts-legend-group-vertical {
+  flex-direction: column-reverse;
+}
+.apexcharts-legend.apx-legend-position-bottom, .apexcharts-legend.apx-legend-position-top {
+  flex-wrap: wrap
+}
+.apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {
+  flex-direction: column;
+  bottom: 0;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-left, .apexcharts-legend.apx-legend-position-top.apexcharts-align-left, .apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center, .apexcharts-legend.apx-legend-position-top.apexcharts-align-center {
+  justify-content: center;
+  align-items: center;
+}
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-right, .apexcharts-legend.apx-legend-position-top.apexcharts-align-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.apexcharts-legend-series {
+  cursor: pointer;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+.apexcharts-legend-text {
+  position: relative;
+  font-size: 14px;
+}
+.apexcharts-legend-text *, .apexcharts-legend-marker * {
+  pointer-events: none;
+}
+.apexcharts-legend-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 1px;
+}
+
+.apexcharts-legend-series.apexcharts-no-click {
+  cursor: auto;
+}
+.apexcharts-legend .apexcharts-hidden-zero-series, .apexcharts-legend .apexcharts-hidden-null-series {
+  display: none !important;
+}
+.apexcharts-inactive-legend {
+  opacity: 0.45;
+} </style></foreignObject><g class="apexcharts-inner apexcharts-graphical" transform="translate(0, 30)"><defs><clipPath id="gridRectMask7bcu1oqfh"><rect x="-3" y="-3" width="389.4796390533447" height="334" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectBarMask7bcu1oqfh"><rect x="-3" y="-3" width="389.4796390533447" height="334" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectMarkerMask7bcu1oqfh"><rect x="-6" y="-6" width="395.4796390533447" height="340" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="forecastMask7bcu1oqfh"></clipPath><clipPath id="nonForecastMask7bcu1oqfh"></clipPath></defs><g class="apexcharts-grid"><g class="apexcharts-gridlines-horizontal" style="display: none;"><line x1="0" y1="0" x2="383.4796390533447" y2="0" stroke="#e0e0e0" stroke-dasharray="0" stroke-linecap="butt" class="apexcharts-gridline"></line><line x1="0" y1="82" x2="383.4796390533447" y2="82" stroke="#e0e0e0" stroke-dasharray="0" stroke-linecap="butt" class="apexcharts-gridline"></line><line x1="0" y1="164" x2="383.4796390533447" y2="164" stroke="#e0e0e0" stroke-dasharray="0" stroke-linecap="butt" class="apexcharts-gridline"></line><line x1="0" y1="246" x2="383.4796390533447" y2="246" stroke="#e0e0e0" stroke-dasharray="0" stroke-linecap="butt" class="apexcharts-gridline"></line><line x1="0" y1="328" x2="383.4796390533447" y2="328" stroke="#e0e0e0" stroke-dasharray="0" stroke-linecap="butt" class="apexcharts-gridline"></line></g><g class="apexcharts-gridlines-vertical" style="display: none;"></g><line x1="0" y1="328" x2="383.4796390533447" y2="328" stroke="transparent" stroke-dasharray="0" stroke-linecap="butt"></line><line x1="0" y1="1" x2="0" y2="328" stroke="transparent" stroke-dasharray="0" stroke-linecap="butt"></line></g><g class="apexcharts-grid-borders" style="display: none;"></g><g class="apexcharts-radar-series apexcharts-plot-series" transform="translate(191.73981952667236, 164)"><polygon points="0,-115.310063680013 99.8614444588926,57.65503184000647 -99.86144445889256,57.65503184000655 " fill="none" stroke="#fff" stroke-width="1"></polygon><polygon points="0,-86.48254776000975 74.89608334416945,43.241273880004854 -74.89608334416943,43.24127388000491 " fill="none" stroke="#fff" stroke-width="1"></polygon><polygon points="0,-57.6550318400065 49.9307222294463,28.827515920003236 -49.93072222944628,28.827515920003275 " fill="none" stroke="#fff" stroke-width="1"></polygon><polygon points="0,-28.82751592000325 24.96536111472315,14.413757960001618 -24.96536111472314,14.413757960001638 " fill="none" stroke="#fff" stroke-width="1"></polygon><polygon points="0,0 0,0 0,0 " fill="none" stroke="#fff" stroke-width="1"></polygon><line x1="0" y1="-115.310063680013" x2="0" y2="0" stroke="#fff" stroke-dasharray="0" stroke-linecap="butt"></line><line x1="99.8614444588926" y1="57.65503184000647" x2="0" y2="0" stroke="#fff" stroke-dasharray="0" stroke-linecap="butt"></line><line x1="-99.86144445889256" y1="57.65503184000655" x2="0" y2="0" stroke="#fff" stroke-dasharray="0" stroke-linecap="butt"></line><g class="apexcharts-xaxis"><text x="0" y="-125.310063680013" text-anchor="middle" dominant-baseline="auto" font-size="11px" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#a8a8a8" class="apexcharts-xaxis-label" cx="0" cy="-125.310063680013" style="font-family: Helvetica, Arial, sans-serif;">Win %</text><text x="109.8614444588926" y="57.65503184000647" text-anchor="start" dominant-baseline="auto" font-size="11px" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#a8a8a8" class="apexcharts-xaxis-label" cx="109.8614444588926" cy="57.65503184000647" style="font-family: Helvetica, Arial, sans-serif;">Avg win/loss</text><text x="-109.86144445889256" y="57.65503184000655" text-anchor="end" dominant-baseline="auto" font-size="11px" font-family="Helvetica, Arial, sans-serif" font-weight="400" fill="#a8a8a8" class="apexcharts-xaxis-label" cx="-109.86144445889256" cy="57.65503184000655" style="font-family: Helvetica, Arial, sans-serif;">Profit Factor</text></g><g class="apexcharts-series" data:longestSeries="true" seriesName="EdgexMetrics" rel="1" data:realIndex="0"><path d="M 0 0 L 0 0 L 0 0 L 0 0Z" fill="none" fill-opacity="1" stroke="transparent" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-radar" index="0" pathTo="M 0 0 L 0 0 L 0 0 L 0 0Z" pathFrom="M 0 0"></path><path d="M 0 0 L 0 0 L 0 0 L 0 0Z" fill="color-mix(in srgb, var(--success-gradient) 10%, transparent)" fill-opacity="1" stroke="transparent" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" class="apexcharts-radar" index="0" pathTo="M 0 0 L 0 0 L 0 0 L 0 0Z" pathFrom="M 0 0"></path><g class="apexcharts-series-markers-wrap apexcharts-hidden-element-shown"><g class="apexcharts-series-markers"><path d="M 0, 0 
+           m -3, 0 
+           a 3,3 0 1,0 6,0 
+           a 3,3 0 1,0 -6,0" fill="var(--success-gradient)" fill-opacity="1" stroke="#fff" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" cx="0" cy="0" shape="circle" class="apexcharts-marker" rel="0" j="0" index="0" default-marker-size="3"></path></g><g class="apexcharts-series-markers"><path d="M 0, 0 
+           m -3, 0 
+           a 3,3 0 1,0 6,0 
+           a 3,3 0 1,0 -6,0" fill="var(--success-gradient)" fill-opacity="1" stroke="#fff" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" cx="0" cy="0" shape="circle" class="apexcharts-marker" rel="1" j="1" index="0" default-marker-size="3"></path></g><g class="apexcharts-series-markers"><path d="M 0, 0 
+           m -3, 0 
+           a 3,3 0 1,0 6,0 
+           a 3,3 0 1,0 -6,0" fill="var(--success-gradient)" fill-opacity="1" stroke="#fff" stroke-opacity="1" stroke-linecap="butt" stroke-width="0" stroke-dasharray="0" cx="0" cy="0" shape="circle" class="apexcharts-marker" rel="2" j="2" index="0" default-marker-size="3"></path></g></g></g><g class="apexcharts-yaxis"></g><g class="apexcharts-datalabels" data:realIndex="0"></g></g><line x1="0" y1="0" x2="383.4796390533447" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" stroke-linecap="butt" class="apexcharts-ycrosshairs"></line><line x1="0" y1="0" x2="383.4796390533447" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="0" stroke-linecap="butt" class="apexcharts-ycrosshairs-hidden"></line><g class="apexcharts-yaxis-annotations apexcharts-hidden-element-shown"></g><g class="apexcharts-xaxis-annotations apexcharts-hidden-element-shown"></g><g class="apexcharts-point-annotations apexcharts-hidden-element-shown"></g></g></svg><div class="apexcharts-legend"></div><div class="apexcharts-tooltip apexcharts-theme-dark" role="tooltip" aria-live="polite" aria-atomic="true" aria-hidden="true"><div class="apexcharts-tooltip-title" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"></div><div class="apexcharts-tooltip-series-group apexcharts-tooltip-series-group-0" style="order: 1;"><span class="apexcharts-tooltip-marker" shape="circle" style="color: var(--success-gradient);"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div></div><div class="apexcharts-yaxistooltip apexcharts-yaxistooltip-0 apexcharts-yaxistooltip-left apexcharts-theme-dark"><div class="apexcharts-yaxistooltip-text"></div></div></div></div></div></div></div><div class="w-full bg-foreground rounded-xl px-3 space-y-2 primary-shadow col-span-12 lg:col-span-4 h-full py-2 flex flex-col justify-between pb-10"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Equity Line</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="w-full"><div class="w-full min-w-0 max-w-full overflow-hidden" style="height: 200px;"><canvas role="img" height="200" width="334" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 200px; width: 334px;"></canvas></div></div></div><div class="w-full bg-foreground rounded-xl px-3 space-y-2 primary-shadow col-span-12 lg:col-span-4 h-full py-2 flex flex-col justify-between pb-10"><div class="flex items-center gap-2"><div class="text-base font-semibold text-tertiary-text">Daily Net Cumulative P&amp;L</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="w-full"><div class="w-full min-w-0 max-w-full overflow-hidden" style="height: 200px;"><canvas role="img" height="200" width="334" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 200px; width: 334px;"></canvas></div></div></div><div class="col-span-12 rounded-2xl border border-border-subtle bg-foreground primary-shadow p-4"><div class="w-full rounded-2xl border border-border-subtle px-4 py-1 pb-4 primary-shadow bg-foreground"><div class="flex flex-col md:flex-row md:items-center justify-between gap-4 py-3"><div class="flex items-center gap-2"><div class="text-xl font-semibold">Recent Trade Breakdown</div></div></div><div class="scrollbar-auto overflow-auto w-full"><table class="w-full border-separate border-spacing-y-2"><thead><tr class=""><th class="text-start text-[11px] uppercase tracking-wide font-medium text-text-muted py-3 pb-5 " style="min-width: 100px; text-align: left;">Date</th><th class="text-start text-[11px] uppercase tracking-wide font-medium text-text-muted py-3 pb-5 " style="min-width: 100px; text-align: left;">Trades Taken</th><th class="text-start text-[11px] uppercase tracking-wide font-medium text-text-muted py-3 pb-5 " style="min-width: 100px; text-align: left;">Win Rate (%)</th><th class="text-start text-[11px] uppercase tracking-wide font-medium text-text-muted py-3 pb-5 " style="min-width: 100px; text-align: left;">Net P%L ($)</th></tr></thead><tbody><tr><td colspan="4" class="text-center text-sm py-12 text-text-muted bg-table-row rounded-lg" style="min-height: 180px;">No data found</td></tr></tbody></table></div></div></div><div class="col-span-12"><div class="bg-foreground py-5 px-2 md:px-6 flex flex-col gap-4 rounded-2xl border border-border-subtle mb-4 primary-shadow transition-all duration-300"><div class="flex items-center justify-between mb-4 flex-wrap gap-y-2"><div class="flex items-center justify-center space-x-2 sm:space-x-6 text-text w-full sm:w-auto"><button type="button" aria-label="Previous Month" class="bg-table-row cursor-pointer text-text-color p-2 hover:bg-table-row/50 rounded-lg shadow-sm transition focus:outline-none focus:ring-2 focus:ring-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="160 208 80 128 160 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg></button><div class="flex-1 min-w-[110px] sm:min-w-[160px] text-center text-text font-semibold tracking-wide text-base md:text-lg">September 2026</div><button type="button" aria-label="Next Month" class="bg-table-row cursor-pointer text-text-color p-2 hover:bg-table-row/50 rounded-lg shadow-sm transition focus:outline-none focus:ring-2 focus:ring-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="96 48 176 128 96 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg></button></div></div><div class="grid grid-cols-2 lg:grid-cols-5 gap-2 overflow-x-auto small-scrollbar pb-3 md:pb-0"><div class="min-w-[110px] sm:min-w-max bg-table-row rounded-xl border border-primary-border shadow transition hover:bg-table-row/70 flex-1"><div class="flex flex-col gap-3 md:gap-4 px-3 py-3 md:py-4 items-start"><p class="captionl-regular md:text-sm text-xs text-text opacity-80">Total Trades</p><h6 class="h6-regular text-xl font-bold md:text-2xl text-text-color">-</h6></div></div><div class="min-w-[110px] sm:min-w-max bg-table-row rounded-xl border border-primary-border shadow transition hover:bg-table-row/70 flex-1"><div class="flex flex-col gap-3 md:gap-4 px-3 py-3 md:py-4 items-start"><p class="captionl-regular md:text-sm text-xs text-text opacity-80">P&amp;L</p><h6 class="h6-regular text-xl font-bold md:text-2xl text-text-color">$0</h6></div></div><div class="min-w-[110px] sm:min-w-max bg-table-row rounded-xl border border-primary-border shadow transition hover:bg-table-row/70 flex-1"><div class="flex flex-col gap-3 md:gap-4 px-3 py-3 md:py-4 items-start"><p class="captionl-regular md:text-sm text-xs text-text opacity-80">Best Day</p><h6 class="h6-regular text-xl font-bold md:text-2xl text-text-color">-</h6></div></div><div class="min-w-[110px] sm:min-w-max bg-table-row rounded-xl border border-primary-border shadow transition hover:bg-table-row/70 flex-1"><div class="flex flex-col gap-3 md:gap-4 px-3 py-3 md:py-4 items-start"><p class="captionl-regular md:text-sm text-xs text-text opacity-80">Worst Day</p><h6 class="h6-regular text-xl font-bold md:text-2xl text-text-color">-</h6></div></div><div class="min-w-[110px] sm:min-w-max bg-table-row rounded-xl border border-primary-border shadow transition hover:bg-table-row/70 flex-1"><div class="flex flex-col gap-3 md:gap-4 px-3 py-3 md:py-4 items-start"><p class="captionl-regular md:text-sm text-xs text-text opacity-80">Win Rate</p><h6 class="h6-regular text-xl font-bold md:text-2xl text-text-color">0.00%</h6></div></div></div><div class="w-full space-y-3"><div class="grid grid-cols-7 gap-1 md:gap-3"><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Mon</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Tue</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Wed</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Thu</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Fri</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Sat</div><div class="col-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-9 md:h-10 bg-table-row">Sun</div></div><div class="grid grid-cols-7 gap-1 md:gap-3"><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">31</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">01</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">02</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">03</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">04</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">05</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">06</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">07</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">08</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">09</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">10</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">11</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">12</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">13</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">14</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">15</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">16</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">17</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">18</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:border-primary-default shadow hover:shadow-md"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">19</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">20</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">21</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">22</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">23</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">24</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">25</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">26</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">27</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">28</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">29</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">30</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">01</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">02</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">03</p></div><div class="relative group cursor-pointer bcol-span-1 text-xs md:text-sm flex rounded-lg font-semibold items-center justify-center border border-primary-border h-[58px] md:h-[80px] p-1 md:p-2 bg-table-row transition-all select-none hover:cursor-not-allowed opacity-20"><p class="p-0.5 absolute top-1 left-1 rounded-lg font-mono opacity-60 text-xs md:text-sm">04</p></div></div></div></div><div class="space-y-4 overflow-x-hidden"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 "><div class="flex flex-row gap-[17px] rounded-2xl border border-border-subtle items-center bg-foreground primary-shadow transition-colors duration-200 hover:border-primary-bg/40"><div class="space-y-[3px] py-4 pl-6 w-full"><div class="flex items-center gap-1"><h3 class="text-base font-semibold">Net P&amp;L</h3></div><div class="flex items-center justify-between"><h2 class="text-3xl font-semibold">-</h2></div></div><div class="ml-auto pr-6"><div class="px-2.5 py-1 min-w-fit rounded-full text-xs font-semibold inline-flex items-center gap-1 shadow-sm bg-primary-bg/10 text-primary-bg border border-primary-bg/40" style="letter-spacing: 0.02em; line-height: 1.3;">NaN%</div></div></div><div class="flex flex-row gap-[17px] rounded-2xl border border-border-subtle items-center bg-foreground primary-shadow transition-colors duration-200 hover:border-primary-bg/40"><div class="space-y-[3px] py-4 pl-6 w-full"><div class="flex items-center gap-1"><h3 class="text-base font-semibold">Trade Win Rate</h3></div><div class="flex items-center justify-between"><h2 class="text-3xl font-semibold">--%</h2></div></div><div class="ml-auto pr-6"><div class="flex flex-col gap-2 min-w-max"><div class="flex gap-1 ml-auto"><div class="px-2 py-[2px] rounded-2xl bg-success-default text-success-text  undefined space-x-1 flex items-center text-xs"><div class="leading-3"></div></div><div class="px-2 py-[2px] rounded-2xl bg-info-default text-info-text  px-1 py-1 space-x-1 flex items-center text-xs"><div class="leading-3"></div></div><div class="px-2 py-[2px] rounded-2xl bg-error-default text-error-text  undefined space-x-1 flex items-center text-xs"><div class="leading-3"></div></div></div><div class="w-full h-2 min-w-[120px] flex rounded-full overflow-hidden"><div class="bg-green-500 h-full" style="width: 0%;"></div><div class="bg-gray-300 h-full" style="width: 0%;"></div><div class="bg-red-500 h-full" style="width: 0%;"></div></div></div></div></div><div class="flex flex-row gap-[17px] rounded-2xl border border-border-subtle items-center bg-foreground primary-shadow transition-colors duration-200 hover:border-primary-bg/40"><div class="space-y-[3px] py-4 pl-6 w-full"><div class="flex items-center gap-1"><h3 class="text-base font-semibold">Average Realized R:R</h3><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex items-center justify-between"><h2 class="text-3xl font-semibold">--</h2></div></div><div class="ml-auto pr-6"></div></div><div class="flex flex-row gap-[17px] rounded-2xl border border-border-subtle items-center bg-foreground primary-shadow transition-colors duration-200 hover:border-primary-bg/40"><div class="space-y-[3px] py-4 pl-6 w-full"><div class="flex items-center gap-1"><h3 class="text-base font-semibold">Profit Factor</h3><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex items-center justify-between"><h2 class="text-3xl font-semibold">--</h2></div></div><div class="ml-auto pr-6"><div class="flex items-center justify-between rounded-lg"><div class="w-20"><div style="height: 100px; width: 100px; min-height: 100px;"></div></div></div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-2 gap-4"><div class="col-span-1"><div class="p-5 rounded-2xl border border-border-subtle space-y-4 bg-foreground primary-shadow"><div class="flex items-center gap-1"><h1 class="text-base font-semibold">Performance by Hour (UTC)</h1><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="h-[380px] relative"><div class="w-full h-full undefined"><canvas role="img" height="380" width="504" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 380px; width: 504px;"></canvas></div><div class="absolute inset-0 flex flex-col items-center justify-center"><div class="rounded-full p-2 bg-background"><div class="flex items-center justify-center rounded-full p-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="116" cy="116" r="84" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></circle><line x1="175.4" y1="175.4" x2="224" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line></svg></div></div><span class="mt-2 text-base">No data found</span></div></div></div></div><div class="col-span-1 p-5 rounded-2xl border border-border-subtle space-y-4 bg-foreground primary-shadow"><div class="flex items-center gap-2"><h1 class="text-base font-semibold">Gross Daily P&amp;L</h1><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="flex flex-wrap gap-2 pb-4"><button class="flex items-center py-1 px-3 rounded-2xl border-2 text-text false
+      }" style="border-color: rgb(7, 197, 133); background-color: rgb(19, 56, 38);"><div class="w-2.5 h-2.5 rounded-full mr-2" style="background-color: rgb(7, 197, 133);"></div><p class="text-sm">Win</p></button><button class="flex items-center py-1 px-3 rounded-2xl border-2 text-text false
+      }" style="border-color: rgb(255, 79, 82); background-color: rgb(255, 79, 82);"><div class="w-2.5 h-2.5 rounded-full mr-2" style="background-color: rgb(255, 79, 82);"></div><p class="text-sm">Loss</p></button></div><div class="w-full h-full undefined"><canvas role="img" height="252" width="504" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 252px; width: 504px;"></canvas></div></div></div><div class="grid grid-cols-1 md:grid-cols-12 gap-[32px] p-5 rounded-2xl border border-border-subtle dashboard-total-trades h-full bg-foreground primary-shadow"><div class="col-span-1 md:col-span-3 space-y-4 h-full"><div class="text-base font-semibold">Total Trades</div><div class="w-full space-y-2"><button class="w-full py-[12px] px-4 rounded-md flex items-center justify-between bg-status-neutral-background border-disabled-border+" style="background: linear-gradient(90deg, rgb(255, 79, 82) 0%, rgb(255, 79, 82) 100%); filter: none;"><div class="headline-normal-400">Loss</div><div class="titles-title-5">0</div></button><button class="w-full py-[12px] px-4 rounded-md flex items-center justify-between bg-status-neutral-background border-disabled-border+" style="background: linear-gradient(90deg, rgb(19, 56, 38) 0%, rgb(7, 197, 133) 100%); filter: none;"><div class="headline-normal-400">Win</div><div class="titles-title-5">0</div></button><button class="w-full py-[12px] px-4 rounded-md flex items-center justify-between bg-status-neutral-background border-disabled-border+" style="background: linear-gradient(90deg, rgba(0, 133, 255, 0.15) 0%, rgb(0, 133, 255) 100%); filter: none;"><div class="headline-normal-400">Breakeven</div><div class="titles-title-5">0</div></button></div></div><div class="col-span-1 md:col-span-9 space-y-8 h-full"><div class="flex items-center gap-1"><div class="text-base font-semibold">Trade Distribution by Day of the Week</div><div class="relative inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256" class="cursor-pointer"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><polyline points="120 120 128 120 128 176 136 176" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="126" cy="84" r="12"></circle></svg></div></div><div class="w-full h-full max-h-[330px]"><canvas role="img" height="330" width="791" style="display: block; box-sizing: border-box; touch-action: auto; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 330px; width: 791px;"></canvas></div></div></div><div class="grid grid-cols-2 gap-4 bg-foreground rounded-2xl border border-border-subtle sm:p-5 primary-shadow"><div class="col-span-2 lg:col-span-1"><div class="h-full min-h-[350px] bg-foreground rounded-xl flex flex-col p-4"><div class="flex items-center justify-between mb-4 shrink-0"><h1 class="text-base font-semibold">Equity Line</h1></div><div class="flex-1 w-full min-h-0"><div class="w-full min-w-0 max-w-full overflow-hidden" style="height: 100%;"><canvas role="img" height="278" width="493" style="display: block; box-sizing: border-box; touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); height: 278px; width: 493px;"></canvas></div></div></div></div><div class="col-span-2 lg:col-span-1"><div class="flex flex-wrap justify-between bg-foreground rounded-xl px-4 lg:px-0"><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>AVG Win</div><div class="ml-auto text-right">AVG Loss</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">-</div><div class="text-error-text">-</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text"></div></div></div></div><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>Best Win</div><div class="ml-auto text-right">Best Loss</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">-</div><div class="text-error-text">-</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text"></div></div></div></div><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>Best Week</div><div class="ml-auto text-right">Worst Week</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">$0</div><div class="text-error-text">$0</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text" style="width: 5%;"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text" style="width: 95%;"></div></div></div></div><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>Best Month</div><div class="ml-auto text-right">Worst Month</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">-</div><div class="text-error-text">-</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text"></div></div></div></div><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>AVG Win Streak</div><div class="ml-auto text-right">AVG Loss Streak</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">0</div><div class="text-error-text">0</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text" style="width: 5%;"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text" style="width: 95%;"></div></div></div></div><div class="w-full sm:w-[48%] mb-4 sm:mb-0"><div class="flex flex-col items-start space-y-2 py-2 sm:py-5"><div class="flex justify-between w-full text-xs sm:text-sm"><div>Max Win Streaks</div><div class="ml-auto text-right">Worst Loss Streak</div></div><div class="flex justify-between w-full text-xs sm:text-base"><div class="text-success-text">0</div><div class="text-error-text">0</div></div><div class="w-full rounded-full h-1 sm:h-2 flex bg-strokes-default"><div class="h-1 sm:h-2 rounded-l-full bg-success-text" style="width: 5%;"></div><div class="h-1 sm:h-2 rounded-r-full bg-error-text" style="width: 95%;"></div></div></div></div></div></div></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-[16px]"><div class="
+    cols-span-1 lg:col-span-7 rounded-2xl border border-border-subtle p-5 space-y-3 bg-foreground primary-shadow
+     "><div class="flex flex-col gap-4 md:gap-0 md:flex-row items-start justify-between"><div class="flex flex-col gap-2"><h1 class="text-base font-semibold">Long/Short Trades</h1><p class="text-sm mr-4">You can analyze data from all the trades you opened in your trading account. Filter them by "LONG", "SHORT" or look at "ALL" your trades.</p></div><div class="flex items-center dashboard-long-short-trades-options"><button class="py-2 px-3 text-sm border-t border-b border-l rounded-tl-md rounded-bl-md border-primary-border bg-primary-bg text-primary-text">All</button><button class="py-2 px-3 text-sm border-t border-b border-primary-border bg-transparent">Long</button><button class="py-2 px-3 text-sm border-t border-b border-r rounded-tr-md rounded-br-md border-primary-border bg-transparent">Short</button></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"><div class="col-span-1 flex flex-row md:flex-col  items-center space-y-4"><div class="space-y-2 text-center"><div class="headline-normal-400 truncate-text">Total Trades</div><div class="text-lg">0</div></div><div style="height: 200px; width: 200px; min-height: 200px;"><div id="apexcharts7j3pvryh" class="apexcharts-canvas apexcharts7j3pvryh" style="width: 200px; height: 200px;"><svg xmlns="http://www.w3.org/2000/svg" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" width="200" height="200" role="application" aria-label="donut chart with 3 data series"><foreignObject x="0" y="0" width="200" height="200"></foreignObject><g class="apexcharts-inner apexcharts-graphical"><defs></defs></g></svg><div class="apexcharts-legend"></div></div></div></div><div class="col-span-1 space-y-2 e-full"><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Total Winners</p><p class="text-xs min-w-max">0</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Best Win</p><p class="text-xs min-w-max">-</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Average Win</p><p class="text-xs min-w-max">-</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Avg Win Duration</p><p class="text-xs min-w-max">0s</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Avg Win Streak</p><p class="text-xs min-w-max">0</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Max Win Streak</p><p class="text-xs min-w-max">0</p></div></div></div><div class="col-span-1 space-y-2"><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Total Losers</p><p class="text-xs min-w-max">0</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Worst Loss</p><p class="text-xs min-w-max">-</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Average Loss</p><p class="text-xs min-w-max">-</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Avg Loss Duration</p><p class="text-xs min-w-max">NaNs</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Avg Loss Streak</p><p class="text-xs min-w-max">0</p></div></div><div><div class="w-full py-1 border-b flex items-center border-primary-border"><p class="text-sm truncate grow mr-2">Max Loss Streak</p><p class="text-xs min-w-max">0</p></div></div></div></div></div><div class="col-span-1 lg:col-span-5 rounded-2xl border border-border-subtle p-5 bg-foreground space-y-2 primary-shadow"><div class="flex items-center justify-between flex-row"><div class="flex items-center trade-options"><button class="py-2 px-3 text-sm border-t border-b border-l rounded-tl-md rounded-bl-md  border-primary-border bg-primary-bg text-primary-text">Recent Trades</button><button class="py-2 px-3 text-sm border-t border-b border-r rounded-tr-md rounded-br-md  border-primary-border bg-transparent">Open Trades</button></div><a class="flex text-sm md: items-center gap-1 headline-small-550 cursor-pointer" href="trade-history.html"><span>View More</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg></a></div><div class="w-full trade-table"><table class="w-full table"><thead><tr class="sticky top-0 border-b border-primary-border"><td class="text-sm py-2 font-semibold text-left">Close date</td><td class="text-sm py-2 font-semibold text-left">Symbol</td><td class="text-sm py-2 font-semibold text-right">P&amp;L</td></tr></thead><tbody></tbody></table></div></div></div><div class="space-y-4"></div><div class="space-y-4"></div></div></div></div></div></main></div><section class="Toastify" aria-live="polite" aria-atomic="false" aria-relevant="additions text" aria-label="Notifications Alt+T"></section><div data-rht-toaster="" style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div><script src="assets/js/dashboard-local.js"></script><script src="assets/js/dashboard-shell.js" defer></script>
+<script src="assets/js/pages-upgrade.js"></script></body></html>

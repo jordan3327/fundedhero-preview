@@ -514,7 +514,7 @@ jQuery(function ($) {
 (function () {
     'use strict';
 
-    var TARGET = document.getElementById('gt-wrapper-45572365');
+    var TARGETS = document.querySelectorAll('.gtranslate_wrapper');
 
     function flagRoot() {
         var el = document.querySelector('script[src*="variation-cards.js"]');
@@ -525,24 +525,28 @@ jQuery(function ($) {
     }
 
     function fixFlags() {
-        if (!TARGET) return true;
+        if (!TARGETS.length) return true;
         var root = flagRoot();
         var total = 0;
+        var pending = 0;
 
-        TARGET.querySelectorAll('img').forEach(function (img) {
-            var lang = (img.getAttribute('alt') || '').trim();
-            if (!lang) return;
-            total += 1;
-            var local = root + lang + '.svg';
-            var lazy = img.getAttribute('data-gt-lazy-src');
-            if (lazy) img.setAttribute('data-gt-lazy-src', local);
-            var src = img.getAttribute('src') || '';
-            if (!src || src.indexOf('/flags/') !== -1) {
-                img.setAttribute('src', local);
-            }
+        TARGETS.forEach(function (TARGET) {
+            TARGET.querySelectorAll('img').forEach(function (img) {
+                var lang = (img.getAttribute('alt') || '').trim();
+                if (!lang) return;
+                total += 1;
+                var local = root + lang + '.svg';
+                var lazy = img.getAttribute('data-gt-lazy-src');
+                if (lazy) img.setAttribute('data-gt-lazy-src', local);
+                var src = img.getAttribute('src') || '';
+                if (!src || src.indexOf('/flags/') !== -1) {
+                    img.setAttribute('src', local);
+                }
+            });
+            pending += TARGET.querySelectorAll('.gt_options img').length;
         });
 
-        return TARGET.querySelectorAll('.gt_options img').length > 0;
+        return pending > 0;
     }
 
     function initFlags() {
@@ -595,18 +599,15 @@ jQuery(function ($) {
 })();
 
 /* ====================================================================
- * FONDO DE PARTÍCULAS DORADAS — cola desvanecida (fundedherofutures.com)
+ * PARTICLE DRIFT — ASCII particle drift effect (gold palette)
  * --------------------------------------------------------------------
- * Replica exacta del sistema inline `.golden-particles-bg` del sitio real
- * (mismos sprites de brillo #edc940, densidad, tamaños, velocidades,
- * twinkle, constelación a 110 px y repulsión/links al cursor) pero con
- * una diferencia: el lienzo se extiende ~2.5x la altura del héroe hacia
- * abajo, de modo que las partículas NO se cortan al terminar el bloque
- * del hero sino que se desvanecen de forma natural en la sección negra
- * siguiente (la máscara CSS de #pf-golden-ext se encarga del fade).
+ * Replaces the old golden-dots system. ASCII characters drift downward,
+ * beams move upward, proximity connections link nearby nodes, and the
+ * mouse creates bright gold connection lines. Canvas extends 2.5x below
+ * the hero for a natural fade into the next section.
  *
- * El juego no pisa nada: detiene el sistema inline (vía _destroyParticles)
- * y arriba con la misma visual pero con el desvanecimiento inferior.
+ * Orchestrates the same boot/stripLegacy lifecycle as before: destroys
+ * the inline canvas and re-creates with the extended tail.
  * ================================================================== */
 (function () {
     'use strict';
@@ -615,39 +616,30 @@ jQuery(function ($) {
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var isSmall = window.matchMedia('(max-width: 640px)').matches;
 
-    var EXTEND = 2.5;                 // lienzo = héroe x EXTEND (cola abajo)
+    var EXTEND = 2.5;
     var EXTEND_MOBILE = 2.5;
 
-    var KEY = 'pfGoldenExtBoot';
+    var KEY = 'pfParticleDriftBoot';
 
-    function makeSprite(radius, stops) {
-        var c = document.createElement('canvas');
-        c.width = radius * 2;
-        c.height = radius * 2;
-        var g = c.getContext('2d');
-        var grad = g.createRadialGradient(radius, radius, 0, radius, radius, radius);
-        for (var i = 0; i < stops.length; i++) grad.addColorStop(stops[i][0], stops[i][1]);
-        g.fillStyle = grad;
-        g.fillRect(0, 0, radius * 2, radius * 2);
-        return c;
+    var CHARS = ['F', 'H'];
+    var PROXIMITY_DIST = 120;
+    var MOUSE_DIST = 180;
+
+    var GOLD = [228, 184, 51];
+    var GOLD_BRIGHT = [248, 223, 81];
+
+    function nodeCount(cw, ch) {
+        var area = cw * ch;
+        var density = reduced ? 0.00003 : (isSmall ? 0.00006 : 0.00008);
+        var count = Math.round(area * density);
+        var minC = reduced ? 10 : (isSmall ? 18 : 30);
+        var maxC = reduced ? 35 : (isSmall ? 55 : 100);
+        return Math.max(minC, Math.min(maxC, count));
     }
 
-    var sprites = {
-        normal: makeSprite(20, [[0, 'rgba(255,217,122,1)'], [0.35, 'rgba(237,201,64,0.55)'], [1, 'rgba(237,201,64,0)']]),
-        bokeh: makeSprite(30, [[0, 'rgba(237,201,64,0.8)'], [0.4, 'rgba(237,201,64,0.30)'], [1, 'rgba(237,201,64,0)']]),
-        spark: makeSprite(14, [[0, 'rgba(255,243,207,1)'], [0.5, 'rgba(255,243,207,0.5)'], [1, 'rgba(255,243,207,0)']])
-    };
-
-    var MAX_LINK_DIST = reduced ? 0 : 110;
-    var GRID_SIZE = 110;
-
-    function computeCount(cw, ch) {
-        var area = cw * ch;
-        var density = reduced ? 0.00004 : (isSmall ? 0.00008 : 0.00012);
-        var count = Math.round(area * density);
-        var minC = reduced ? 12 : (isSmall ? 24 : 36);
-        var maxC = reduced ? 50 : (isSmall ? 90 : 360);
-        return Math.max(minC, Math.min(maxC, count));
+    function beamCount() {
+        if (reduced) return 0;
+        return isSmall ? 15 : 25;
     }
 
     function boot(container) {
@@ -667,12 +659,34 @@ jQuery(function ($) {
         var rawDpr = window.devicePixelRatio || 1;
         var dpr = Math.min(rawDpr, isSmall ? 1.5 : 2);
 
+        // El lienzo se inserta dentro del stacking context del hero (.gb-element-d2b7680a,
+        // z-index:9). Con z-index:-1 en la raíz quedaba detrás de toda la capa del hero y
+        // nunca era visible. Aquí vive bajo el texto (in-flow) pero sobre el fondo del hero.
+        var host = container.querySelector('.gb-element-d2b7680a') || container;
+
         var canvas = document.createElement('canvas');
         canvas.id = 'pf-golden-ext';
         canvas.setAttribute('aria-hidden', 'true');
-        container.appendChild(canvas);
+        host.appendChild(canvas);
         var ctx = canvas.getContext('2d', { alpha: true });
         if (!ctx) return;
+
+        canvas.style.position = 'absolute';
+        canvas.style.zIndex = '-1';
+        canvas.style.pointerEvents = 'none';
+
+        function positionCanvas() {
+            if (host === container) {
+                canvas.style.top = '0px';
+                canvas.style.left = '0px';
+                return;
+            }
+            var cr = container.getBoundingClientRect();
+            var hr = host.getBoundingClientRect();
+            canvas.style.top = Math.round(cr.top - hr.top) + 'px';
+            canvas.style.left = Math.round(cr.left - hr.left) + 'px';
+        }
+        positionCanvas();
 
         canvas.style.width = cw + 'px';
         canvas.style.height = ch + 'px';
@@ -680,15 +694,13 @@ jQuery(function ($) {
         canvas.height = Math.max(1, Math.floor(ch * dpr));
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        var particles = [];
+        var nodes = [];
+        var beams = [];
         var rafId = null;
         var running = false;
         var lastTime = 0;
         var pointer = { x: -1e4, y: -1e4, active: false };
 
-        // Desvanecimiento natural de la cola: las partículas siguen visibles
-        // hasta `fadeStart` px por debajo del borde inferior del héroe y luego
-        // se funden progresivamente hasta desaparecer al final del lienzo.
         var fadeStart = heroH + 240;
         var fadeSpan = Math.max(1, ch - fadeStart);
         function fadeAt(y) {
@@ -697,159 +709,129 @@ jQuery(function ($) {
             return Math.max(0, 1 - t * t);
         }
 
-        function resetP(p, randomY) {
-            p.x = Math.random() * cw;
-            p.y = randomY ? Math.random() * ch : -10;
-            var mobile = isSmall ? 0.8 : 1;
-            if (p.kind === 1) {
-                p.size = (isSmall ? 2.5 : 4) + Math.random() * (isSmall ? 2.5 : 4);
-                p.speedX = (Math.random() * 0.4 - 0.2) * 0.6 * mobile;
-                p.speedY = (Math.random() * 0.5 + 0.25) * mobile;
-                p.opacity = Math.random() * 0.18 + 0.1;
-            } else if (p.kind === 2) {
-                p.size = Math.random() * 0.9 + 0.6;
-                p.speedX = (Math.random() * 0.6 - 0.3) * mobile;
-                p.speedY = (Math.random() * 1.2 + 2) * mobile;
-                p.opacity = Math.random() * 0.2 + 0.75;
-            } else {
-                p.size = Math.random() * (isSmall ? 2.2 : 3) + 0.8;
-                p.speedX = (Math.random() * 0.5 - 0.25) * mobile;
-                p.speedY = (Math.random() * 1 + 0.5) * mobile;
-                p.opacity = Math.random() * 0.5 + 0.3;
+        function initNodes() {
+            var n = nodeCount(cw, ch);
+            nodes = new Array(n);
+            for (var i = 0; i < n; i++) {
+                nodes[i] = {
+                    x: Math.random() * cw,
+                    y: Math.random() * ch,
+                    vy: 0.1 + Math.random() * 0.4,
+                    char: CHARS[Math.floor(Math.random() * CHARS.length)]
+                };
             }
-            p.sway = 0.12 + Math.random() * 0.3;
+        }
+
+        function initBeams() {
+            var n = beamCount();
+            beams = new Array(n);
+            for (var i = 0; i < n; i++) {
+                beams[i] = {
+                    x: Math.random() * cw,
+                    y: Math.random() * ch,
+                    length: 50 + Math.random() * 100,
+                    speed: 3 + Math.random() * 6,
+                    opacity: 0.3 + Math.random() * 0.5
+                };
+            }
         }
 
         function initParticles() {
-            var n = computeCount(cw, ch);
-            particles = new Array(n);
-            for (var i = 0; i < n; i++) {
-                var r = Math.random();
-                var kind = r < 0.75 ? 0 : (r < 0.90 ? 1 : 2);
-                particles[i] = { kind: kind, phase: Math.random() * Math.PI * 2, twinkle: 0.4 + Math.random() * 1.6 };
-                resetP(particles[i], true);
-            }
-        }
-
-        function updateP(p, dt) {
-            var dx = p.speedX * dt * 60 + Math.sin(p.y * 0.006 + p.phase) * p.sway * dt * 60;
-            var dy = p.speedY * dt * 60;
-            if (pointer.active) {
-                var dxp = p.x - pointer.x;
-                var dyp = p.y - pointer.y;
-                var d2 = dxp * dxp + dyp * dyp;
-                if (d2 < 25600 && d2 > 0.01) {
-                    var d = Math.sqrt(d2);
-                    var f = (1 - d / 160) * 90 * dt;
-                    dx += (dxp / d) * f;
-                    dy += (dyp / d) * f;
-                }
-            }
-            p.x += dx;
-            p.y += dy;
-            if (p.y > ch + 14) resetP(p, false);
-            if (p.x < -14 || p.x > cw + 14) p.x = Math.random() * cw;
-        }
-
-        function buildGrid() {
-            var cols = Math.max(1, Math.ceil(cw / GRID_SIZE));
-            var rows = Math.max(1, Math.ceil(ch / GRID_SIZE));
-            var grid = new Map();
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                var c = Math.floor(p.x / GRID_SIZE);
-                var r = Math.floor(p.y / GRID_SIZE);
-                var key = c + ',' + r;
-                if (!grid.has(key)) grid.set(key, []);
-                grid.get(key).push(i);
-            }
-            return { grid: grid, cols: cols, rows: rows };
-        }
-
-        function drawLinks() {
-            var grid = buildGrid().grid;
-            ctx.lineWidth = 0.6;
-            for (var key of grid.keys()) {
-                var parts = key.split(',');
-                var c = parseInt(parts[0], 10);
-                var r = parseInt(parts[1], 10);
-                var arr = grid.get(key);
-                var neighbors = [];
-                for (var dc = 0; dc <= 1; dc++) {
-                    for (var dr = -1; dr <= 1; dr++) {
-                        var nk = (c + dc) + ',' + (r + dr);
-                        if (grid.has(nk)) neighbors.push(grid.get(nk));
-                    }
-                }
-                for (var i = 0; i < arr.length; i++) {
-                    var pi = particles[arr[i]];
-                    for (var nl = 0; nl < neighbors.length; nl++) {
-                        var list = neighbors[nl];
-                        for (var k = 0; k < list.length; k++) {
-                            var j = list[k];
-                            if (j <= arr[i]) continue;
-                            var pj = particles[j];
-                            var dx = pi.x - pj.x;
-                            var dy = pi.y - pj.y;
-                            var dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < MAX_LINK_DIST) {
-                                var alpha = 0.15 * (1 - dist / MAX_LINK_DIST);
-                                ctx.strokeStyle = 'rgba(237,201,64,' + (alpha * Math.min(fadeAt(pi.y), fadeAt(pj.y))).toFixed(3) + ')';
-                                ctx.beginPath();
-                                ctx.moveTo(pi.x, pi.y);
-                                ctx.lineTo(pj.x, pj.y);
-                                ctx.stroke();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        function drawPointerLinks() {
-            if (!pointer.active) return;
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                var dx = p.x - pointer.x;
-                var dy = p.y - pointer.y;
-                var d2 = dx * dx + dy * dy;
-                if (d2 < 12100) {
-                    var d = Math.sqrt(d2);
-                    var a = 0.35 * (1 - d / 110) * fadeAt(p.y);
-                    ctx.strokeStyle = 'rgba(237,201,64,' + a.toFixed(3) + ')';
-                    ctx.lineWidth = 0.8;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(pointer.x, pointer.y);
-                    ctx.stroke();
-                }
-            }
+            initNodes();
+            initBeams();
         }
 
         function tick(now) {
             if (!running) return;
             var dt = Math.min(0.05, (now - lastTime) / 1000);
             lastTime = now;
-            var t = now / 1000;
 
             ctx.clearRect(0, 0, cw, ch);
 
-            ctx.globalCompositeOperation = 'lighter';
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                updateP(p, dt);
-                var tw = 0.72 + 0.28 * Math.sin(now * p.twinkle + p.phase);
-                ctx.globalAlpha = Math.max(0.04, p.opacity * tw) * fadeAt(p.y);
-                var sprite = p.kind === 1 ? sprites.bokeh : (p.kind === 2 ? sprites.spark : sprites.normal);
-                var r = p.size * (p.kind === 1 ? 2.6 : 2.2);
-                ctx.drawImage(sprite, p.x - r, p.y - r, r * 2, r * 2);
+            // 1. Upward Beams
+            for (var i = 0; i < beams.length; i++) {
+                var b = beams[i];
+                b.y -= b.speed * dt * 60;
+                if (b.y + b.length < 0) {
+                    b.y = ch + 100;
+                    b.x = Math.random() * cw;
+                }
+                var fa_b = fadeAt(b.y + b.length * 0.5);
+                if (fa_b <= 0.01) continue;
+                var g = ctx.createLinearGradient(b.x, b.y, b.x, b.y + b.length);
+                g.addColorStop(0, 'rgba(' + GOLD_BRIGHT.join(',') + ',' + (b.opacity * fa_b).toFixed(3) + ')');
+                g.addColorStop(1, 'rgba(' + GOLD_BRIGHT.join(',') + ',0)');
+                ctx.strokeStyle = g;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(b.x, b.y);
+                ctx.lineTo(b.x, b.y + b.length);
+                ctx.stroke();
             }
-            ctx.globalCompositeOperation = 'source-over';
 
+            // 2. Proximity Lines
             if (!reduced) {
-                drawLinks();
-                drawPointerLinks();
+                ctx.lineWidth = 0.5;
+                for (var i = 0; i < nodes.length; i++) {
+                    var ni = nodes[i];
+                    var fi = fadeAt(ni.y);
+                    if (fi <= 0.01) continue;
+                    for (var j = i + 1; j < nodes.length; j++) {
+                        var nj = nodes[j];
+                        var fj = fadeAt(nj.y);
+                        if (fj <= 0.01) continue;
+                        var d = Math.hypot(ni.x - nj.x, ni.y - nj.y);
+                        if (d < PROXIMITY_DIST) {
+                            var alpha = 0.15 * (1 - d / PROXIMITY_DIST) * Math.min(fi, fj);
+                            ctx.strokeStyle = 'rgba(' + GOLD.join(',') + ',' + alpha.toFixed(3) + ')';
+                            ctx.beginPath();
+                            ctx.moveTo(ni.x, ni.y);
+                            ctx.lineTo(nj.x, nj.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
             }
+
+            // 3. ASCII Nodes
+            ctx.font = '12px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i];
+                n.y += n.vy * dt * 60;
+                if (n.y > ch + 20) {
+                    n.y = -20;
+                    n.x = Math.random() * cw;
+                }
+
+                var dist = Math.hypot(pointer.x - n.x, pointer.y - n.y);
+
+                if (dist < MOUSE_DIST || Math.random() > 0.98) {
+                    n.char = CHARS[Math.floor(Math.random() * CHARS.length)];
+                }
+
+                if (!reduced && pointer.active && dist < MOUSE_DIST) {
+                    var ma = 0.5 * (1 - dist / MOUSE_DIST) * fadeAt(n.y);
+                    ctx.strokeStyle = 'rgba(' + GOLD_BRIGHT.join(',') + ',' + ma.toFixed(3) + ')';
+                    ctx.lineWidth = 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(n.x, n.y);
+                    ctx.lineTo(pointer.x, pointer.y);
+                    ctx.stroke();
+                }
+
+                var fa = fadeAt(n.y);
+                if (fa <= 0.01) continue;
+                if (pointer.active && dist < MOUSE_DIST) {
+                    ctx.fillStyle = 'rgba(' + GOLD_BRIGHT.join(',') + ',' + (0.9 * fa).toFixed(3) + ')';
+                } else {
+                    ctx.fillStyle = 'rgba(' + GOLD.join(',') + ',' + (0.45 * fa).toFixed(3) + ')';
+                }
+                ctx.fillText(n.char, n.x, n.y);
+            }
+
             rafId = requestAnimationFrame(tick);
         }
 
@@ -904,6 +886,7 @@ jQuery(function ($) {
             ch = Math.max(1, Math.round(heroH * (isSmall ? EXTEND_MOBILE : EXTEND)));
             fadeStart = heroH + 240;
             fadeSpan = Math.max(1, ch - fadeStart);
+            positionCanvas();
             canvas.style.width = cw + 'px';
             canvas.style.height = ch + 'px';
             canvas.width = Math.max(1, Math.floor(cw * dpr));
@@ -943,8 +926,8 @@ jQuery(function ($) {
             setTimeout(run, 60);
             setTimeout(run, 400);
         }
-        if (!window.__pfGoldenBootFallback) {
-            window.__pfGoldenBootFallback = true;
+        if (!window.__pfParticleDriftFallback) {
+            window.__pfParticleDriftFallback = true;
             var tries = 0;
             var t = setInterval(function () {
                 tries++;
@@ -956,9 +939,6 @@ jQuery(function ($) {
     }
     bootWhenReady();
 
-    // Quita cualquier lienzo del sistema inline que pudiera quedar vivo
-    // (el script original crea el suyo en DOMContentLoaded; si corre después
-    // del nuestro, este barrido lo elimina y detiene en cuanto aparece).
     function stripLegacy() {
         var list = document.querySelectorAll('.golden-particles-bg');
         for (var i = 0; i < list.length; i++) {

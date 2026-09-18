@@ -1,0 +1,32 @@
+Challenge: Step Two 50K - Phase 1
+Account status
+FAILED
+EVAL VOL | 785c33af-1f94-4fdc-ae71-8c732ad7540b | FDH03066
+Reset
+MG
+Hello, Mina
+
+Here's an overview of your trading performance.
+
+New Challenge
+Total payouts
+0.00
+Total accounts
+2
+Passed accounts
+0
+Funded accounts
+0
+Total trades
+176
+Total P&L
+-$3.929,60
+Search accounts
+Status
+Active
+
+No active accounts
+
+You don’t have any active accounts right now. Purchase a new challenge to get started.
+
+Buy Challenge

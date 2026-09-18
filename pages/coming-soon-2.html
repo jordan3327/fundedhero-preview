@@ -10,7 +10,7 @@
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="Coming Soon" />
-	<meta property="og:description" content="Partículas #edc940 Coming Soon&nbsp;FundedHero Futures Get your chance to win a $200K funded account! Enter your information below to join now. November 1st Countdown 00 Days 00 Hours 00 Minutes 00 Seconds The day has arrived!" />
+	<meta property="og:description" content="Particle Drift Coming Soon&nbsp;FundedHero Futures Get your chance to win a $200K funded account! Enter your information below to join now. November 1st Countdown 00 Days 00 Hours 00 Minutes 00 Seconds The day has arrived!" />
 	<meta property="og:url" content="https://fundedherofutures.com/coming-soon-2/" />
 	<meta property="og:site_name" content="FundedHero Futures" />
 	<meta property="article:modified_time" content="2025-11-01T05:28:04+00:00" />
@@ -880,140 +880,210 @@ src="https://www.facebook.com/tr?id=2151047898629472&ev=PageView&noscript=1" />
 		<div class="entry-content" itemprop="text">
 			
 <div class="gb-element-877e1104 golden-particles-bg">
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    
-    
-    <title>Partículas #edc940</title>
-    <style>
-        .golden-particles-bg {
-            position: relative;
-            overflow: hidden;
-        }
+<style>
+    .golden-particles-bg { position: relative; overflow: visible; z-index: auto; }
+    .gb-element-877e1104.golden-particles-bg { background-color: transparent; }
+    .golden-particles-bg canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        display: block;
+        z-index: -1;
+    }
+    .golden-particles-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(120% 120% at 50% 30%,
+            transparent 0%,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(10, 10, 12, 0.35) 100%);
+    }
+</style>
+<script>
+    (function () {
+        'use strict';
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var isSmall = window.matchMedia('(max-width: 640px)').matches;
+        var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*()'.split('');
+        var GOLD = [228, 184, 51];
+        var GOLD_BRIGHT = [248, 223, 81];
+        var PROXIMITY_DIST = 120;
+        var MOUSE_DIST = 180;
 
-        .golden-particles-bg canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const containers = document.querySelectorAll('.golden-particles-bg');
-            
-            containers.forEach(container => {
-                const canvas = document.createElement('canvas');
-                container.appendChild(canvas);
-                const ctx = canvas.getContext('2d');
+        function setupContainer(container) {
+            var canvas = document.createElement('canvas');
+            container.appendChild(canvas);
+            var ctx = canvas.getContext('2d', { alpha: true });
+            if (!ctx) return;
 
-                function resizeCanvas() {
-                    canvas.width = container.offsetWidth;
-                    canvas.height = container.offsetHeight;
+            var rawDpr = window.devicePixelRatio || 1;
+            var dpr = Math.min(rawDpr, isSmall ? 1.5 : 2);
+            var cw, ch;
+            var nodes = [];
+            var beams = [];
+            var pointer = { x: -1e4, y: -1e4, active: false };
+            var rafId = null;
+            var running = false;
+            var lastTime = 0;
+
+            function resize() {
+                cw = container.clientWidth || 1;
+                ch = container.clientHeight || 1;
+                canvas.width = Math.max(1, Math.floor(cw * dpr));
+                canvas.height = Math.max(1, Math.floor(ch * dpr));
+                canvas.style.width = cw + 'px';
+                canvas.style.height = ch + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function initNodes() {
+                var area = cw * ch;
+                var density = reduced ? 0.00003 : (isSmall ? 0.00006 : 0.00008);
+                var count = Math.max(reduced ? 8 : 18, Math.min(reduced ? 35 : 100, Math.round(area * density)));
+                nodes = new Array(count);
+                for (var i = 0; i < count; i++) {
+                    nodes[i] = {
+                        x: Math.random() * cw,
+                        y: Math.random() * ch,
+                        vy: 0.1 + Math.random() * 0.4,
+                        char: CHARS[Math.floor(Math.random() * CHARS.length)]
+                    };
+                }
+            }
+
+            function initBeams() {
+                var n = reduced ? 0 : (isSmall ? 15 : 25);
+                beams = new Array(n);
+                for (var i = 0; i < n; i++) {
+                    beams[i] = {
+                        x: Math.random() * cw,
+                        y: Math.random() * ch,
+                        length: 50 + Math.random() * 100,
+                        speed: 3 + Math.random() * 6,
+                        opacity: 0.3 + Math.random() * 0.5
+                    };
+                }
+            }
+
+            function init() { resize(); initNodes(); initBeams(); }
+
+            function tick(now) {
+                if (!running) return;
+                var dt = Math.min(0.05, (now - lastTime) / 1000);
+                lastTime = now;
+                ctx.clearRect(0, 0, cw, ch);
+
+                for (var i = 0; i < beams.length; i++) {
+                    var b = beams[i];
+                    b.y -= b.speed * dt * 60;
+                    if (b.y + b.length < 0) { b.y = ch + 100; b.x = Math.random() * cw; }
+                    var g = ctx.createLinearGradient(b.x, b.y, b.x, b.y + b.length);
+                    g.addColorStop(0, 'rgba(' + GOLD_BRIGHT.join(',') + ',' + b.opacity + ')');
+                    g.addColorStop(1, 'rgba(' + GOLD_BRIGHT.join(',') + ',0)');
+                    ctx.strokeStyle = g;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(b.x, b.y);
+                    ctx.lineTo(b.x, b.y + b.length);
+                    ctx.stroke();
                 }
 
-                resizeCanvas();
-                
-                const resizeObserver = new ResizeObserver(() => {
-                    resizeCanvas();
-                    init();
-                });
-                resizeObserver.observe(container);
-
-                class Particle {
-                    constructor() {
-                        this.reset();
-                        this.y = Math.random() * canvas.height;
-                        this.opacity = Math.random() * 0.35 + 0.2;
-                    }
-
-                    reset() {
-                        this.x = Math.random() * canvas.width;
-                        this.y = -10;
-                        this.size = Math.random() * 3 + 1;
-                        this.speedX = Math.random() * 0.5 - 0.25;
-                        this.speedY = Math.random() * 1 + 0.5;
-                        this.opacity = Math.random() * 0.35 + 0.2;
-                    }
-
-                    update() {
-                        this.x += this.speedX;
-                        this.y += this.speedY;
-
-                        if (this.y > canvas.height) {
-                            this.reset();
-                        }
-
-                        if (this.x < 0 || this.x > canvas.width) {
-                            this.x = Math.random() * canvas.width;
-                        }
-                    }
-
-                    draw() {
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(237, 201, 64, ${this.opacity})`;
-                        ctx.fill();
-
-                        ctx.shadowBlur = 10;
-                        ctx.shadowColor = '#edc940';
-                    }
-                }
-
-                let particles = [];
-                const particleCount = 100;
-
-                function init() {
-                    particles = [];
-                    for (let i = 0; i < particleCount; i++) {
-                        particles.push(new Particle());
-                    }
-                }
-
-                function connectParticles() {
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const dx = particles[i].x - particles[j].x;
-                            const dy = particles[i].y - particles[j].y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-
-                            if (distance < 120) {
+                if (!reduced) {
+                    ctx.lineWidth = 0.5;
+                    for (var i = 0; i < nodes.length; i++) {
+                        for (var j = i + 1; j < nodes.length; j++) {
+                            var d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                            if (d < PROXIMITY_DIST) {
+                                var alpha = 0.15 * (1 - d / PROXIMITY_DIST);
+                                ctx.strokeStyle = 'rgba(' + GOLD.join(',') + ',' + alpha.toFixed(3) + ')';
                                 ctx.beginPath();
-                                ctx.strokeStyle = `rgba(237, 201, 64, ${0.15 * (1 - distance / 120)})`;
-                                ctx.lineWidth = 0.5;
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
                                 ctx.stroke();
                             }
                         }
                     }
                 }
 
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    particles.forEach(particle => {
-                        particle.update();
-                        particle.draw();
-                    });
-
-                    connectParticles();
-
-                    requestAnimationFrame(animate);
+                ctx.font = '12px monospace';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                for (var i = 0; i < nodes.length; i++) {
+                    var n = nodes[i];
+                    n.y += n.vy * dt * 60;
+                    if (n.y > ch + 20) { n.y = -20; n.x = Math.random() * cw; }
+                    var dist = Math.hypot(pointer.x - n.x, pointer.y - n.y);
+                    if (dist < MOUSE_DIST || Math.random() > 0.98) n.char = CHARS[Math.floor(Math.random() * CHARS.length)];
+                    if (!reduced && pointer.active && dist < MOUSE_DIST) {
+                        ctx.strokeStyle = 'rgba(' + GOLD_BRIGHT.join(',') + ',' + (0.5 * (1 - dist / MOUSE_DIST)).toFixed(3) + ')';
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(pointer.x, pointer.y);
+                        ctx.stroke();
+                    }
+                    if (pointer.active && dist < MOUSE_DIST) {
+                        ctx.fillStyle = 'rgba(' + GOLD_BRIGHT.join(',') + ',0.9)';
+                    } else {
+                        ctx.fillStyle = 'rgba(' + GOLD.join(',') + ',0.45)';
+                    }
+                    ctx.fillText(n.char, n.x, n.y);
                 }
+                rafId = requestAnimationFrame(tick);
+            }
 
-                init();
-                animate();
-            });
+            function start() { if (running) return; running = true; lastTime = performance.now(); rafId = requestAnimationFrame(tick); }
+            function stop() { running = false; if (rafId) cancelAnimationFrame(rafId); rafId = null; }
+
+            function onPointerMove(e) {
+                var rect = canvas.getBoundingClientRect();
+                var x = e.clientX - rect.left;
+                var y = e.clientY - rect.top;
+                if (x < 0 || y < 0 || x > cw || y > ch) { pointer.active = false; return; }
+                pointer.x = x;
+                pointer.y = y;
+                pointer.active = true;
+            }
+
+            document.addEventListener('pointermove', onPointerMove, { passive: true });
+            document.addEventListener('pointerleave', function () { pointer.active = false; }, { passive: true });
+            document.addEventListener('pointercancel', function () { pointer.active = false; }, { passive: true });
+            document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+
+            var io = new IntersectionObserver(function (entries) {
+                for (var e = 0; e < entries.length; e++) {
+                    if (entries[e].target === container) {
+                        if (entries[e].isIntersecting) start(); else stop();
+                    }
+                }
+            }, { root: null, threshold: 0 });
+            io.observe(container);
+
+            var ro = new ResizeObserver(function () { init(); });
+            ro.observe(container);
+
+            init();
+            if (container.getBoundingClientRect().top < window.innerHeight && container.getBoundingClientRect().bottom > 0) start();
+
+            container._destroyParticles = function () {
+                stop();
+                io.disconnect();
+                ro.disconnect();
+                document.removeEventListener('pointermove', onPointerMove);
+                canvas.remove();
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.golden-particles-bg').forEach(setupContainer);
         });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3686bfea9a7a0da',t:'MTc4ODY0NDczNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+    })();
+</script>
 
 
 
@@ -1547,7 +1617,7 @@ document.querySelectorAll('.cta-button').forEach(button => {
     // Agrega un evento de clic a cada botón
     button.addEventListener('click', () => {
         // Redirige a la URL especificada
-        window.location.href='https://fundedherofutures.com/#pricing-plan';
+        window.location.href='index.html#pricing-plan';
     });
 });
 </script>
@@ -1558,7 +1628,7 @@ document.querySelectorAll('.cta-login').forEach(button => {
     // Agrega un evento de clic a cada botón
     button.addEventListener('click', () => {
         // Redirige a la URL especificada
-        window.location.href='https://app.fundedherofutures.com';
+        window.location.href='../app/index.html';
     });
 });
 </script>

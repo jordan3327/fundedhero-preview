@@ -1,0 +1,233 @@
+/*
+ * PropFirm Tools — Popup del sorteo
+ * Colores desde la paleta del plugin, con fallback por si no se imprimió.
+ */
+
+.pf-giveaway {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pf-giveaway[hidden] { display: none; }
+
+.pf-giveaway__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .72);
+    backdrop-filter: blur(2px);
+}
+
+.pf-giveaway__modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 34px 30px 30px;
+    border: 1px solid var(--propfirm-border, #333);
+    border-radius: 16px;
+    background: var(--propfirm-item-bg, #1f1f23);
+    color: var(--propfirm-text, #fff);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+    animation: pf-gw-in .28s cubic-bezier(.2, .8, .3, 1);
+}
+
+@keyframes pf-gw-in {
+    from { opacity: 0; transform: translateY(14px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+.pf-giveaway__close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--propfirm-muted-text, #999);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease;
+}
+
+.pf-giveaway__close:hover {
+    background: rgba(255, 255, 255, .08);
+    color: var(--propfirm-text, #fff);
+}
+
+.pf-giveaway__countdown {
+    margin: 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--propfirm-accent, #f8df51);
+}
+
+.pf-giveaway__title {
+    margin: 0 0 10px;
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--propfirm-text, #fff);
+    text-wrap: balance;
+}
+
+.pf-giveaway__text {
+    margin: 0 0 22px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--propfirm-muted-text, #999);
+}
+
+.pf-giveaway__form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pf-giveaway__field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pf-giveaway__field span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--propfirm-muted-text, #999);
+}
+
+.pf-giveaway__field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid var(--propfirm-border, #333);
+    border-radius: 9px;
+    background: var(--propfirm-bg, #141416);
+    color: var(--propfirm-text, #fff);
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.pf-giveaway__field input:focus,
+.pf-giveaway__consent input:focus-visible,
+.pf-giveaway__submit:focus-visible,
+.pf-giveaway__close:focus-visible {
+    outline: 2px solid var(--propfirm-accent, #f8df51);
+    outline-offset: 2px;
+}
+
+.pf-giveaway__field input::placeholder { color: var(--propfirm-muted-text, #777); }
+
+.pf-giveaway__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--propfirm-muted-text, #999);
+    cursor: pointer;
+}
+
+.pf-giveaway__consent input {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    accent-color: var(--propfirm-accent, #f8df51);
+}
+
+.pf-giveaway__consent a {
+    color: var(--propfirm-accent, #f8df51);
+    text-decoration: underline;
+}
+
+/* Trampa antispam: fuera de la vista sin usar display:none, que algunos bots detectan. */
+.pf-giveaway__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.pf-giveaway__error {
+    margin: 0;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: rgba(220, 70, 60, .12);
+    color: #ff8f85;
+    font-size: 13px;
+}
+
+.pf-giveaway__error[hidden] { display: none; }
+
+.pf-giveaway__submit {
+    margin-top: 4px;
+    padding: 14px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--propfirm-accent, #f8df51);
+    color: var(--propfirm-accent-text, #000);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter .2s ease;
+}
+
+.pf-giveaway__submit:hover:not(:disabled) { filter: brightness(1.08); }
+.pf-giveaway__submit:disabled { opacity: .6; cursor: default; }
+
+.pf-giveaway__success {
+    text-align: center;
+    padding: 18px 0 6px;
+}
+
+.pf-giveaway__success[hidden] { display: none; }
+
+.pf-giveaway__check {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--propfirm-accent, #f8df51);
+    color: var(--propfirm-accent-text, #000);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.pf-giveaway__success h3 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    color: var(--propfirm-text, #fff);
+}
+
+.pf-giveaway__success p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--propfirm-muted-text, #999);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-giveaway__modal { animation: none; }
+}
+
+@media (max-width: 480px) {
+    .pf-giveaway { padding: 12px; }
+    .pf-giveaway__modal { padding: 30px 20px 24px; }
+    .pf-giveaway__title { font-size: 22px; }
+}

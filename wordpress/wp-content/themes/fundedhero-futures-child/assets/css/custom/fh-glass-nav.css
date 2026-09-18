@@ -153,30 +153,51 @@
   color: #e4b833 !important;
 }
 
-/* Boton Get Funded: dorado solido elegante, sin reflejos en movimiento. */
+/* Boton Get Funded: oro fundido compacto para acompanar el logo azul. */
 .site-header .cta-button.super-btn {
-  background: linear-gradient(135deg, #d4a92c, #e4b833) !important;
-  color: #111 !important;
+  background:
+    radial-gradient(circle at 20% 12%, rgba(255, 255, 226, 0.95), transparent 30%),
+    linear-gradient(120deg, #8f4d00 0%, #dea21c 22%, #fff09a 45%, #c98608 68%, #ffd95d 100%) !important;
+  background-size: 180% 180% !important;
+  color: #241200 !important;
   border-radius: 6px !important;
   padding: 10px 26px !important;
-  font-weight: 700 !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(255, 239, 162, 0.6) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 232, 0.75),
+    inset 0 -6px 12px rgba(75, 35, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(228, 184, 51, 0.22) !important;
+  text-shadow: 0 1px 0 rgba(255, 245, 186, 0.75) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 0.25s ease !important;
   cursor: pointer;
 }
 
 .site-header .cta-button.super-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+  background-position: 100% 50% !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 232, 0.9),
+    inset 0 -6px 14px rgba(75, 35, 0, 0.16),
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(255, 211, 75, 0.4) !important;
 }
 
 .site-header .cta-login {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-transform: none;
   background: rgba(255, 255, 255, 0.06) !important;
   color: #fff !important;
   border-radius: 6px !important;
   padding: 10px 26px !important;
-  font-weight: 600 !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);

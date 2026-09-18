@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="icon" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/dashboard-improved.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body class="antialiased" style="--background:#0A0A0A;--foreground:#111111;--text-color:#FFFFFF;--text-muted:#A7A7A7;--primary-bg:#DDB231;--primary-text:#000000;--primary-border:#FFC629;--secondary-bg:#1F1F24;--secondary-text:#FFFFFF;--success-bg:#133826;--success-gradient:#17D3997D;--success-text:#07c585;--error-bg:#FF4F52;--error-text:#FF4F52;--tertiary-bg:#4A4A4A;--tertiary-text:#A7A7A7;--table-row:#181818;--border-normal:#A7A7A7;--border-success:#78B0A1;--border-error:#9F5653;--border-disabled:#1F1F1F;--calendar-success:#78B0A1;--calendar-error:#F6BFBD;--warning-bg:#4A3A12;--warning-text:#FFC107;--border-muted:#2A2C40;--border-subtle:#1A1B2A;--card-bg:#111111;--card-primary-bg:#FFC62914;--font-family:Satoshi">
+
+  <div class="app-shell">
+
+    <aside class="sb" id="sidebar">
+      <div class="sb-head">
+        <img class="sb-logo" src="assets/images/logo_sidebar.png" alt="Funded Hero" />
+        <button class="sb-close" id="sb-close" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <button class="sb-cta" data-buy>
+        Buy Challenge
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;transform:rotate(-45deg)"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <nav class="sb-nav">
+        <a class="sb-link active" href="dashboard.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><span>Dashboard</span></a>
+        <a class="sb-link" href="trade-history.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg><span>Trade History</span></a>
+        <div class="sb-link disabled"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><span>Payouts</span></div>
+        <a class="sb-link" href="certificates.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><span>Certificates</span></a>
+        <a class="sb-link" href="my-stats.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg><span>My Stats</span></a>
+        <a class="sb-link" href="offers.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M9 9h.01"/><path d="m15 9-6 6"/><path d="M15 15h.01"/></svg><span>Offers</span></a>
+        <a class="sb-link" href="affiliates.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg><span>Affiliates</span></a>
+        <a class="sb-link" href="https://intercom.help/fundedhero/en/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>FAQ</span></a>
+        <a class="sb-link" href="https://fundedherofutures.com/" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>Website</span></a>
+        <a class="sb-link" href="subscriptions.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span>Subscriptions</span></a>
+        <a class="sb-link" href="account-settings.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><span>Account Settings</span></a>
+      </nav>
+
+      <a class="sb-user" href="account-settings.html">
+        <span class="sb-user-avatar">JG</span>
+        <span class="min-w-0 flex-1">
+          <span class="block u-name">Jordan Steven Mina Girón</span>
+          <span class="block u-sub">View profile</span>
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;color:var(--text-muted);flex-shrink:0"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+
+      <button class="sb-logout" data-logout>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        Logout
+      </button>
+    </aside>
+
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+    <main class="sb-main">
+      <header class="topbar">
+        <div class="flex items-center gap-3 min-w-0">
+          <button class="btn-ghost hamburger" id="burger" aria-label="Open menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          </button>
+          <div class="breadcrumb">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            <span>/</span>
+            <b>Dashboard</b>
+          </div>
+        </div>
+
+<div class="top-actions">
+              <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" placeholder="Search accounts, trades..." aria-label="Search" />
+              </div>
+              <div class="fh-acc-select" id="fh-acc-select"></div>
+              <button class="icon-btn" id="bell" aria-label="Notifications">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="dot"></span>
+          </button>
+          <button class="platform-btn" id="platform">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+            <span>Platform Login</span>
+          </button>
+          <button class="avatar-btn" id="avatar" aria-label="Profile">JG</button>
+        </div>
+      </header>
+
+      <div class="sb-main-scroll">
+        <div class="sb-content">
+
+          <div class="hi-row">
+            <div>
+              <h1 class="hi-title">Hello, Jordan</h1>
+              <p class="hi-sub">Here's an overview of your trading performance.</p>
+              <span class="live-badge"><span class="pulse"></span> Demo data &middot; updated just now</span>
+            </div>
+            <button class="btn-gold" data-buy>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              New Challenge
+            </button>
+          </div>
+
+          <div class="stats-grid" id="stats"></div>
+
+          <section class="fh-panel fh-terminal">
+            <div class="panel-head">
+              <div>
+                <h3 class="panel-title">Trading terminal</h3>
+                <p class="panel-sub">Bracket-style execution view — simulated candles, no live connection</p>
+              </div>
+              <span class="fh-chip-demo">demo &middot; simulated</span>
+            </div>
+            <div class="fh-term-tools">
+              <div class="fh-term-instr" id="fh-term-instr"></div>
+              <div class="fh-term-quote">
+                <div>
+                  <b id="fh-term-name">ES &middot; E-mini future</b>
+                  <span id="fh-term-point">Point value $50 &middot; ES futures &middot; simulated</span>
+                </div>
+                <div class="fh-term-quote-r">
+                  <b id="fh-term-price">&mdash;</b>
+                  <span id="fh-term-change" class="fh-term-change">&mdash;</span>
+                </div>
+              </div>
+            </div>
+            <div class="fh-term-chart" id="fh-term-chart"></div>
+            <p class="fh-term-note">Demo preview only — this terminal is not connected to any market or broker.</p>
+          </section>
+
+          <div class="panels">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3 class="panel-title">Performance overview</h3>
+                  <p class="panel-sub">Net P&amp;L across all your funded accounts.</p>
+                </div>
+                <div class="seg" id="seg">
+                  <button type="button">1W</button>
+                  <button type="button">1M</button>
+                  <button type="button">3M</button>
+                  <button type="button" class="on">1Y</button>
+                </div>
+              </div>
+              <div class="chart-total">+$33,540.00 <small>Net P&amp;L &middot; last 12 months</small></div>
+              <div class="chart-wrap">
+                <div class="chart-bars" id="chart-bars"></div>
+                <div class="chart-labels" id="chart-labels"></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3 class="panel-title">Recent payouts</h3>
+                  <p class="panel-sub">Latest withdrawals from funded accounts.</p>
+                </div>
+              </div>
+              <div id="payouts"></div>
+            </section>
+          </div>
+
+          <div class="sec-title">
+            <h2>Trading accounts <span>3 active &middot; all funded</span></h2>
+            <button class="btn-outline" data-buy>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+              Get funded
+            </button>
+          </div>
+
+          <div class="accts-grid" id="accounts"></div>
+
+          <div class="fh-sec-head">
+            <h2>Account metrics</h2>
+            <span class="fh-sec-sub">Live account health</span>
+            <span class="fh-chip-demo">demo</span>
+          </div>
+          <div class="fh-metrics" id="fh-metrics"></div>
+
+          <div class="fh-grid-2">
+            <section class="fh-panel">
+              <h3>Performance analytics</h3>
+              <p class="fh-p-sub">Equity curve &amp; session KPIs</p>
+              <div class="fh-equity-wrap" id="fh-equity"></div>
+              <div class="fh-kpis" id="fh-kpis"></div>
+            </section>
+            <section class="fh-panel">
+              <h3>Risk management</h3>
+              <p class="fh-p-sub">Limits &amp; progress against payout targets</p>
+              <div id="fh-risk-status"></div>
+              <div style="margin-bottom:16px"></div>
+              <div id="fh-risk-rows"></div>
+            </section>
+          </div>
+
+          <section class="fh-panel">
+            <div class="panel-head">
+              <div>
+                <h3 class="panel-title">Monthly performance</h3>
+                <p class="panel-sub">Net P&amp;L per month, derived from demo statistics</p>
+              </div>
+              <span class="fh-chip-demo">demo</span>
+            </div>
+            <div class="fh-monthly" id="fh-monthly"></div>
+          </section>
+
+          <div class="fh-sec-head">
+            <h2>Positions &amp; orders</h2>
+            <span class="fh-sec-sub">Execution is not connected yet — interface prepared</span>
+            <span class="fh-chip-demo">demo</span>
+          </div>
+          <div class="fh-grid-2">
+            <section class="fh-panel">
+              <h3>Open positions</h3>
+              <p class="fh-p-sub">Ready to stream when a broker / API is connected</p>
+              <div id="fh-positions"></div>
+            </section>
+            <section class="fh-panel">
+              <h3>Orders</h3>
+              <p class="fh-p-sub">Order tickets &amp; status (prepared)</p>
+              <div id="fh-orders"></div>
+            </section>
+          </div>
+
+          <div class="fh-grid-2">
+            <section class="fh-panel">
+              <h3>Trading calendar</h3>
+              <p class="fh-p-sub">Trading days &amp; daily P&amp;L</p>
+              <div id="fh-cal"></div>
+            </section>
+            <section class="fh-panel">
+              <h3>Notifications</h3>
+              <p class="fh-p-sub">Payout, account &amp; risk events</p>
+              <div id="fh-notif-list"></div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/dashboard-improved.js"></script>
+<script src="assets/vendor/echarts.min.js"></script>
+<script src="assets/js/dashboard-data.js"></script>
+  <script src="assets/js/dashboard-analytics.js"></script>
+  <script src="assets/js/dashboard-charts.js"></script>
+</body>
+</html>
