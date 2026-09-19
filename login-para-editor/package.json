@@ -1,0 +1,10 @@
+{
+  "name": "fundedhero-login",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FundedHero login page — standalone integration package",
+  "scripts": {
+    "start": "npx serve .",
+    "check:js": "node --check assets/js/modern-login.js"
+  }
+}

@@ -1,0 +1,860 @@
+﻿<!-- DIST BUILD login-standalone v1.0.0: CSS+JS inline. Imagenes en ../assets/images/. No editar a mano. -->
+<!DOCTYPE html>
+<!-- FundedHero Login v1.0.0 | Paneles: login/signup/forgot | Ver README.md + docs/INTEGRATION.md -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="FundedHero â€” Sign in to access your dashboard." />
+    <meta name="theme-color" content="#000000" />
+    <title>Funded Hero Futures Dashboard</title>
+    <link rel="icon" href="assets/images/favicon.png" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Styles (inline build) -->
+    <style>
+/* ============================================================
+   Login screen - modern design (21st.dev style)
+   Adapted to the real online login fields/flow
+   (app.fundedherofutures.com): Email, Password, Remember me,
+   Forgot password, Login, Create one, Terms.
+   WebGL dot background: @pulseawan - modern-login-signup
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.ml-root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ml-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.ml-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.ml-card {
+  position: relative;
+  z-index: 2;
+  background: #121212;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #222;
+}
+
+.ml-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  margin-bottom: 0.9rem;
+}
+
+.ml-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+
+.ml-sub {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 1.1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ml-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ml-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.ml-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.ml-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.ml-input::placeholder {
+  color: #666;
+}
+
+.ml-input:focus {
+  border-color: #666;
+}
+
+.ml-remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.ml-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ml-check input {
+  width: 14px;
+  height: 14px;
+  accent-color: #ddb231;
+  cursor: pointer;
+}
+
+.ml-link {
+  color: #888;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.ml-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.ml-submit {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: none;
+  background: #ddb231;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ml-submit:hover {
+  background: #ffc629;
+  box-shadow: 0 6px 20px rgba(255, 198, 41, 0.25);
+}
+
+.ml-switch {
+  margin-top: 1.15rem;
+  font-size: 0.875rem;
+  color: #888;
+  text-align: center;
+}
+
+.ml-switch a,
+.ml-switch button {
+  color: #fff;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.ml-switch a:hover,
+.ml-switch button:hover {
+  text-decoration: underline;
+}
+
+.ml-link-btn {
+  color: #fff;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.ml-link-btn:hover {
+  text-decoration: underline;
+}
+
+.ml-pane {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ml-pane[hidden] {
+  display: none;
+}
+
+.ml-msg {
+  font-size: 0.8rem;
+  color: #ff4f52;
+  background: rgba(255, 79, 82, 0.12);
+  border: 1px solid rgba(255, 79, 82, 0.35);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.ml-msg.ml-success {
+  color: #07c585;
+  background: rgba(7, 197, 133, 0.1);
+  border-color: rgba(7, 197, 133, 0.4);
+}
+
+.ml-msg[hidden] {
+  display: none;
+}
+
+.ml-input-invalid {
+  border-color: #ff4f52 !important;
+}
+
+.ml-agree {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.ml-agree a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.ml-agree a:hover {
+  text-decoration: underline;
+}
+
+.ml-footer {
+  margin-top: 0.85rem;
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ml-footer a {
+  color: #888;
+  text-decoration: none;
+}
+
+.ml-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 440px) {
+  .ml-card {
+    padding: 1.5rem 1.25rem;
+    max-width: calc(100% - 32px);
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="ml-root">
+      <canvas id="ml-canvas" class="ml-canvas"></canvas>
+      <div class="ml-vignette"></div>
+
+      <div class="ml-card">
+        <img class="ml-logo" src="assets/images/logo_auth.png" alt="FundedHero" />
+
+        <!-- LOGIN -->
+        <div class="ml-pane" id="ml-login">
+          <h1 class="ml-title">Welcome back</h1>
+          <p class="ml-sub">Sign in entering the information below</p>
+
+          <form class="ml-form" id="login-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="email">Email</label>
+              <input class="ml-input" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="password">Password</label>
+              <input class="ml-input" id="password" name="password" type="password" autocomplete="current-password" required />
+            </div>
+
+            <div class="ml-remember">
+              <label class="ml-check">
+                <input type="checkbox" id="remember" />
+                Remember me
+              </label>
+              <button class="ml-link" id="forgot-password" type="button">Forgot password</button>
+            </div>
+
+            <div class="ml-msg" id="login-error" role="alert" hidden></div>
+
+            <button type="submit" class="ml-submit">Login</button>
+          </form>
+
+          <div class="ml-switch">
+            Don&rsquo;t have an account?
+            <button class="ml-link-btn" id="create-account" type="button">Create one</button>
+          </div>
+          <div class="ml-footer">
+            By logging in you accept the <a href="../pages/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+          </div>
+        </div>
+
+        <!-- SIGN UP -->
+        <div class="ml-pane" id="ml-signup" hidden>
+          <h1 class="ml-title">Create your account</h1>
+          <p class="ml-sub">Sign up free to start trading with FundedHero</p>
+
+          <form class="ml-form" id="signup-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="first-name">First Name</label>
+              <input class="ml-input" id="first-name" name="firstName" type="text" autocomplete="given-name" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="last-name">Last Name</label>
+              <input class="ml-input" id="last-name" name="lastName" type="text" autocomplete="family-name" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-email">Email</label>
+              <input class="ml-input" id="signup-email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-password">Password</label>
+              <input class="ml-input" id="signup-password" name="password" type="password" autocomplete="new-password" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-password-confirm">Confirm Password</label>
+              <input class="ml-input" id="signup-password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" required />
+            </div>
+
+            <label class="ml-check ml-agree">
+              <input type="checkbox" id="agree-terms" required />
+              <span>I agree to the <a href="../pages/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="../pages/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></span>
+            </label>
+
+            <div class="ml-msg" id="signup-error" role="alert" hidden></div>
+            <div class="ml-msg ml-success" id="signup-success" hidden></div>
+
+            <button type="submit" class="ml-submit">Create account</button>
+          </form>
+
+          <div class="ml-switch">
+            Already have an account?
+            <button class="ml-link-btn" id="back-to-login" type="button">Login</button>
+          </div>
+        </div>
+
+        <!-- FORGOT PASSWORD -->
+        <div class="ml-pane" id="ml-forgot" hidden>
+          <h1 class="ml-title">Reset your password</h1>
+          <p class="ml-sub">Enter your email and we&rsquo;ll send you a reset link</p>
+
+          <form class="ml-form" id="forgot-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="forgot-email">Email</label>
+              <input class="ml-input" id="forgot-email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-msg" id="forgot-error" role="alert" hidden></div>
+            <div class="ml-msg ml-success" id="forgot-success" hidden></div>
+
+            <button type="submit" class="ml-submit">Send reset link</button>
+          </form>
+
+          <div class="ml-switch">
+            <button class="ml-link-btn" id="forgot-back" type="button">Back to login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logic (inline build) -->
+    <script defer>
+/* ============================================================
+   Login screen - modern design (21st.dev style)
+   WebGL dot background: @pulseawan - modern-login-signup
+   Form behaviour mirrors the online login (no backend here).
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ----------------------------- WebGL dots ----------------------------- */
+  var active = true;
+  var renderer, geometry, material, scene, camera, animationId;
+
+  function initThree(THREE) {
+    var canvas = document.getElementById('ml-canvas');
+    if (!canvas || !active) return;
+
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    scene = new THREE.Scene();
+    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    var uniforms = {
+      u_time: { value: 0 },
+      u_resolution: { value: new THREE.Vector2(window.innerWidth * 2, window.innerHeight * 2) },
+      u_opacities: { value: [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1.0] },
+      u_colors: {
+        value: [
+          new THREE.Vector3(1, 1, 1),
+          new THREE.Vector3(1, 1, 1),
+          new THREE.Vector3(1, 1, 1),
+          new THREE.Vector3(1, 1, 1),
+          new THREE.Vector3(1, 1, 1),
+          new THREE.Vector3(1, 1, 1)
+        ]
+      },
+      u_total_size: { value: 20.0 },
+      u_dot_size: { value: 6.0 },
+      u_reverse: { value: 0 }
+    };
+
+    material = new THREE.ShaderMaterial({
+      vertexShader: [
+        'precision mediump float;',
+        'uniform vec2 u_resolution;',
+        'out vec2 fragCoord;',
+        'void main() {',
+        '  gl_Position = vec4(position, 1.0);',
+        '  fragCoord = (position.xy + 1.0) * 0.5 * u_resolution;',
+        '  fragCoord.y = u_resolution.y - fragCoord.y;',
+        '}'
+      ].join('\n'),
+      fragmentShader: [
+        'precision mediump float;',
+        'in vec2 fragCoord;',
+        '',
+        'uniform float u_time;',
+        'uniform float u_opacities[10];',
+        'uniform vec3 u_colors[6];',
+        'uniform float u_total_size;',
+        'uniform float u_dot_size;',
+        'uniform vec2 u_resolution;',
+        'uniform int u_reverse;',
+        '',
+        'out vec4 fragColor;',
+        '',
+        'float PHI = 1.61803398874989484820459;',
+        'float random(vec2 xy) {',
+        '  return fract(tan(distance(xy * PHI, xy) * 0.5) * xy.x);',
+        '}',
+        'void main() {',
+        '  vec2 st = fragCoord.xy;',
+        '  st.x -= abs(floor((mod(u_resolution.x, u_total_size) - u_dot_size) * 0.5));',
+        '  st.y -= abs(floor((mod(u_resolution.y, u_total_size) - u_dot_size) * 0.5));',
+        '',
+        '  float opacity = step(0.0, st.x) * step(0.0, st.y);',
+        '',
+        '  vec2 st2 = vec2(int(st.x / u_total_size), int(st.y / u_total_size));',
+        '',
+        '  float frequency = 5.0;',
+        '  float show_offset = random(st2);',
+        '  float rand = random(st2 * floor((u_time / frequency) + show_offset + frequency));',
+        '  opacity *= u_opacities[int(rand * 10.0)];',
+        '',
+        '  opacity *= 1.0 - step(u_dot_size / u_total_size, fract(st.x / u_total_size));',
+        '  opacity *= 1.0 - step(u_dot_size / u_total_size, fract(st.y / u_total_size));',
+        '',
+        '  vec3 color = u_colors[int(show_offset * 6.0)];',
+        '',
+        '  float animation_speed_factor = 3.0;',
+        '  vec2 center_grid = u_resolution / 2.0 / u_total_size;',
+        '  float dist_from_center = distance(center_grid, st2);',
+        '',
+        '  float timing_offset_intro = dist_from_center * 0.01 + (random(st2) * 0.15);',
+        '',
+        '  opacity *= step(timing_offset_intro, u_time * animation_speed_factor);',
+        '  opacity *= clamp((1.0 - step(timing_offset_intro + 0.1, u_time * animation_speed_factor)) * 1.25, 1.0, 1.25);',
+        '',
+        '  fragColor = vec4(color, opacity);',
+        '  fragColor.rgb *= fragColor.a;',
+        '}'
+      ].join('\n'),
+      uniforms: uniforms,
+      glslVersion: THREE.GLSL3,
+      blending: THREE.CustomBlending,
+      blendSrc: THREE.SrcAlphaFactor,
+      blendDst: THREE.OneFactor,
+      transparent: true
+    });
+
+    geometry = new THREE.PlaneGeometry(2, 2);
+    var mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    var startTime = performance.now();
+    var animate = function () {
+      if (!active) return;
+      animationId = requestAnimationFrame(animate);
+      uniforms.u_time.value = (performance.now() - startTime) / 1000.0;
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    window.addEventListener('resize', handleResize);
+  }
+
+  function handleResize() {
+    if (!renderer) return;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    if (material) {
+      material.uniforms.u_resolution.value.set(window.innerWidth * 2, window.innerHeight * 2);
+    }
+  }
+
+  function loadThree(callback) {
+    if (window.THREE) {
+      callback(window.THREE);
+      return;
+    }
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    script.async = true;
+    script.onload = function () {
+      if (window.THREE) callback(window.THREE);
+    };
+    document.head.appendChild(script);
+  }
+
+  /* ------------------------------- Form ------------------------------- */
+  // Local stand-in for the online dashboard route (app.fundedherofutures.com/dashboard).
+  var LOGIN_REDIRECT = 'dashboard.html';
+
+  var panes = {
+    login: document.getElementById('ml-login'),
+    signup: document.getElementById('ml-signup'),
+    forgot: document.getElementById('ml-forgot')
+  };
+
+  function showPane(name) {
+    Object.keys(panes).forEach(function (key) {
+      if (panes[key]) panes[key].hidden = key !== name;
+    });
+  }
+
+  function setError(msgEl, message) {
+    if (!msgEl) return;
+    msgEl.textContent = message;
+    msgEl.hidden = !message;
+  }
+
+  function emailValid(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  }
+
+  function markInvalid(input, invalid) {
+    if (!input) return;
+    if (invalid) {
+      input.classList.add('ml-input-invalid');
+    } else {
+      input.classList.remove('ml-input-invalid');
+    }
+  }
+
+  function bootForm() {
+    var form = document.getElementById('login-form');
+    var email = document.getElementById('email');
+    var password = document.getElementById('password');
+    var remember = document.getElementById('remember');
+    var loginError = document.getElementById('login-error');
+    var forgot = document.getElementById('forgot-password');
+    var create = document.getElementById('create-account');
+    var backToLogin = document.getElementById('back-to-login');
+    var forgotBack = document.getElementById('forgot-back');
+
+    // Prefill "Remember me" from a previous visit.
+    if (remember && localStorage.getItem('fh_remember') === '1') {
+      remember.checked = true;
+      if (email && localStorage.getItem('fh_email')) {
+        email.value = localStorage.getItem('fh_email');
+      }
+    }
+
+    // --- LOGIN ---
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setError(loginError, '');
+        var ok = true;
+
+        if (!email || !emailValid(email.value)) {
+          markInvalid(email, true);
+          ok = false;
+        } else {
+          markInvalid(email, false);
+        }
+
+        if (!password || !password.value) {
+          markInvalid(password, true);
+          ok = false;
+        } else {
+          markInvalid(password, false);
+        }
+
+        if (!ok) {
+          setError(loginError, 'Please enter a valid email and password.');
+          return;
+        }
+
+        var btn = form.querySelector('.ml-submit');
+        var original = btn ? btn.textContent : '';
+        if (btn) btn.textContent = 'Logging in...';
+
+        // Local demo: no real request is sent. Redirect like the online app.
+        setTimeout(function () {
+          if (remember && remember.checked) {
+            localStorage.setItem('fh_remember', '1');
+            if (email) localStorage.setItem('fh_email', email.value.trim());
+          } else {
+            localStorage.removeItem('fh_remember');
+          }
+          if (btn) btn.textContent = original;
+          window.location.href = LOGIN_REDIRECT;
+        }, 600);
+      });
+    }
+
+    // --- VIEW SWITCHING ---
+    if (create) {
+      create.addEventListener('click', function (e) {
+        e.preventDefault();
+        showPane('signup');
+      });
+    }
+
+    if (backToLogin) {
+      backToLogin.addEventListener('click', function (e) {
+        e.preventDefault();
+        showPane('login');
+      });
+    }
+
+    if (forgot) {
+      forgot.addEventListener('click', function (e) {
+        e.preventDefault();
+        showPane('forgot');
+      });
+    }
+
+    if (forgotBack) {
+      forgotBack.addEventListener('click', function (e) {
+        e.preventDefault();
+        showPane('login');
+      });
+    }
+  }
+
+  /* ------------------------------ Sign up ------------------------------ */
+  function bootSignup() {
+    var form = document.getElementById('signup-form');
+    if (!form) return;
+
+    var firstName = document.getElementById('first-name');
+    var lastName = document.getElementById('last-name');
+    var signupEmail = document.getElementById('signup-email');
+    var signupPassword = document.getElementById('signup-password');
+    var signupConfirm = document.getElementById('signup-password-confirm');
+    var agreeTerms = document.getElementById('agree-terms');
+    var error = document.getElementById('signup-error');
+    var success = document.getElementById('signup-success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      setError(error, '');
+      setError(success, '');
+      var ok = true;
+
+      [firstName, lastName, signupEmail, signupPassword, signupConfirm].forEach(function (input) {
+        if (!input || !input.value.trim()) markInvalid(input, true);
+        else markInvalid(input, false);
+      });
+
+      if (!firstName || !firstName.value.trim()) ok = false;
+      if (!lastName || !lastName.value.trim()) ok = false;
+
+      if (!signupEmail || !emailValid(signupEmail.value)) {
+        markInvalid(signupEmail, true);
+        ok = false;
+      }
+
+      if (!signupPassword || signupPassword.value.length < 6) {
+        markInvalid(signupPassword, true);
+        ok = false;
+      } else {
+        markInvalid(signupPassword, false);
+      }
+
+      if (!signupConfirm || signupConfirm.value !== signupPassword.value) {
+        markInvalid(signupConfirm, true);
+        ok = false;
+      } else {
+        markInvalid(signupConfirm, false);
+      }
+
+      if (!agreeTerms || !agreeTerms.checked) {
+        setError(error, 'You must agree to the Terms & Conditions.');
+        return;
+      }
+
+      if (!ok) {
+        setError(error, 'Please complete all fields to create your account.');
+        return;
+      }
+
+      var btn = form.querySelector('.ml-submit');
+      var original = btn ? btn.textContent : '';
+      if (btn) btn.textContent = 'Creating account...';
+
+      // Local demo: no data is sent. Show a success state like the online flow.
+      setTimeout(function () {
+        if (btn) btn.textContent = original;
+        form.reset();
+        setError(success, 'Your account has been created successfully! You can now log in.');
+        setTimeout(function () {
+          var loginEmail = document.getElementById('email');
+          if (loginEmail && signupEmail) loginEmail.value = signupEmail.value.trim();
+          showPane('login');
+        }, 1600);
+      }, 700);
+    });
+  }
+
+  /* ------------------------- Forgot password --------------------------- */
+  function bootForgot() {
+    var form = document.getElementById('forgot-form');
+    if (!form) return;
+
+    var forgotEmail = document.getElementById('forgot-email');
+    var error = document.getElementById('forgot-error');
+    var success = document.getElementById('forgot-success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      setError(error, '');
+      setError(success, '');
+
+      if (!forgotEmail || !emailValid(forgotEmail.value)) {
+        markInvalid(forgotEmail, true);
+        setError(error, 'Please enter a valid email address.');
+        return;
+      }
+
+      markInvalid(forgotEmail, false);
+
+      var btn = form.querySelector('.ml-submit');
+      var original = btn ? btn.textContent : '';
+      if (btn) btn.textContent = 'Sending...';
+
+      // Local demo: no email is sent. Mirrors the online confirmation message.
+      setTimeout(function () {
+        if (btn) btn.textContent = original;
+        setError(success, 'If an account exists for that email, a reset link has been sent.');
+        form.reset();
+      }, 700);
+    });
+  }
+
+  /* -------------------------- Reset fields ----------------------------- */
+  document.addEventListener('focusin', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('ml-input')) {
+      markInvalid(e.target, false);
+    }
+  });
+
+  function boot() {
+    bootForm();
+    bootSignup();
+    bootForgot();
+    loadThree(initThree);
+  }
+
+  window.addEventListener('pagehide', function () {
+    active = false;
+    window.removeEventListener('resize', handleResize);
+    if (animationId) cancelAnimationFrame(animationId);
+    if (renderer) renderer.dispose();
+    if (geometry) geometry.dispose();
+    if (material) material.dispose();
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+
+    </script>
+  </body>
+</html>
+
