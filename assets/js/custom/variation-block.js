@@ -17,10 +17,15 @@ jQuery(document).ready(function($) {
         }
 
         const originalHTML = $badge.html();
-        $badge.addClass('copied').text('Copied!');
-        setTimeout(function() {
-            $badge.removeClass('copied').html(originalHTML);
-        }, 1800);
+        const fadeMs = 150;
+        $badge.fadeTo(fadeMs, 0, function() {
+            $badge.addClass('copied').text('Copied!').fadeTo(fadeMs, 1);
+            setTimeout(function() {
+                $badge.fadeTo(fadeMs, 0, function() {
+                    $badge.removeClass('copied').html(originalHTML).fadeTo(fadeMs, 1);
+                });
+            }, 1750);
+        });
     });
 
     $(document).on('click', '.variation-option', function() {

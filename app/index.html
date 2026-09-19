@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Funded Hero Futures Dashboard</title>
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/modern-login.css" />
+  </head>
+  <body>
+    <div class="ml-root">
+      <canvas id="ml-canvas" class="ml-canvas"></canvas>
+      <div class="ml-vignette"></div>me gusta 
+
+      <div class="ml-card">
+        <img class="ml-logo" src="assets/images/logo_auth.png" alt="FundedHero" />
+
+        <!-- LOGIN -->
+        <div class="ml-pane" id="ml-login">
+          <h1 class="ml-title">Welcome back</h1>
+          <p class="ml-sub">Sign in entering the information below</p>
+
+          <form class="ml-form" id="login-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="email">Email</label>
+              <input class="ml-input" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="password">Password</label>
+              <input class="ml-input" id="password" name="password" type="password" autocomplete="current-password" required />
+            </div>
+
+            <div class="ml-remember">
+              <label class="ml-check">
+                <input type="checkbox" id="remember" />
+                Remember me
+              </label>
+              <button class="ml-link" id="forgot-password" type="button">Forgot password</button>
+            </div>
+
+            <div class="ml-msg" id="login-error" role="alert" hidden></div>
+
+            <button type="submit" class="ml-submit">Login</button>
+          </form>
+
+          <div class="ml-switch">
+            Don&rsquo;t have an account?
+            <button class="ml-link-btn" id="create-account" type="button">Create one</button>
+          </div>
+          <div class="ml-footer">
+            By logging in you accept the <a href="../pages/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+          </div>
+        </div>
+
+        <!-- SIGN UP -->
+        <div class="ml-pane" id="ml-signup" hidden>
+          <h1 class="ml-title">Create your account</h1>
+          <p class="ml-sub">Sign up free to start trading with FundedHero</p>
+
+          <form class="ml-form" id="signup-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="first-name">First Name</label>
+              <input class="ml-input" id="first-name" name="firstName" type="text" autocomplete="given-name" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="last-name">Last Name</label>
+              <input class="ml-input" id="last-name" name="lastName" type="text" autocomplete="family-name" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-email">Email</label>
+              <input class="ml-input" id="signup-email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-password">Password</label>
+              <input class="ml-input" id="signup-password" name="password" type="password" autocomplete="new-password" required />
+            </div>
+
+            <div class="ml-field">
+              <label class="ml-label" for="signup-password-confirm">Confirm Password</label>
+              <input class="ml-input" id="signup-password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" required />
+            </div>
+
+            <label class="ml-check ml-agree">
+              <input type="checkbox" id="agree-terms" required />
+              <span>I agree to the <a href="../pages/terms-and-conditions.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="../pages/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></span>
+            </label>
+
+            <div class="ml-msg" id="signup-error" role="alert" hidden></div>
+            <div class="ml-msg ml-success" id="signup-success" hidden></div>
+
+            <button type="submit" class="ml-submit">Create account</button>
+          </form>
+
+          <div class="ml-switch">
+            Already have an account?
+            <button class="ml-link-btn" id="back-to-login" type="button">Login</button>
+          </div>
+        </div>
+
+        <!-- FORGOT PASSWORD -->
+        <div class="ml-pane" id="ml-forgot" hidden>
+          <h1 class="ml-title">Reset your password</h1>
+          <p class="ml-sub">Enter your email and we&rsquo;ll send you a reset link</p>
+
+          <form class="ml-form" id="forgot-form" novalidate>
+            <div class="ml-field">
+              <label class="ml-label" for="forgot-email">Email</label>
+              <input class="ml-input" id="forgot-email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="ml-msg" id="forgot-error" role="alert" hidden></div>
+            <div class="ml-msg ml-success" id="forgot-success" hidden></div>
+
+            <button type="submit" class="ml-submit">Send reset link</button>
+          </form>
+
+          <div class="ml-switch">
+            <button class="ml-link-btn" id="forgot-back" type="button">Back to login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/modern-login.js" defer></script>
+  </body>
+</html>
