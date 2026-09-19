@@ -148,7 +148,6 @@
   }
 
   /* ------------------------------- Form ------------------------------- */
-
   // Local stand-in for the online dashboard route (app.fundedherofutures.com/dashboard).
   var LOGIN_REDIRECT = 'dashboard.html';
 
@@ -248,25 +247,29 @@
 
     // --- VIEW SWITCHING ---
     if (create) {
-      create.addEventListener('click', function () {
+      create.addEventListener('click', function (e) {
+        e.preventDefault();
         showPane('signup');
       });
     }
 
     if (backToLogin) {
-      backToLogin.addEventListener('click', function () {
+      backToLogin.addEventListener('click', function (e) {
+        e.preventDefault();
         showPane('login');
       });
     }
 
     if (forgot) {
-      forgot.addEventListener('click', function () {
+      forgot.addEventListener('click', function (e) {
+        e.preventDefault();
         showPane('forgot');
       });
     }
 
     if (forgotBack) {
-      forgotBack.addEventListener('click', function () {
+      forgotBack.addEventListener('click', function (e) {
+        e.preventDefault();
         showPane('login');
       });
     }
